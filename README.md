@@ -30,10 +30,10 @@
             Install the invariant module globally: npm install -g invariant
             If that still doesn't work then try: npm i --save-dev invariant
 
-* First Time Launching App
+* First Time Launching App:
+
 	npm install (This will take some time)
 	Start an Andrioid Virtual Device (from Geney Motion or Android Studio)
 	react-native run-android
 
-* Please Note
-	As of now, with the inital commit, the GET request will require Auth to removed from backend (remove devise declarations from User controller)
+* Please Note: As of now, with the inital commit, the GET request will require Auth to removed from backend (remove devise declarations from User controller)
