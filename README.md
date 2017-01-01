@@ -9,7 +9,7 @@
 		
 		Open Android studio > Settings > Appearance & Behavior > System Settings > Android SDK
 			Create "ANDROID_HOME" system variable and set it the path of Andriod SDK location
-			Under SDK Platform, make sure "Android 5.1 API level 22 is selected"
+			Under SDK Platform, make sure "Android 5.1 API level 22" is selected
 			Under SDK Tools, make sure the following are selected:
 				Android SDK Build Tools
 				Android SDK Tools
@@ -31,9 +31,9 @@
             If that still doesn't work then try: npm i --save-dev invariant
 
 * First Time Launching App:
-
-	npm install (This will take some time)
-	Start an Andrioid Virtual Device (from Geney Motion or Android Studio)
-	react-native run-android
+		
+		npm install (This will take some time)
+		Start an Andrioid Virtual Device (from Geney Motion or Android Studio)
+		react-native run-android
 
 * Please Note: As of now, with the inital commit, the GET request will require Auth to removed from backend (remove devise declarations from User controller)
