@@ -13,11 +13,18 @@ export default class TutorsComponent  extends Component {
 
   getTutors() {
     var testArray = [
-      { name: "Sarmad" },
-      { name: "Salman" },
-      { name: "Muraad" },
-      { name: "Peng" },
-      { name: "Leila" }
+      { name: "Sarmad", picture: "" },
+      { name: "Mike", picture: "" },
+      { name: "John", picture: "" },
+      { name: "Dan", picture: "" },
+      { name: "Test1", picture: "" },
+      { name: "Test2", picture: "" },
+      { name: "Test3", picture: "" },
+      { name: "Test4", picture: "" },
+      { name: "Salman", picture: "" },
+      { name: "Muraad", picture: "" },
+      { name: "Peng", picture: "" },
+      { name: "Leila", picture: "" }
     ];
     return testArray;
   }
@@ -28,12 +35,12 @@ export default class TutorsComponent  extends Component {
 
   render() {
     return (
-        <ListView
-          contentContainerStyle={styles.container}
-          dataSource={this.state.dataSource}
-          renderRow={(row) => <TutorRow {...row}/>}
-          renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-        />
+      <ListView
+        style={styles.container}
+        dataSource={this.state.dataSource}
+        renderRow={(row) => <TutorRow {...row}/>}
+        renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+      />
     );
   }
 }
@@ -44,6 +51,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   separator: {
+    flex: 1,
     height: StyleSheet.hairlineWidth,
     backgroundColor: '#8E8E8E',
   },
