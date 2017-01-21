@@ -36,6 +36,7 @@ export default class TutorsComponent  extends Component {
   render() {
     return (
       <ListView
+       navigator={this.props.navigator}
         style={styles.container}
         dataSource={this.state.dataSource}
         renderRow={(row) => <TutorRow {...row}/>}
