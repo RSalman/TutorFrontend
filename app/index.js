@@ -11,6 +11,7 @@ export default class TutoringApp extends Component {
   render() {
     return (
   		<Navigator
+          style={styles.container}
         	initialRoute={{screen: 'HomeView'}}
         	renderScene={(route, nav) => {return this.renderScene(route, nav)}}  />
     );
@@ -34,6 +35,7 @@ export default class TutoringApp extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 20,
     flex: 1,
   }
 });
