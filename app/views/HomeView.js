@@ -1,27 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, TouchableHighlight, Alert } from 'react-native';
+import { StyleSheet,View, Text, TouchableHighlight, Alert, Button } from 'react-native';
 
 export default class HomeView extends Component {
   
   render() {
     return (
       <View>
-        <TouchableHighlight onPress={this.navigateToFeature.bind(this, "TutorsComponent")}>
-          <Text>Tutors Component (Sarmad)</Text>
-        </TouchableHighlight>
-
-        <TouchableHighlight onPress={this.navigateToFeature.bind(this, "SalmanFeature")}>
-          <Text>Salman's Feature</Text>
-        </TouchableHighlight>
-
-        <TouchableHighlight onPress={this.navigateToFeature.bind(this, "LeilaFeature")}>
-          <Text>Leila's Feature</Text>
-        </TouchableHighlight>
-
-        <TouchableHighlight onPress={this.navigateToFeature.bind(this, "MuraadFeature")}>
-          <Text>Muraad's Feature</Text>
-        </TouchableHighlight>
-
+        <Button title="Tutors Component (Sarmad)" onPress={this.navigateToFeature.bind(this, "TutorsComponent")}/>
+        <Button title="Salman's Feature" onPress={this.navigateToFeature.bind(this, "SalmanFeature")}/>
+        <Button title="Muraad's Feature" onPress={this.navigateToFeature.bind(this, "MuraadFeature")}/>
+        <Button title="Leila's Feature" onPress={this.navigateToFeature.bind(this, "LeilaFeature")}/>        
       </View>
     )
   }
