@@ -13,18 +13,18 @@ export default class TutorsComponent  extends Component {
 
   getTutors() {
     var testArray = [
-      { name: "Sarmad", picture: "" },
-      { name: "Mike", picture: "" },
-      { name: "John", picture: "" },
-      { name: "Dan", picture: "" },
-      { name: "Test1", picture: "" },
-      { name: "Test2", picture: "" },
-      { name: "Test3", picture: "" },
-      { name: "Test4", picture: "" },
-      { name: "Salman", picture: "" },
-      { name: "Muraad", picture: "" },
-      { name: "Peng", picture: "" },
-      { name: "Leila", picture: "" }
+      { picture: "", rating: 5, degree: "Masters" },
+      { picture: "", rating: 5, degree: "Bachelors" },
+      { picture: "", rating: 4.5, degree: "PhD" },
+      { picture: "", rating: 3.9, degree: "PhD" },
+      { picture: "", rating: 3.5, degree: "PhD"},
+      { picture: "", rating: 2.5, degree: "PhD"},
+      { picture: "", rating: 1, degree: "PhD"},
+      { picture: "", rating: 2, degree: "PhD" },
+      { picture: "", rating: 4, degree: "PhD" },
+      { picture: "", rating: 5, degree: "PhD" },
+      { picture: "", rating: 3, degree: "PhD" },
+      { picture: "", rating: 2, degree: "PhD" }
     ];
     return testArray;
   }
@@ -36,7 +36,7 @@ export default class TutorsComponent  extends Component {
   render() {
     return (
       <ListView
-       navigator={this.props.navigator}
+        navigator={this.props.navigator}
         style={styles.container}
         dataSource={this.state.dataSource}
         renderRow={(row) => <TutorRow {...row}/>}
