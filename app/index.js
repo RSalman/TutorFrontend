@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet,TouchableHighlight, Text, View, Navigator } from 'react-native';
+import { StyleSheet,TouchableHighlight, Text, View, Navigator, BackAndroid} from 'react-native';
 
 import HomeView from './views/HomeView';
 import TutorsComponent from './components/TutorsComponent';
@@ -8,7 +8,18 @@ import SalmanFeatureView from './views/SalmanFeatureView';
 import MuraadFeatureView from './views/MuraadFeatureView';
 
 export default class TutoringApp extends Component {
-  render() {
+  constructor (props){
+    super(props);
+    this.navigation_stack= {}; 
+    BackAndroid.addEventListener('hardwareBackPress', () => {
+      if (this.navigation_stack.getCurrentRoutes().length === 1)
+         return false;
+      this.navigation_stack.pop();
+      return true;
+    });
+  }
+
+  render () {
     return (
   		<Navigator
           style={styles.container}
@@ -17,7 +28,8 @@ export default class TutoringApp extends Component {
     );
   }
 
- renderScene(route,nav) {
+ renderScene (route,nav) {
+    this.navigation_stack = nav;
     switch (route.screen) {
       	case "HomeView":
         	return <HomeView navigator={nav} />
