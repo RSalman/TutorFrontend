@@ -8,18 +8,18 @@ import SalmanFeatureView from './views/SalmanFeatureView';
 import MuraadFeatureView from './views/MuraadFeatureView';
 
 export default class TutoringApp extends Component {
- renderScene(route, nav) {
+  renderScene(route, nav) {
     switch (route.screen) {
-    case 'HomeView':
-      return <HomeView navigator={nav} />;
-    case 'TutorsComponent':
-      return <TutorsComponent navigator={nav} />;
-    case 'SalmanFeature':
-      return <SalmanFeatureView navigator={nav} />;
-    case 'LeilaFeature':
-      return <LeilaFeatureView navigator={nav} />;
-    case 'MuraadFeature':
-      return <MuraadFeatureView navigator={nav} />;
+      case 'HomeView':
+        return <HomeView navigator={nav} />;
+      case 'TutorsComponent':
+        return <TutorsComponent navigator={nav} />;
+      case 'SalmanFeature':
+        return <SalmanFeatureView navigator={nav} />;
+      case 'LeilaFeature':
+        return <LeilaFeatureView navigator={nav} />;
+      case 'MuraadFeature':
+        return <MuraadFeatureView navigator={nav} />;
     }
   }
 

@@ -16,7 +16,7 @@ const TutorRow = (tutor) => {
             maxStars={5}
             rating={tutor.rating}
             starSize={20}
-            selectedStar={function () {}}
+            selectedStar={function() {}}
             starColor={'gold'}
           />
           <Text style={styles.degreeText}> {`${tutor.degree}`} </Text>
