@@ -1,5 +1,6 @@
 # README (Fix/add anything you felt was unclear)
 
+[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58864a527911080100390c59&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58864a527911080100390c59/build/latest?branch=master)
 ## Steps
 Follow the instructions for your OS [here](https://facebook.github.io/react-native/docs/getting-started.html) and then execute the following commands:
 ```
