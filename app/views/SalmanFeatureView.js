@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Text } from 'react-native';
 
 export default class SalmanFeatureView extends Component {
-  
+
   render() {
     return (
-          <Text>Salman's Feature</Text>
-    )
+      <Text>Salman&apos;s Feature</Text>
+    );
   }
 }
