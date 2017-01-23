@@ -4,7 +4,7 @@ import { Text } from 'react-native';
 export default class MuraadFeatureView extends Component {
   render() {
     return (
-      <Text>Scrub Feature</Text>
+      <Text>M Feature</Text>
     );
   }
 }

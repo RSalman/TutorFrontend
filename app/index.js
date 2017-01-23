@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navigator, StyleSheet } from 'react-native';
+import { Navigator, StyleSheet, BackAndroid } from 'react-native';
 
 import HomeView from './views/HomeView';
 import TutorsComponent from './components/TutorsComponent';
@@ -8,7 +8,19 @@ import SalmanFeatureView from './views/SalmanFeatureView';
 import MuraadFeatureView from './views/MuraadFeatureView';
 
 export default class TutoringApp extends Component {
+  constructor(props) {
+    super(props);
+    this.navigation_stack = {};
+    BackAndroid.addEventListener('hardwareBackPress', () => {
+      if (this.navigation_stack.getCurrentRoutes().length === 1)
+        return false;
+      this.navigation_stack.pop();
+      return true;
+    });
+  }
+
   renderScene(route, nav) {
+    this.navigation_stack = nav;
     switch (route.screen) {
       case 'HomeView':
         return <HomeView navigator={nav} />;
