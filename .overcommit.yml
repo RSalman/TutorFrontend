@@ -18,6 +18,3 @@ PreCommit:
     enabled: true
     on_warn: fail # Treat all warnings as failures
     required_executable: 'node_modules/.bin/eslint'
-
-  TrailingWhitespace:
-    enabled: true
