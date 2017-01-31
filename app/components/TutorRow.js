@@ -1,30 +1,40 @@
 import React from 'react';
+import { Image, StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import StarRating from 'react-native-star-rating';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
-// TODO: Use image URI instead of static image
 const TutorRow = (tutor) => {
+  // TODO: Use image URI instead of static image
   var image = require('./img/test.png');
   return (
-    <View style={styles.container}>
-      <Image source={image} style={styles.photo} />
-      <View style={styles.informationContainer}>
-        <View style={styles.row}>
-          <StarRating
-            style={styles.stars}
-            disabled
-            maxStars={5}
-            rating={tutor.rating}
-            starSize={20}
-            selectedStar={function() {}}
-            starColor={'gold'}
-          />
-          <Text style={styles.degreeText}> {`${tutor.degree}`} </Text>
+    <TouchableWithoutFeedback onPress={() => Actions.tutorinfo({ id:tutor.id })}>
+      <View style={styles.container}>
+        <Image source={image} style={styles.photo} />
+        <View style={styles.informationContainer}>
+          <View style={styles.row}>
+            <StarRating
+              style={styles.stars}
+              disabled
+              maxStars={5}
+              rating={tutor.rating}
+              starSize={20}
+              selectedStar={function() {}}
+              starColor={'gold'}
+            />
+            <Text style={styles.degreeText}> {`${tutor.degree}`} </Text>
+          </View>
+          <View style={styles.row} />
+          <View style={styles.row}>
+            <Icon
+              name="arrow-right"
+              size={28}
+              color="#000"
+            />
+          </View>
         </View>
-        <View style={styles.row} />
-        <View style={styles.row} />
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 

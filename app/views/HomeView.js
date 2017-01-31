@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import { Button, View } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 export default class HomeView extends Component {
-  navigateToFeature(feature) {
-    this.props.navigator.push({ screen: feature });
-  }
-
   render() {
     return (
       <View>
-        <Button title="Tutors Component (Sarmad)" onPress={this.navigateToFeature.bind(this, 'TutorsComponent')} />
-        <Button title="Salman's Feature" onPress={this.navigateToFeature.bind(this, 'SalmanFeature')} />
-        <Button title="Muraad's Feature" onPress={this.navigateToFeature.bind(this, 'MuraadFeature')} />
-        <Button title="Leila's Feature" onPress={this.navigateToFeature.bind(this, 'LeilaFeature')} />
+        <Button title="Tutors Component (Sarmad)" onPress={Actions.tutors} />
+        <Button title="Salman's Feature" onPress={Actions.tutorinfo} />
+        <Button title="Muraad's Feature" onPress={Actions.muraad} />
+        <Button title="Leila's Feature" onPress={Actions.leila} />
       </View>
     );
   }
