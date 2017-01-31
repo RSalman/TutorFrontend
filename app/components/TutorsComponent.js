@@ -86,7 +86,7 @@ export default class TutorsComponent extends Component {
         navigator={this.props.navigator}
         style={styles.container}
         dataSource={this.state.dataSource}
-        renderRow={(row) => <TutorRow {...row} />}
+        renderRow={(row) => TutorRow(row, this.props.navigator)}
         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
       />
     );
