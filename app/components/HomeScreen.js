@@ -23,7 +23,13 @@ export default class HomeScreen extends Component {
 const logoColor = '#008B8B';
 const logoBackground = 'transparent';
 const styles = StyleSheet.create({
+<<<<<<< 6d12072992b182301b1f4704e2fee57db43d4f00
   button: { marginTop: 10 },
+=======
+  button: {
+    marginTop: 10
+  },
+>>>>>>> Create an actual home screen with styled buttons and background image
   buttonsView: {
     flex: 1,
     justifyContent: 'flex-end'
@@ -42,8 +48,17 @@ const styles = StyleSheet.create({
     marginTop: 10,
     backgroundColor: logoBackground,
     ...Platform.select({
+<<<<<<< 6d12072992b182301b1f4704e2fee57db43d4f00
       ios: { fontFamily: 'HelveticaNeue-Thin' },
       android: { fontFamily: 'sans-serif-thin' },
+=======
+      ios: {
+        fontFamily: 'HelveticaNeue-Thin'
+      },
+      android: {
+        fontFamily: 'sans-serif-thin'
+      },
+>>>>>>> Create an actual home screen with styled buttons and background image
     })
   }
 });
