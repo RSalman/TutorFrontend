@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import rootReducer from './reducers';
-import HomeView from './views/HomeView';
+import HomeScreen from './components/HomeScreen';
 import TutorsComponent from './components/TutorsComponent';
 import LeilaFeatureView from './views/LeilaFeatureView';
 import SalmanFeatureView from './views/SalmanFeatureView';
@@ -18,7 +18,7 @@ export default class TutoringApp extends Component {
       <Provider store={store}>
         <Router>
           <Scene key="root" hideNavBar>
-            <Scene key="home" component={HomeView} title="HomeView" />
+            <Scene key="home" component={HomeScreen} title="HomeScreen" />
             <Scene key="tutors" component={TutorsComponent} title="TutorsComponent" />
             <Scene key="tutorinfo" component={SalmanFeatureView} title="SalmanFeatureView" />
             <Scene key="leila" component={LeilaFeatureView} title="LeilaFeatureView" />
