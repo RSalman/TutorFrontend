@@ -8,7 +8,7 @@ import TutorRow from './TutorRow';
 class TutorsComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = { dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }) };
+    this.state = { dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows(this.props.allTutors) };
   }
 
   componentWillMount() {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     allTutors: state.tutors.allTutors,
-    isLoading: state.isLoading
+    isLoading: state.tutors.isLoading
   };
 };
 

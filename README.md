@@ -6,11 +6,19 @@ Follow the instructions for your OS [here](https://facebook.github.io/react-nati
 ```
 $ cd ~/TutorFrontend
 $ npm install
-$ overcommit --install && overcommit --sign
 ```
 Start up your android emulator and run `react-native run-android`, or simply run `react-native run-ios` for iOS.
 
+Before every commit, `npm run lint` and `npm run test` will run automatically.
+
 IMPORTANT: Run `npm run lint` to fix some style and formatting issues automatically. Do this before committing!
+
+## Steps for Testing
+Simply run `npm run test` to run all tests.
+
+Jest can do snapshot testing, which means it takes a snapshot of the UI and tests future changes against that snapshot. So, if a button gets misplaced from a UI change, the test for it will fail. 
+
+However, there will be times (lots of them) where you will change the UI and it will be a valid change. Now you will need to update the snapshots to make the tests pass. Snapshots can be updated with the command `npm run test -- -u`. Make sure to only do this for tests that are failing for valid and expected UI changes. Otherwise, someone will catch it in code review.
 
 ## Misc
 * Android Target API: 22 (To be discussed)
