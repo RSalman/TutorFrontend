@@ -24,7 +24,7 @@ class TutorsComponent extends Component {
   render() {
     return (
       <ListView
-        styles={styles.container}
+        style={styles.container}
         dataSource={this.state.dataSource}
         renderRow={(row) => <TutorRow {...row} />}
         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
