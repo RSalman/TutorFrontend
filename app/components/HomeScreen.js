@@ -9,10 +9,12 @@ export default class HomeScreen extends Component {
       <Image source={require('./img/background.jpg')} style={styles.backgroundImage}>
         <View style={styles.buttonsView}>
           <Text style={styles.logo}>PROSPR</Text>
+          <ButtonComponent style={styles.button} text="Salman's Feature" onPress={Actions.tutorinfo} />
           <ButtonComponent style={styles.button} text="Tutors Component (Sarmad)" onPress={Actions.tutors} />
           <ButtonComponent style={styles.button} text="Salman's Feature" onPress={Actions.tutorinfo} />
           <ButtonComponent style={styles.button} text="Muraad's Feature" onPress={Actions.muraad} />
           <ButtonComponent style={styles.button} text="Leila's Feature" onPress={Actions.leila} />
+          <ButtonComponent style={styles.button} text="Phone Verification (Sarmad)" onPress={Actions.phoneVerification} />
         </View>
       </Image>
     );
