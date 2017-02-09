@@ -10,6 +10,7 @@ import TutorsComponent from './components/TutorsComponent';
 import LeilaFeatureView from './views/LeilaFeatureView';
 import SalmanFeatureView from './views/SalmanFeatureView';
 import MuraadFeatureView from './views/MuraadFeatureView';
+import PhoneVerificationInput from './components/PhoneVerificationInput';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 export default class TutoringApp extends Component {
@@ -23,6 +24,7 @@ export default class TutoringApp extends Component {
             <Scene key="tutorinfo" component={SalmanFeatureView} title="SalmanFeatureView" />
             <Scene key="leila" component={LeilaFeatureView} title="LeilaFeatureView" />
             <Scene key="muraad" component={MuraadFeatureView} title="MuraadFeatureView" />
+            <Scene key="phoneVerification" component={PhoneVerificationInput} title="PhoneVerificationInput" />
           </Scene>
         </Router>
       </Provider>
