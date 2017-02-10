@@ -7,10 +7,11 @@ import {
 export default class LeilaFeatureView extends Component {
   render() {
     return (
-        <Button
-            raised
-            icon={{name: 'cached'}}
-            title='RAISED WITH ICON' />
+      <Button
+        raised
+        icon={{ name: 'cached' }}
+        title="RAISED WITH ICON"
+      />
     );
   }
 }
