@@ -5,8 +5,6 @@ import {
     Text
 } from 'react-native';
 import {
-    Grid,
-    Row,
     Button
 } from 'react-native-elements';
 
@@ -23,45 +21,48 @@ class Homeview extends Component {
     var newSideIsHidden = !this.state.sideIsHidden;
     this.setState({ sideIsHidden: newSideIsHidden });
     this.props.onPressFunct(this.state.sideIsHidden);
-
   }
   render() {
     return (
-      <Grid>
-        <Row>
-          <View
-            style={style.container}
-          >
-            <Button
-              raised
-              icon={{ name: 'cached' }}
-              title="button icon"
-              onPress={this.pressFunct}
-            />
-          </View>
-        </Row>
-        <Row>
-          <View style={style2.container}>
-            <Text>Blue background</Text>
-          </View>
-        </Row>
-      </Grid>
+      <View style={style.container} >
+        <View style={style.view1} />
+        <View style={style.view2}>
+          <Button
+            buttonStyle={style.menuButton}
+            icon={{ name: 'menu' }}
+            onPress={this.pressFunct}
+          />
+        </View>
+        <View style={style.view3} >
+          <Text>Blue background</Text>
+        </View>
+      </View>
     );
   }
 }
 
 const yellow = '#ff7733';
 const blue = '#8080ff';
+const transparent = 'transparent';
 const style = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  menuButton:{
+    width: 50,
+    height: 50,
+    backgroundColor: transparent
+  },
+  view1: {
+    flex: 1,
+    backgroundColor: blue,
+  },
+  view2:{
+    flex: 5,
     backgroundColor: yellow,
-    flex: 1, flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-});
-const style2 = StyleSheet.create({
-  container: {
+  },
+  view3:{
+    flex: 5,
     backgroundColor: blue
   }
 });
