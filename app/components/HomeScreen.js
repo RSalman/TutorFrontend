@@ -10,7 +10,7 @@ export default class HomeScreen extends Component {
         <View style={styles.buttonsView}>
           <Text style={styles.logo}>PROSPR</Text>
           <ButtonComponent style={styles.button} text="Tutors Component (Sarmad)" onPress={Actions.tutors} />
-          <ButtonComponent style={styles.button} text="Salman's Feature" onPress={Actions.tutorinfo} />
+          <ButtonComponent style={styles.button} text="Tutor Profile Component (Salman)" onPress={Actions.tutorinfo} />
           <ButtonComponent style={styles.button} text="Muraad's Feature" onPress={Actions.muraad} />
           <ButtonComponent style={styles.button} text="Leila's Feature" onPress={Actions.leila} />
         </View>
