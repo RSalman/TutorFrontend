@@ -96,12 +96,7 @@ class TutorProfileComponent extends Component {
               <Button onPress={this.toggleRequest} style={styles.ModalButton} title="Send Request" />
             </View>
           );
-
   }
-
-
-
-
 
   renderRequestStatusBadge = () =>{
 
@@ -116,10 +111,7 @@ class TutorProfileComponent extends Component {
     else
 
           return null;
-
-
   }
-
 
   render() {
     return (
