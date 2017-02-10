@@ -115,12 +115,9 @@ class TutorProfileComponent extends Component {
 
   render() {
     return (
-
       <View style={styles.wrapper}>
         <LinearGradient colors={[offWhite, offGrey]}>
-
           {this.renderRequestStatusBadge()}
-
           <View style={styles.profileCard}>
             <Image source={image} style={styles.photo} />
             <View >
