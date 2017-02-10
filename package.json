@@ -11,6 +11,7 @@
     "react": "15.4.1",
     "react-native": "0.41.1",
     "react-native-button-component": "^0.1.11",
+    "react-native-elements": "^0.9.5",
     "react-native-router-flux": "^3.37.0",
     "react-native-star-rating": "^1.0.6",
     "react-native-vector-icons": "^4.0.0",
@@ -43,7 +44,10 @@
     ]
   },
   "pre-commit": {
-    "run": ["lint", "test"],
+    "run": [
+      "lint",
+      "test"
+    ],
     "silent": true
   },
   "rnpm": {
