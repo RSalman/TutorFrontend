@@ -15,7 +15,7 @@ class PhoneVerificationInput extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.verified)
-      Actions.muraad({ type: 'reset' }); // reset so user can't go back
+      Actions.muraad({ type: 'reset' }); // reset sideIsHidden user can't go back
   }
 
   verify(code) {
