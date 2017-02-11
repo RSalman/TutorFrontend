@@ -282,7 +282,7 @@ exports[`test renders correctly 1`] = `
                           "letterSpacing": 1,
                         }
                       }>
-                      Salman\'s Feature
+                      Tutor Profile Component (Salman)
                     </Text>
                   </View>
                 </View>

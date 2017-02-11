@@ -15,6 +15,17 @@
     "react",
     "react-native"
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".android.js",
+          ".ios.js"
+        ]
+      }
+    }
+  },
   "rules": {
     "indent": [2, 2, {"SwitchCase": 1}],
     "space-before-blocks": 1,
@@ -55,7 +66,7 @@
     "block-scoped-var": 0,
     "complexity": 0,
     "consistent-return": 0,
-    "curly": ["error", "multi"],
+    "curly": ["error", "multi-or-nest", "consistent"],
     "default-case": 0,
     "dot-notation": 1,
     "eqeqeq": [1, "allow-null"],
@@ -63,7 +74,7 @@
     "no-alert": 1,
     "no-caller": 1,
     "no-div-regex": 1,
-    "no-else-return": 0,
+    "no-else-return": 1,
     "no-eq-null": 0,
     "no-eval": 1,
     "no-extend-native": 1,
@@ -92,6 +103,7 @@
     "no-void": 1,
     "no-warning-comments": 0,
     "no-with": 1,
+    "object-curly-newline": 1,
     "radix": 1,
     "semi-spacing": 1,
     "vars-on-top": 0,
@@ -111,7 +123,7 @@
     "keyword-spacing": 1,
     "jsx-quotes": [1, "prefer-double"],
     "no-multi-spaces": 1,
-    "brace-style": 0,
+    "brace-style": 1,
     "camelcase": 0,
     "consistent-this": [1, "self"],
     "eol-last": 1,

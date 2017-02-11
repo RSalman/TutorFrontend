@@ -16,9 +16,7 @@ class TutorsComponent extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(nextProps.allTutors)
-    });
+    this.setState({ dataSource: this.state.dataSource.cloneWithRows(nextProps.allTutors) });
   }
 
   render() {
@@ -53,8 +51,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  updateTutors
-}, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ updateTutors }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(TutorsComponent);

@@ -10,7 +10,7 @@ export default class HomeScreen extends Component {
         <View style={styles.buttonsView}>
           <Text style={styles.logo}>PROSPR</Text>
           <ButtonComponent style={styles.button} text="Tutors Component (Sarmad)" onPress={Actions.tutors} />
-          <ButtonComponent style={styles.button} text="Salman's Feature" onPress={Actions.tutorinfo} />
+          <ButtonComponent style={styles.button} text="Tutor Profile Component (Salman)" onPress={Actions.tutorinfo} />
           <ButtonComponent style={styles.button} text="Muraad's Feature" onPress={Actions.muraad} />
           <ButtonComponent style={styles.button} text="Leila's Feature" onPress={Actions.leila} />
           <ButtonComponent style={styles.button} text="Phone Verification (Sarmad)" onPress={Actions.phoneVerification} />
@@ -23,9 +23,7 @@ export default class HomeScreen extends Component {
 const logoColor = '#008B8B';
 const logoBackground = 'transparent';
 const styles = StyleSheet.create({
-  button: {
-    marginTop: 10
-  },
+  button: { marginTop: 10 },
   buttonsView: {
     flex: 1,
     justifyContent: 'flex-end'
@@ -44,12 +42,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     backgroundColor: logoBackground,
     ...Platform.select({
-      ios: {
-        fontFamily: 'HelveticaNeue-Thin'
-      },
-      android: {
-        fontFamily: 'sans-serif-thin'
-      },
+      ios: { fontFamily: 'HelveticaNeue-Thin' },
+      android: { fontFamily: 'sans-serif-thin' },
     })
   }
 });
