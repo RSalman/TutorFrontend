@@ -17,7 +17,6 @@ class TutorProfileComponent extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       animating: true,
       requesting: false,
@@ -30,15 +29,19 @@ class TutorProfileComponent extends Component {
     if (this.state.requestSent)
       this.setState({ messageAcknowledged: true });
   }
+
   openRequestModal() {
     this.modal.open();
   }
+
   toggleRequest() {
     this.setState({ requesting: !this.state.requesting });
   }
+
   mockRequestSent() {
     this.setState({ requestSent: true });
   }
+
   renderRequest() {
     if (this.state.messageAcknowledged) {
       return (
@@ -76,7 +79,6 @@ class TutorProfileComponent extends Component {
   }
 
   renderRequestStatusBadge() {
-
     if (this.state.requestSent) {
       return (
         <View style={styles.pendingRequest}>
@@ -137,7 +139,6 @@ class TutorProfileComponent extends Component {
 
 const leafGreenGradient = '#3CB371';
 const greendFadeGradient = '#4EC8A5';
-
 const stripeRGBBackground = 'rgba(0,0,0,0.65)';
 const white = '#fff';
 const offWhite = '#E0E0E0';
@@ -146,7 +147,6 @@ const grey = '#808080';
 const darkBlue = '#3B5998';
 const black = 'black';
 const transparent = 'transparent';
-
 
 const styles = StyleSheet.create({
   wrapper: {

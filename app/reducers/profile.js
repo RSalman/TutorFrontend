@@ -19,12 +19,15 @@ var initialState = {
 function profile(state = initialState, action) {
   switch (action.type) {
     case GET_PROFILE_START:
-      return { profile: test_profile,
-        isLoading: true };
+      return {
+        profile: test_profile,
+        isLoading: true
+      };
     case GET_PROFILE_COMPLETE:
       return {
         profile: test_profile,
-        isLoading: false };
+        isLoading: false
+      };
     default:
       return state;
   }

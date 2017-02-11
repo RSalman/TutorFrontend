@@ -23,9 +23,7 @@ export default class HomeScreen extends Component {
 const logoColor = '#008B8B';
 const logoBackground = 'transparent';
 const styles = StyleSheet.create({
-  button: {
-    marginTop: 10
-  },
+  button: { marginTop: 10 },
   buttonsView: {
     flex: 1,
     justifyContent: 'flex-end'
@@ -44,12 +42,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     backgroundColor: logoBackground,
     ...Platform.select({
-      ios: {
-        fontFamily: 'HelveticaNeue-Thin'
-      },
-      android: {
-        fontFamily: 'sans-serif-thin'
-      },
+      ios: { fontFamily: 'HelveticaNeue-Thin' },
+      android: { fontFamily: 'sans-serif-thin' },
     })
   }
 });

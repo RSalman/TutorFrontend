@@ -95,8 +95,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  verifyCode
-}, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ verifyCode }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(PhoneVerificationInput);
