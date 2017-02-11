@@ -18,15 +18,7 @@ class TutorProfileComponent extends Component {
   constructor(props) {
     super(props);
 
-    //TODO(Salman): Bind modal/requests to Action & Reducer.
-    this.openRequestModal = this.openRequestModal.bind(this);
-    this.renderRequestStatusBadge = this.renderRequestStatusBadge.bind(this);
-    this.renderRequest = this.renderRequest.bind(this);
-    this.toggleRequest = this.toggleRequest.bind(this);
-    this.mockRequestSent = this.mockRequestSent.bind(this);
-    this.onClose = this.onClose.bind(this);
     this.state = {
-      profile: this.props.profile,
       animating: true,
       requesting: false,
       requestSent: false,
@@ -34,52 +26,38 @@ class TutorProfileComponent extends Component {
     };
   }
 
-    //TODO(Salman): Bind remaining requests to Action & Reducer -- Go over with Sarmad in person.
-  onClose = () => {
+  onClose() {
     if (this.state.requestSent)
-
-      this.setState({
-        messageAcknowledged: true
-      });
-
+      this.setState({ messageAcknowledged: true });
   }
-  openRequestModal = () => {
+  openRequestModal() {
     this.modal.open();
   }
-  toggleRequest = () => {
-    this.setState({
-      requesting: !this.state.requesting
-    });
+  toggleRequest() {
+    this.setState({ requesting: !this.state.requesting });
   }
-  mockRequestSent = () => {
-    this.setState({
-      requestSent: true
-    });
+  mockRequestSent() {
+    this.setState({ requestSent: true });
   }
-  renderRequest = () => {
-    if (this.state.messageAcknowledged)
-
+  renderRequest() {
+    if (this.state.messageAcknowledged) {
       return (
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>Ahhh! A request was already sent to {this.state.profile.firstname}!</Text>
-          <Button onPress={this.modal.close} style={styles.ModalButton} title="Got it!" />
+          <Text style={styles.modalText}>Ahhh! A request was already sent to {this.props.profile.firstname}!</Text>
+          <Button onPress={() => this.modal.close()} style={styles.ModalButton} title="Got it!" />
         </View>
       );
-
-    else if (this.state.requestSent)
-
+    } else if (this.state.requestSent) {
       return (
         <View style={styles.modalView}>
-          <Text style={styles.modalText}><Icon name="thumbs-up" size={40} color={leafGreenGradient} /> We&apos;ve nudged {this.state.profile.firstname} for you!</Text>
-          <Button onPress={this.modal.close} style={styles.ModalButton} title="Got it!" />
+          <Text style={styles.modalText}><Icon name="thumbs-up" size={40} color={leafGreenGradient} /> We&apos;ve nudged {this.props.profile.firstname} for you!</Text>
+          <Button onPress={() => this.modal.close()} style={styles.ModalButton} title="Got it!" />
         </View>
       );
-
-    else if (this.state.requesting)
-
+    } else if (this.state.requesting) {
       return (
         <View style={styles.modalView}>
-          <Text onPress={this.mockRequestSent} style={styles.modalText}> Please wait while we poke {this.state.profile.firstname}</Text>
+          <Text onPress={() => this.mockRequestSent()} style={styles.modalText}> Please wait while we poke {this.props.profile.firstname}</Text>
           <ActivityIndicator
             animating={this.state.animating}
             style={[styles.waitCursor, styles.centering]}
@@ -87,30 +65,27 @@ class TutorProfileComponent extends Component {
           />
         </View>
       );
+    }
 
-    else
-
-          return (
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>A request will be sent to {this.state.profile.firstname}! </Text>
-              <Button onPress={this.toggleRequest} style={styles.ModalButton} title="Send Request" />
-            </View>
-          );
+    return (
+      <View style={styles.modalView}>
+        <Text style={styles.modalText}>A request will be sent to {this.props.profile.firstname}! </Text>
+        <Button onPress={() => this.toggleRequest()} style={styles.ModalButton} title="Send Request" />
+      </View>
+    );
   }
 
-  renderRequestStatusBadge = () =>{
+  renderRequestStatusBadge() {
 
-    if (this.state.requestSent)
-
+    if (this.state.requestSent) {
       return (
         <View style={styles.pendingRequest}>
           <Icon name="check" size={40} color={leafGreenGradient} /><Text> Pending Request! </Text>
         </View>
       );
+    }
 
-    else
-
-          return null;
+    return null;
   }
 
   render() {
@@ -121,13 +96,13 @@ class TutorProfileComponent extends Component {
           <View style={styles.profileCard}>
             <Image source={image} style={styles.photo} />
             <View >
-              <Text style={styles.name}>{this.state.profile.firstname} {this.state.profile.lastname}</Text>
+              <Text style={styles.name}>{this.props.profile.firstname} {this.props.profile.lastname}</Text>
             </View>
             <View >
               <StarRating
                 disabled
                 maxStars={5}
-                rating={this.state.profile.rating}
+                rating={this.props.profile.rating}
                 starSize={30}
                 selectedStar={function() {}}
                 starColor={'gold'}
@@ -136,25 +111,24 @@ class TutorProfileComponent extends Component {
           </View>
           <View style={styles.stripeWrapper}>
             <View style={styles.stripe}>
-              <Text style={styles.stripeText}>{this.state.profile.tempSample}</Text>
+              <Text style={styles.stripeText}>{this.props.profile.tempSample}</Text>
             </View>
             <View>
               <LinearGradient colors={[leafGreenGradient, greendFadeGradient, greendFadeGradient]} style={styles.bio}>
                 <Text style={styles.messageBoxTitleText}>A Little About Me:</Text>
-                <Text style={styles.bioBodyText}>{this.state.profile.bio}</Text>
+                <Text style={styles.bioBodyText}>{this.props.profile.bio}</Text>
               </LinearGradient>
             </View>
           </View>
           <View>
             <View style={styles.Line} />
-            <ButtonComponent style={styles.requestButton} text="Request Tutoring!" onPress={this.openRequestModal} textStyle={styles.requestButtonText} />
+            <ButtonComponent style={styles.requestButton} text="Request Tutoring!" onPress={() => this.openRequestModal()} textStyle={styles.requestButtonText} />
             <View style={styles.Line} />
           </View>
-
-          <Modal style={styles.modal} onClosed={this.onClose} position={'center'} ref={(ref) => this.modal = ref} isDisabled={this.state.isDisabled}>
-            {this.renderRequest()}
-          </Modal>
         </LinearGradient>
+        <Modal style={styles.modal} onClosed={() => this.onClose()} position={'center'} ref={(ref) => this.modal = ref} isDisabled={this.state.isDisabled}>
+          {this.renderRequest()}
+        </Modal>
       </View>
 
     );
@@ -171,12 +145,14 @@ const offGrey = '#FAFAFA';
 const grey = '#808080';
 const darkBlue = '#3B5998';
 const black = 'black';
+const transparent = 'transparent';
 
 
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'column',
-    flex: 1
+    flex: 1,
+    backgroundColor: transparent
   },
   profileCard: {
     flexDirection: 'column',
@@ -281,9 +257,7 @@ const styles = StyleSheet.create({
     width: 100,
     borderRadius: 20
   },
-  requestButton: {
-    marginTop: 10
-  }
+  requestButton: { marginTop: 10 }
 });
 
 const mapStateToProps = (state) => {
@@ -293,8 +267,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  retriveProfile
-}, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ retriveProfile }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(TutorProfileComponent);
