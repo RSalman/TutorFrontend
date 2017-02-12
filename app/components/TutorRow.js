@@ -23,7 +23,7 @@ export default class TutorRow extends Component {
                 rating={tutor.rating}
                 starSize={20}
                 selectedStar={function() {}}
-                starColor={'#FFC321'}
+                starColor={starColor}
               />
               <View style={styles.rateContainer}>
                 <StyledText style={styles.rate}> ${`${tutor.rate}`} </StyledText>
@@ -37,7 +37,7 @@ export default class TutorRow extends Component {
                   style={styles.arrow}
                   name="chevron-right"
                   size={15}
-                  color="#888888"
+                  color={chevronRightColor}
                 />
               </View>
             </View>
@@ -48,6 +48,8 @@ export default class TutorRow extends Component {
   }
 }
 
+const starColor = '#FFC321';
+const chevronRightColor = '#888888';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
