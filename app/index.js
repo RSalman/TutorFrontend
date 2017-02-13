@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
+import './util/globalAxios';
 import rootReducer from './reducers';
 import HomeScreen from './components/HomeScreen';
 import TutorsComponent from './components/TutorsComponent';
