@@ -8,6 +8,7 @@
     "lint": "eslint --fix ."
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "react": "15.4.1",
     "react-native": "0.41.1",
     "react-native-button-component": "^0.1.11",
@@ -45,7 +46,10 @@
     ]
   },
   "pre-commit": {
-    "run": ["lint", "test"],
+    "run": [
+      "lint",
+      "test"
+    ],
     "silent": true
   },
   "rnpm": {
