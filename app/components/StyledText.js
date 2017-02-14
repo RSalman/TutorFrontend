@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   text: {
     ...Platform.select({
       ios: { fontFamily: 'HelveticaNeue-Thin' },
-      android: { fontFamily: 'sans-serif-thin' },
+      android: { fontFamily: 'sans-serif-light' },
     })
   }
 });
