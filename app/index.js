@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import './util/globalAxios';
+import './util/I18n';
 import rootReducer from './reducers';
 import HomeScreen from './components/HomeScreen';
 import TutorsComponent from './components/TutorsComponent';

@@ -6,7 +6,8 @@
     "jest": true
   },
   "globals": {
-    "axios": true
+    "axios": true,
+    "I18n": true
   },
   "extends": [
     "airbnb",
