@@ -29,7 +29,7 @@ class PhoneVerificationInput extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.headerContainer}>
-          <Text style={styles.headerText}>Please enter the code {'\n'} sent to your phone number</Text>
+          <Text style={styles.headerText}>{I18n.t('phoneVerification.enterCode')}</Text>
         </View>
         <TextInput
           style={styles.input}
@@ -42,7 +42,7 @@ class PhoneVerificationInput extends Component {
         <View style={styles.textContainer}>
           <Text style={styles.text}>
             {(!this.props.verifying && !this.props.verified && this.state.isCodeValid) ?
-                'Incorrect code entered! Please try again.' : ''
+                I18n.t('phoneVerification.incorrectCode') : ''
             }
           </Text>
         </View>

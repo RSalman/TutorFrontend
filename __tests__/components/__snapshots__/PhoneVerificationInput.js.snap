@@ -24,8 +24,6 @@ exports[`<PhoneVerificationInput /> should disable input when verifying 1`] = `
         }
       }>
       Please enter the code 
-      
-      
        sent to your phone number
     </Text>
   </View>
@@ -98,8 +96,6 @@ exports[`<PhoneVerificationInput /> should show no message when invalid code ent
         }
       }>
       Please enter the code 
-      
-      
        sent to your phone number
     </Text>
   </View>
