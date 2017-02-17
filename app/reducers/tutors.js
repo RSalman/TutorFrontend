@@ -35,6 +35,36 @@ function tutors(state = initialState, action) {
             picture: '',
             rating: 3.9,
             degree: 'PhD',
+          },
+          {
+            rate: 12.70,
+            picture: '',
+            rating: 1.9,
+            degree: 'Bachelors',
+          },
+          {
+            rate: 22.25,
+            picture: '',
+            rating: 2.9,
+            degree: 'Diploma',
+          },
+          {
+            rate: 32.50,
+            picture: '',
+            rating: 3.9,
+            degree: 'PhD',
+          },
+          {
+            rate: 9.50,
+            picture: '',
+            rating: 1.2,
+            degree: 'PhD',
+          },
+          {
+            rate: 25.99,
+            picture: '',
+            rating: 4.9,
+            degree: 'PhD',
           }
         ], isLoading: false
       };
