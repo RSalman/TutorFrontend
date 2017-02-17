@@ -13,21 +13,25 @@ function tutors(state = initialState, action) {
       return {
         allTutors: [
           {
+            id: 0,
             picture: '',
             rating: 5,
             degree: 'Masters',
           },
           {
+            id: 1,
             picture: '',
             rating: 5,
             degree: 'Bachelors',
           },
           {
+            id: 2,
             picture: '',
             rating: 4.5,
             degree: 'PhD',
           },
           {
+            id: 3,
             picture: '',
             rating: 3.9,
             degree: 'PhD',
