@@ -25,9 +25,24 @@ class TutorProfileComponent extends Component {
     };
   }
 
+  componentWillMount() {
+    this.props.retriveProfile(this.props.id);
+  }
+
+
   onClose() {
     if (this.state.requestSent)
       this.setState({ messageAcknowledged: true });
+  }
+
+  busySpiner() {
+    return (
+      <ActivityIndicator
+        animating={this.state.animating}
+        style={[styles.waitCursorMain, styles.centering]}
+        size="large"
+      />
+    );
   }
 
   openRequestModal() {
@@ -90,7 +105,20 @@ class TutorProfileComponent extends Component {
     return null;
   }
 
-  render() {
+  //TODO: Smooth rendering / transition
+  renderScreenView() {
+    if (this.props.isLoading)
+      return this.busySpiner();
+
+    //TODO: More than null check required
+    else if (this.props.profile)
+      return this.renderProfileView();
+
+    //TODO: Error screen
+    return null;
+  }
+
+  renderProfileView() {
     return (
       <View style={styles.wrapper}>
         <LinearGradient colors={[offWhite, offGrey]}>
@@ -135,6 +163,10 @@ class TutorProfileComponent extends Component {
 
     );
   }
+
+  render() {
+    return this.renderScreenView();
+  }
 }
 
 const leafGreenGradient = '#3CB371';
@@ -177,6 +209,12 @@ const styles = StyleSheet.create({
     transform: [{ scale: 1.5 }]
   },
 
+  waitCursorMain:{
+    alignItems:'center',
+    justifyContent:'center',
+    transform: [{ scale: 3 }],
+    height: 500
+  },
   requestButtonText: {
     color: white,
     fontSize: 20
