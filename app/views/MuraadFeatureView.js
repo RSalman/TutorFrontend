@@ -16,6 +16,38 @@ var User = t.struct({
   phone_number: t.Number
 });
 
+/* Define Form Stylesheet */
+const stylesheet = _.cloneDeep(Form.stylesheet);
+const font_size = 14;
+const container_height = 30;
+
+stylesheet.textbox.normal.borderWidth = 0;
+stylesheet.textbox.error.borderWidth = 0;
+stylesheet.textbox.normal.marginBottom = 0;
+stylesheet.textbox.error.marginBottom = 0;
+
+stylesheet.textboxView.normal.borderWidth = 0;
+stylesheet.textboxView.error.borderWidth = 0;
+stylesheet.textboxView.normal.borderRadius = 0;
+stylesheet.textboxView.error.borderRadius = 0;
+stylesheet.textboxView.normal.borderBottomWidth = 1;
+stylesheet.textboxView.error.borderBottomWidth = 1;
+stylesheet.textbox.normal.marginBottom = 5;
+stylesheet.textbox.error.marginBottom = 5;
+
+stylesheet.textbox.normal.fontSize = font_size;
+stylesheet.textbox.error.fontSize = font_size;
+stylesheet.controlLabel.normal.fontSize = font_size;
+stylesheet.controlLabel.error.fontSize = font_size;
+stylesheet.errorBlock.fontSize = font_size;
+
+stylesheet.textbox.normal.height = container_height;
+stylesheet.textbox.error.height = container_height;
+stylesheet.textboxView.normal.height = container_height;
+stylesheet.textboxView.error.height = container_height;
+
+stylesheet.controlLabel.normal.color = grey;
+
 var options = {
   stylesheet: stylesheet,
   fields: {
@@ -78,38 +110,6 @@ export default class MuraadFeatureView extends Component {
 /* Define colours */
 const green = '#61bd4f';
 const grey = '#bdc6cf';
-
-/* Define Form Stylesheet */
-const stylesheet = _.cloneDeep(Form.stylesheet);
-const font_size = 14;
-const container_height = 30;
-
-stylesheet.textbox.normal.borderWidth = 0;
-stylesheet.textbox.error.borderWidth = 0;
-stylesheet.textbox.normal.marginBottom = 0;
-stylesheet.textbox.error.marginBottom = 0;
-
-stylesheet.textboxView.normal.borderWidth = 0;
-stylesheet.textboxView.error.borderWidth = 0;
-stylesheet.textboxView.normal.borderRadius = 0;
-stylesheet.textboxView.error.borderRadius = 0;
-stylesheet.textboxView.normal.borderBottomWidth = 1;
-stylesheet.textboxView.error.borderBottomWidth = 1;
-stylesheet.textbox.normal.marginBottom = 5;
-stylesheet.textbox.error.marginBottom = 5;
-
-stylesheet.textbox.normal.fontSize = font_size;
-stylesheet.textbox.error.fontSize = font_size;
-stylesheet.controlLabel.normal.fontSize = font_size;
-stylesheet.controlLabel.error.fontSize = font_size;
-stylesheet.errorBlock.fontSize = font_size;
-
-stylesheet.textbox.normal.height = container_height;
-stylesheet.textbox.error.height = container_height;
-stylesheet.textboxView.normal.height = container_height;
-stylesheet.textboxView.error.height = container_height;
-
-stylesheet.controlLabel.normal.color = grey;
 
 /* Define Stylesheet For Entire Component */
 const styles = StyleSheet.create({
