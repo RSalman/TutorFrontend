@@ -16,7 +16,7 @@ class PhoneVerificationInput extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.verified)
-      Actions.muraad({ type: 'reset' }); // reset so user can't go back
+      Actions.home({ type: 'reset' }); // reset so user can't go back
   }
 
   verify(code) {
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    marginTop: 60
   },
   headerContainer: {
     alignSelf: 'center',
