@@ -15,6 +15,8 @@
     "react-native-i18n": "^1.0.0",
     "react-native-linear-gradient": "^2.0.0",
     "react-native-modalbox": "^1.3.8",
+    "lodash": "^4.17.4",
+    "react-native-elements": "^0.9.6",
     "react-native-progress": "^3.2.0",
     "react-native-router-flux": "^3.37.0",
     "react-native-star-rating": "^1.0.6",
@@ -44,7 +46,9 @@
   },
   "jest": {
     "preset": "react-native",
-    "transformIgnorePatterns": [ "/node_modules/(?!native-base)/"],
+    "transformIgnorePatterns": [
+      "/node_modules/(?!native-base)/"
+    ],
     "setupFiles": [
       "./jest-setup.js"
     ]

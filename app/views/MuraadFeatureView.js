@@ -1,8 +1,10 @@
 import ProgressBar from 'react-native-progress/Bar';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableHighlight, Platform, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Platform, ScrollView, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import t from 'tcomb-form-native'
+import t from 'tcomb-form-native';
+import _ from 'lodash';
+import { Button } from 'react-native-elements';
 
 var Form = t.form.Form;
 
@@ -15,16 +17,11 @@ var User = t.struct({
 });
 
 var options = {
+  stylesheet: stylesheet,
   fields: {
-    email: {
-      error: 'Please insert a valid email'
-    },
-    password: {
-      secureTextEntry: true
-    },
-    phone_number: {
-      error: 'Please enter a valid phone number'
-    }
+    email: { error: 'Please enter a valid email' },
+    password: { secureTextEntry: true },
+    phone_number: { error: 'Please enter a valid phone number' }
   }
 };
 
@@ -58,51 +55,71 @@ export default class MuraadFeatureView extends Component {
 
   render() {
     return (
-      <ScrollView>
-        <Text style={styles.header}>Sign up for Prospr</Text>
-        <ProgressBar progress={0.3} width={320} style={styles.progressStyling} />
-        <View style={styles.container}>
-          <Form
-            ref={(form) => { this.signup_form = form; }}
-            type={User}
-            options={options}
-            onChange={this.onChange.bind(this)}
-            value={this.state.value}
-          />
-          <TouchableHighlight style={styles.button} onPress={this.onPress.bind(this)} underlayColor="#99d9f4">
-            <Text style={styles.buttonText}>Next</Text>
-          </TouchableHighlight>
-        </View>
-      </ScrollView>
+      <Image source={require('../components/img/signup_background.png')} style={styles.backgroundImage}>
+        <ScrollView>
+          <Text style={styles.header}>Sign up for Prospr</Text>
+          <ProgressBar progress={0.3} width={320} style={styles.progressStyling} color={green} />
+          <View style={styles.container}>
+            <Form
+              ref={(form) => { this.signup_form = form; }}
+              type={User}
+              options={options}
+              onChange={this.onChange.bind(this)}
+              value={this.state.value}
+            />
+            <Button raised title="Next" onPress={(form) => {this.onPress(form);}} backgroundColor={green} />
+          </View>
+        </ScrollView>
+      </Image>
     );
   }
 }
 
 /* Define colours */
-const light_blue = '#48BBEC';
-const white = '#ffffff';
+const green = '#61bd4f';
+const grey = '#bdc6cf';
 
+/* Define Form Stylesheet */
+const stylesheet = _.cloneDeep(Form.stylesheet);
+const font_size = 14;
+const container_height = 30;
+
+stylesheet.textbox.normal.borderWidth = 0;
+stylesheet.textbox.error.borderWidth = 0;
+stylesheet.textbox.normal.marginBottom = 0;
+stylesheet.textbox.error.marginBottom = 0;
+
+stylesheet.textboxView.normal.borderWidth = 0;
+stylesheet.textboxView.error.borderWidth = 0;
+stylesheet.textboxView.normal.borderRadius = 0;
+stylesheet.textboxView.error.borderRadius = 0;
+stylesheet.textboxView.normal.borderBottomWidth = 1;
+stylesheet.textboxView.error.borderBottomWidth = 1;
+stylesheet.textbox.normal.marginBottom = 5;
+stylesheet.textbox.error.marginBottom = 5;
+
+stylesheet.textbox.normal.fontSize = font_size;
+stylesheet.textbox.error.fontSize = font_size;
+stylesheet.controlLabel.normal.fontSize = font_size;
+stylesheet.controlLabel.error.fontSize = font_size;
+stylesheet.errorBlock.fontSize = font_size;
+
+stylesheet.textbox.normal.height = container_height;
+stylesheet.textbox.error.height = container_height;
+stylesheet.textboxView.normal.height = container_height;
+stylesheet.textboxView.error.height = container_height;
+
+stylesheet.controlLabel.normal.color = grey;
+
+/* Define Stylesheet For Entire Component */
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     marginTop: 0,
     padding: 10,
-    backgroundColor: white,
-  },
-  buttonText: {
-    fontSize: 18,
-    color: white,
-    alignSelf: 'center'
-  },
-  button: {
-    height: 36,
-    backgroundColor: light_blue,
-    borderColor: light_blue,
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
+    marginLeft: 15,
+    marginRight: 15
+
   },
   header: {
     textAlign: 'center',
@@ -110,16 +127,18 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     ...Platform.select({
-      ios: {
-        fontFamily: 'HelveticaNeue-Thin'
-      },
-      android: {
-        fontFamily: 'sans-serif-thin'
-      },
+      ios: { fontFamily: 'HelveticaNeue-Thin' },
+      android: { fontFamily: 'sans-serif-thin' },
     })
   },
   progressStyling: {
     alignSelf: 'center',
     marginTop: 10
+  },
+
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    height: null
   }
 });
