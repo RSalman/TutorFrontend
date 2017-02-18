@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { verifyCode } from '../actions/signup';
+import StyledText from './StyledText';
 
 const CODE_LENGTH = 4;
 
@@ -29,7 +30,7 @@ class PhoneVerificationInput extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.headerContainer}>
-          <Text style={styles.headerText}>{I18n.t('phoneVerification.enterCode')}</Text>
+          <StyledText style={styles.headerText}>{I18n.t('phoneVerification.enterCode')}</StyledText>
         </View>
         <TextInput
           style={styles.input}
@@ -40,11 +41,11 @@ class PhoneVerificationInput extends Component {
           keyboardType="numeric"
         />
         <View style={styles.textContainer}>
-          <Text style={styles.text}>
+          <StyledText style={styles.text}>
             {(!this.props.verifying && !this.props.verified && this.state.isCodeValid) ?
                 I18n.t('phoneVerification.incorrectCode') : ''
             }
-          </Text>
+          </StyledText>
         </View>
       </View>
     );

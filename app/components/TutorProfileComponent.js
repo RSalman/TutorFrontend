@@ -6,8 +6,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Text, Image, View, StyleSheet, Button, ActivityIndicator } from 'react-native';
+import { Image, View, StyleSheet, Button, ActivityIndicator } from 'react-native';
 import { retriveProfile } from '../actions/profile';
+import StyledText from './StyledText';
 
 
 //TODO(Salman) - Use image URI
@@ -46,21 +47,21 @@ class TutorProfileComponent extends Component {
     if (this.state.messageAcknowledged) {
       return (
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>Ahhh! A request was already sent to {this.props.profile.firstname}!</Text>
+          <StyledText style={styles.modalText}>Ahhh! A request was already sent to {this.props.profile.firstname}!</StyledText>
           <Button onPress={() => this.modal.close()} style={styles.ModalButton} title="Got it!" />
         </View>
       );
     } else if (this.state.requestSent) {
       return (
         <View style={styles.modalView}>
-          <Text style={styles.modalText}><Icon name="thumbs-up" size={40} color={leafGreenGradient} /> We&apos;ve nudged {this.props.profile.firstname} for you!</Text>
+          <StyledText style={styles.modalText}><Icon name="thumbs-up" size={40} color={leafGreenGradient} /> We&apos;ve nudged {this.props.profile.firstname} for you!</StyledText>
           <Button onPress={() => this.modal.close()} style={styles.ModalButton} title="Got it!" />
         </View>
       );
     } else if (this.state.requesting) {
       return (
         <View style={styles.modalView}>
-          <Text onPress={() => this.mockRequestSent()} style={styles.modalText}> Please wait while we poke {this.props.profile.firstname}</Text>
+          <StyledText onPress={() => this.mockRequestSent()} style={styles.modalText}> Please wait while we poke {this.props.profile.firstname}</StyledText>
           <ActivityIndicator
             animating={this.state.animating}
             style={[styles.waitCursor, styles.centering]}
@@ -72,7 +73,7 @@ class TutorProfileComponent extends Component {
 
     return (
       <View style={styles.modalView}>
-        <Text style={styles.modalText}>A request will be sent to {this.props.profile.firstname}! </Text>
+        <StyledText style={styles.modalText}>A request will be sent to {this.props.profile.firstname}! </StyledText>
         <Button onPress={() => this.toggleRequest()} style={styles.ModalButton} title="Send Request" />
       </View>
     );
@@ -82,7 +83,7 @@ class TutorProfileComponent extends Component {
     if (this.state.requestSent) {
       return (
         <View style={styles.pendingRequest}>
-          <Icon name="check" size={40} color={leafGreenGradient} /><Text> Pending Request! </Text>
+          <Icon name="check" size={40} color={leafGreenGradient} /><StyledText> Pending Request! </StyledText>
         </View>
       );
     }
@@ -98,7 +99,7 @@ class TutorProfileComponent extends Component {
           <View style={styles.profileCard}>
             <Image source={image} style={styles.photo} />
             <View >
-              <Text style={styles.name}>{this.props.profile.firstname} {this.props.profile.lastname}</Text>
+              <StyledText style={styles.name}>{this.props.profile.firstname} {this.props.profile.lastname}</StyledText>
             </View>
             <View >
               <StarRating
@@ -113,12 +114,12 @@ class TutorProfileComponent extends Component {
           </View>
           <View style={styles.stripeWrapper}>
             <View style={styles.stripe}>
-              <Text style={styles.stripeText}>{this.props.profile.tempSample}</Text>
+              <StyledText style={styles.stripeText}>{this.props.profile.tempSample}</StyledText>
             </View>
             <View>
               <LinearGradient colors={[leafGreenGradient, greendFadeGradient, greendFadeGradient]} style={styles.bio}>
-                <Text style={styles.messageBoxTitleText}>A Little About Me:</Text>
-                <Text style={styles.bioBodyText}>{this.props.profile.bio}</Text>
+                <StyledText style={styles.messageBoxTitleText}>A Little About Me:</StyledText>
+                <StyledText style={styles.bioBodyText}>{this.props.profile.bio}</StyledText>
               </LinearGradient>
             </View>
           </View>

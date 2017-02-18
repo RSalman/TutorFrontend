@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Text, Image, Platform, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import ButtonComponent from 'react-native-button-component';
+import StyledText from './StyledText';
 
 export default class HomeScreen extends Component {
   render() {
     return (
       <Image source={require('./img/background.jpg')} style={styles.backgroundImage}>
         <View style={styles.buttonsView}>
-          <Text style={styles.logo}>PROSPR</Text>
+          <StyledText style={styles.logo}>PROSPR</StyledText>
           <ButtonComponent style={styles.button} text="Tutors Component (Sarmad)" onPress={Actions.tutors} />
           <ButtonComponent style={styles.button} text="Tutor Profile Component (Salman)" onPress={Actions.tutorinfo} />
           <ButtonComponent style={styles.button} text="Muraad's Feature" onPress={Actions.muraad} />
@@ -41,9 +42,5 @@ const styles = StyleSheet.create({
     fontSize: 60,
     marginTop: 10,
     backgroundColor: logoBackground,
-    ...Platform.select({
-      ios: { fontFamily: 'HelveticaNeue-Thin' },
-      android: { fontFamily: 'sans-serif-thin' },
-    })
   }
 });

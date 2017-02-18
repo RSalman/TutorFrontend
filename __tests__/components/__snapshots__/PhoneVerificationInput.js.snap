@@ -18,10 +18,15 @@ exports[`<PhoneVerificationInput /> should disable input when verifying 1`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "fontSize": 20,
-          "textAlign": "center",
-        }
+        Array [
+          Object {
+            "fontFamily": "HelveticaNeue-Thin",
+          },
+          Object {
+            "fontSize": 20,
+            "textAlign": "center",
+          },
+        ]
       }>
       Please enter the code 
        sent to your phone number
@@ -58,11 +63,16 @@ exports[`<PhoneVerificationInput /> should disable input when verifying 1`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "red",
-          "fontSize": 12,
-          "textAlign": "center",
-        }
+        Array [
+          Object {
+            "fontFamily": "HelveticaNeue-Thin",
+          },
+          Object {
+            "color": "red",
+            "fontSize": 12,
+            "textAlign": "center",
+          },
+        ]
       }>
       
     </Text>
@@ -90,10 +100,15 @@ exports[`<PhoneVerificationInput /> should show no message when invalid code ent
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "fontSize": 20,
-          "textAlign": "center",
-        }
+        Array [
+          Object {
+            "fontFamily": "HelveticaNeue-Thin",
+          },
+          Object {
+            "fontSize": 20,
+            "textAlign": "center",
+          },
+        ]
       }>
       Please enter the code 
        sent to your phone number
@@ -130,11 +145,16 @@ exports[`<PhoneVerificationInput /> should show no message when invalid code ent
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "red",
-          "fontSize": 12,
-          "textAlign": "center",
-        }
+        Array [
+          Object {
+            "fontFamily": "HelveticaNeue-Thin",
+          },
+          Object {
+            "color": "red",
+            "fontSize": 12,
+            "textAlign": "center",
+          },
+        ]
       }>
       
     </Text>
