@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { ListView, StyleSheet, View } from 'react-native';
+import { Platform, View, ListView, StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { SearchBar } from 'react-native-elements';
 import { updateTutors } from '../actions/tutors';
 import TutorRow from './TutorRow';
 
@@ -19,29 +20,39 @@ class TutorsComponent extends Component {
     this.setState({ dataSource: this.state.dataSource.cloneWithRows(nextProps.allTutors) });
   }
 
+  onSearchBarTextEntered(text) {
+    // TODO(sarmad): Connect to actions/reducers
+  }
+
   render() {
     return (
-      <ListView
-        style={styles.container}
-        dataSource={this.state.dataSource}
-        renderRow={(row) => <TutorRow tutor={row} />}
-        renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-      />
+      <View style={styles.container}>
+        <SearchBar
+          round
+          lightTheme
+          containerStyle={styles.searchBarContainerStyle}
+          inputStyle={styles.searchBarText}
+          onChangeText={(text) => this.onSearchBarTextEntered(text)}
+          placeholder="Enter a course code or subject..."
+        />
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(row) => <TutorRow tutor={row} />}
+        />
+      </View>
     );
   }
 }
 
-var separatorColor = '#8E8E8E';
+const searchBarBackgroundColor = 'transparent';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 10,
+    ...Platform.select({ ios: { marginTop: 20 } })
   },
-  separator: {
-    flex: 1,
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: separatorColor,
-  }
+  searchBarText: { paddingVertical: 0 },
+  searchBarContainerStyle: { backgroundColor: searchBarBackgroundColor }
 });
 
 const mapStateToProps = (state) => {
