@@ -84,7 +84,9 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
           Object {
             "borderRadius": 15,
           },
-          undefined,
+          Object {
+            "paddingVertical": 0,
+          },
         ]
       }
       underlineColorAndroid="transparent"

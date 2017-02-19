@@ -31,6 +31,7 @@ class TutorsComponent extends Component {
           round
           lightTheme
           containerStyle={styles.searchBarContainerStyle}
+          inputStyle={styles.searchBarText}
           onChangeText={(text) => this.onSearchBarTextEntered(text)}
           placeholder="Enter a course code or subject..."
         />
@@ -50,6 +51,7 @@ const styles = StyleSheet.create({
     flex: 1,
     ...Platform.select({ ios: { marginTop: 20 } })
   },
+  searchBarText: { paddingVertical: 0 },
   searchBarContainerStyle: { backgroundColor: searchBarBackgroundColor }
 });
 
