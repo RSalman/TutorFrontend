@@ -2,9 +2,9 @@
 
 [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58864a527911080100390c59&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58864a527911080100390c59/build/latest?branch=master)
 ## Commands Summarized
-`npm run lint` fixes some styling issues automatically and reports those it cannot fix.
-`npm run test` runs all tests. `npm run test -- -u` updates test snapshots.
-`npm run api` runs a mock api server. All mock data is defined in the `.db.json`.
+* `npm run lint` fixes some styling issues automatically and reports those it cannot fix.
+* `npm run test` runs all tests. `npm run test -- -u` updates test snapshots.
+* `npm run api` runs a mock api server. All mock data is defined in the `.db.json`.
 
 ## Steps
 Follow the instructions for your OS [here](https://facebook.github.io/react-native/docs/getting-started.html) and then execute the following commands:
