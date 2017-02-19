@@ -113,11 +113,11 @@ exports[`test renders correctly 1`] = `
               style={
                 Object {
                   "flexDirection": "row",
-                  "height": 50,
+                  "height": undefined,
                   "marginTop": 10,
                   "opacity": 1,
                   "overflow": "hidden",
-                  "width": null,
+                  "width": undefined,
                 }
               }
               testID={undefined}
@@ -149,7 +149,7 @@ exports[`test renders correctly 1`] = `
                       "flex": 1,
                     },
                     Object {
-                      "borderRadius": 25,
+                      "borderRadius": NaN,
                     },
                     undefined,
                   ]
@@ -211,11 +211,11 @@ exports[`test renders correctly 1`] = `
               style={
                 Object {
                   "flexDirection": "row",
-                  "height": 50,
+                  "height": undefined,
                   "marginTop": 10,
                   "opacity": 1,
                   "overflow": "hidden",
-                  "width": null,
+                  "width": undefined,
                 }
               }
               testID={undefined}
@@ -247,7 +247,7 @@ exports[`test renders correctly 1`] = `
                       "flex": 1,
                     },
                     Object {
-                      "borderRadius": 25,
+                      "borderRadius": NaN,
                     },
                     undefined,
                   ]
@@ -309,11 +309,11 @@ exports[`test renders correctly 1`] = `
               style={
                 Object {
                   "flexDirection": "row",
-                  "height": 50,
+                  "height": undefined,
                   "marginTop": 10,
                   "opacity": 1,
                   "overflow": "hidden",
-                  "width": null,
+                  "width": undefined,
                 }
               }
               testID={undefined}
@@ -345,7 +345,7 @@ exports[`test renders correctly 1`] = `
                       "flex": 1,
                     },
                     Object {
-                      "borderRadius": 25,
+                      "borderRadius": NaN,
                     },
                     undefined,
                   ]
@@ -407,11 +407,11 @@ exports[`test renders correctly 1`] = `
               style={
                 Object {
                   "flexDirection": "row",
-                  "height": 50,
+                  "height": undefined,
                   "marginTop": 10,
                   "opacity": 1,
                   "overflow": "hidden",
-                  "width": null,
+                  "width": undefined,
                 }
               }
               testID={undefined}
@@ -443,7 +443,7 @@ exports[`test renders correctly 1`] = `
                       "flex": 1,
                     },
                     Object {
-                      "borderRadius": 25,
+                      "borderRadius": NaN,
                     },
                     undefined,
                   ]
@@ -505,11 +505,11 @@ exports[`test renders correctly 1`] = `
               style={
                 Object {
                   "flexDirection": "row",
-                  "height": 50,
+                  "height": undefined,
                   "marginTop": 10,
                   "opacity": 1,
                   "overflow": "hidden",
-                  "width": null,
+                  "width": undefined,
                 }
               }
               testID={undefined}
@@ -541,7 +541,7 @@ exports[`test renders correctly 1`] = `
                       "flex": 1,
                     },
                     Object {
-                      "borderRadius": 25,
+                      "borderRadius": NaN,
                     },
                     undefined,
                   ]
