@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import TutorsComponent from '../../app/components/TutorsComponent';
+import '../../app/util/globalAxios';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);

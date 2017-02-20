@@ -1,0 +1,68 @@
+{
+  "get_tutors":
+  [
+    {
+      "id": 1,
+      "rate": 15,
+      "picture": "",
+      "rating": 5,
+      "degree": "Masters"
+    },
+    {
+      "id": 2,
+      "rate": 20,
+      "picture": "",
+      "rating": 5,
+      "degree": "Bachelors"
+    },
+    {
+      "id": 3,
+      "rate": 11.75,
+      "picture": "",
+      "rating": 4.5,
+      "degree": "PhD"
+    },
+    {
+      "id": 4,
+      "rate": 32.50,
+      "picture": "",
+      "rating": 3.9,
+      "degree": "PhD"
+    },
+    {
+      "id": 5,
+      "rate": 12.70,
+      "picture": "",
+      "rating": 1.9,
+      "degree": "Bachelors"
+    },
+    {
+      "id": 6,
+      "rate": 22.25,
+      "picture": "",
+      "rating": 2.9,
+      "degree": "Diploma"
+    },
+    {
+      "id": 7,
+      "rate": 32.50,
+      "picture": "",
+      "rating": 3.9,
+      "degree": "PhD"
+    },
+    {
+      "id": 8,
+      "rate": 9.50,
+      "picture": "",
+      "rating": 1.2,
+      "degree": "PhD"
+    },
+    {
+      "id": 9,
+      "rate": 25.99,
+      "picture": "",
+      "rating": 4.9,
+      "degree": "PhD"
+    }
+  ]
+}
