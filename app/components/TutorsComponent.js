@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
 import { updateTutors } from '../actions/tutors';
 import TutorRow from './TutorRow';
+import ErrorView from './ErrorView';
 
 class TutorsComponent extends Component {
   constructor(props) {
@@ -21,7 +22,22 @@ class TutorsComponent extends Component {
   }
 
   onSearchBarTextEntered(text) {
-    // TODO(sarmad): Connect to actions/reducers
+    this.props.updateTutors(text);
+  }
+
+  renderErrorView() {
+    return (
+      <ErrorView error={this.props.error} />
+    );
+  }
+
+  renderListView() {
+    return (
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={(row) => <TutorRow tutor={row} />}
+      />
+    );
   }
 
   render() {
@@ -33,12 +49,9 @@ class TutorsComponent extends Component {
           containerStyle={styles.searchBarContainerStyle}
           inputStyle={styles.searchBarText}
           onChangeText={(text) => this.onSearchBarTextEntered(text)}
-          placeholder="Enter a course code or subject..."
+          placeholder={I18n.t('tutors.searchPlaceholder')}
         />
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={(row) => <TutorRow tutor={row} />}
-        />
+        { this.props.error ? this.renderErrorView() : this.renderListView() }
       </View>
     );
   }
@@ -58,7 +71,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     allTutors: state.tutors.allTutors,
-    isLoading: state.tutors.isLoading
+    isLoading: state.tutors.isLoading,
+    error: state.tutors.error
   };
 };
 

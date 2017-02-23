@@ -3,6 +3,7 @@ import { Scene, Router } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import _ from 'underscore';
 
 import './util/globalAxios';
 import './util/I18n';
@@ -14,6 +15,7 @@ import TutorProfileComponent from './components/TutorProfileComponent';
 import MuraadFeatureView from './views/MuraadFeatureView';
 import PhoneVerificationInput from './components/PhoneVerificationInput';
 
+global._ = _;
 const store = createStore(rootReducer, applyMiddleware(thunk));
 export default class TutoringApp extends Component {
   render() {
