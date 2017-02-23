@@ -3,10 +3,9 @@ import { Platform, View, ListView, StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { updateTutors } from '../actions/tutors';
 import TutorRow from './TutorRow';
-import StyledText from './StyledText';
+import ErrorView from './ErrorView';
 
 class TutorsComponent extends Component {
   constructor(props) {
@@ -26,6 +25,21 @@ class TutorsComponent extends Component {
     this.props.updateTutors(text);
   }
 
+  renderErrorView() {
+    return (
+      <ErrorView error={this.props.error} />
+    );
+  }
+
+  renderListView() {
+    return (
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={(row) => <TutorRow tutor={row} />}
+      />
+    );
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -37,43 +51,18 @@ class TutorsComponent extends Component {
           onChangeText={(text) => this.onSearchBarTextEntered(text)}
           placeholder={I18n.t('tutors.searchPlaceholder')}
         />
-        {
-          this.props.error ? (
-            <View style={styles.errorContainer}>
-              <Icon name="exclamation-triangle" size={30} color={errorIconColor} />
-              <StyledText style={styles.errorText}>{ this.props.error }</StyledText>
-            </View>
-          ) : (
-            <ListView
-              dataSource={this.state.dataSource}
-              renderRow={(row) => <TutorRow tutor={row} />}
-            />
-          )
-        }
+        { this.props.error ? this.renderErrorView() : this.renderListView() }
       </View>
     );
   }
 }
 
 const searchBarBackgroundColor = 'transparent';
-const errorIconColor = '#E6E6E6';
-const errorTextColor = '#ADADAD';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     ...Platform.select({ ios: { marginTop: 20 } })
-  },
-  errorContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column'
-  },
-  errorText: {
-    color: errorTextColor,
-    fontSize: 15,
-    textAlign: 'center'
   },
   searchBarText: { paddingVertical: 0 },
   searchBarContainerStyle: { backgroundColor: searchBarBackgroundColor }
