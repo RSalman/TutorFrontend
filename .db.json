@@ -1,5 +1,6 @@
 {
-  "get_tutors": [
+  "get_tutors":
+  [
     {
       "id": 1,
       "rate": 15,
@@ -23,14 +24,14 @@
     },
     {
       "id": 4,
-      "rate": 32.5,
+      "rate": 32.50,
       "picture": "",
       "rating": 3.9,
       "degree": "PhD"
     },
     {
       "id": 5,
-      "rate": 12.7,
+      "rate": 12.70,
       "picture": "",
       "rating": 1.9,
       "degree": "Bachelors"
@@ -44,14 +45,14 @@
     },
     {
       "id": 7,
-      "rate": 32.5,
+      "rate": 32.50,
       "picture": "",
       "rating": 3.9,
       "degree": "PhD"
     },
     {
       "id": 8,
-      "rate": 9.5,
+      "rate": 9.50,
       "picture": "",
       "rating": 1.2,
       "degree": "PhD"
