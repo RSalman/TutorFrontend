@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import PhoneVerificationInput from '../../app/components/PhoneVerificationInput';
+import '../../app/util/I18n';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
