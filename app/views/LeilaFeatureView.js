@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
-import {
-    View,
-    StyleSheet,
-    Image,
-    Text
-} from 'react-native';
-import {
-    SideMenu,
-    List,
-    ListItem
-} from 'react-native-elements';
+import { View, StyleSheet, Image, Text } from 'react-native';
+import { SideMenu, List, ListItem } from 'react-native-elements';
 import Homeview from './Homeview';
 
 

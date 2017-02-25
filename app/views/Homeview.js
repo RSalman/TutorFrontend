@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-import {
-    View,
-    StyleSheet,
-    Text
-} from 'react-native';
-import {
-    Button
-} from 'react-native-elements';
+import { View, StyleSheet, Text } from 'react-native';
+import { Button } from 'react-native-elements';
 
 class Homeview extends Component {
   constructor() {
