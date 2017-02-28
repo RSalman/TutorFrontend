@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { verifyCode } from '../actions/signup';
+import { verifyCode, setProgressBar } from '../actions/signup';
 import StyledText from './StyledText';
 
 const CODE_LENGTH = 4;
@@ -12,11 +12,13 @@ class PhoneVerificationInput extends Component {
   constructor(props) {
     super(props);
     this.state = { isCodeValid: false };
+    this.props.setProgressBar(0.5);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.verified)
-      Actions.muraad({ type: 'reset' }); // reset so user can't go back
+      Actions.becomeATutor();
+
   }
 
   verify(code) {
@@ -58,6 +60,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    marginTop: 60
   },
   headerContainer: {
     alignSelf: 'center',
@@ -96,6 +99,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ verifyCode }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ verifyCode, setProgressBar }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(PhoneVerificationInput);
