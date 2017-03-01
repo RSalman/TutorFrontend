@@ -30,9 +30,7 @@ const yellow = '#ff7733';
 const blue = '#8080ff';
 const transparent = 'transparent';
 const style = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1, },
   menuButton:{
     width: 50,
     height: 50,

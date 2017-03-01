@@ -7,17 +7,13 @@ import Homeview from './Homeview';
 export default class LeilaFeatureView extends Component {
   constructor() {
     super();
-    this.state = {
-      isOpen: false
-    };
+    this.state = { isOpen: false };
     this.toggleSideMenu = this.toggleSideMenu.bind(this);
   }
 
   toggleSideMenu() {
     //this can be set to true instead of !isOpen because when the sidemenu is clicked to hide, isOpen is made false
-    this.setState({
-      isOpen: true
-    });
+    this.setState({ isOpen: true });
   }
 
   render() {
@@ -69,23 +65,15 @@ export default class LeilaFeatureView extends Component {
 }
 
 const style = StyleSheet.create({
-  main: {
-    flex: 1
-  },
+  main: { flex: 1 },
   topView: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
   },
-  middleView: {
-    flex: 3
-  },
-  bottomView: {
-    flex: 1
-  },
-  image: {
-    width: 50, height: 50, borderRadius: 20
-  }
+  middleView: { flex: 3 },
+  bottomView: { flex: 1 },
+  image: { width: 50, height: 50, borderRadius: 20 }
 });
 
