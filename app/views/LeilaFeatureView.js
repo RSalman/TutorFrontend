@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
-import {
-    View,
-    StyleSheet,
-    Image,
-    Text
-} from 'react-native';
-import {
-    SideMenu,
-    List,
-    ListItem
-} from 'react-native-elements';
+import { View, StyleSheet, Image, Text } from 'react-native';
+import { SideMenu, List, ListItem } from 'react-native-elements';
 import Homeview from './Homeview';
 
 
@@ -22,9 +13,10 @@ export default class LeilaFeatureView extends Component {
     this.toggleSideMenu = this.toggleSideMenu.bind(this);
   }
 
-  toggleSideMenu(isHidden) {
+  toggleSideMenu() {
+    //this can be set to true instead of !isOpen because when the sidemenu is clicked to hide, isOpen is made false
     this.setState({
-      isOpen: isHidden
+      isOpen: true
     });
   }
 
@@ -71,8 +63,7 @@ export default class LeilaFeatureView extends Component {
         isOpen={this.state.isOpen}
         menu={side}
       >
-        <Homeview onPressFunct={this.toggleSideMenu} />
-
+        <Homeview toggled={this.toggleSideMenu.bind(this)} />
       </SideMenu>);
   }
 }

@@ -1,28 +1,13 @@
 import React, { Component } from 'react';
-import {
-    View,
-    StyleSheet,
-    Text
-} from 'react-native';
-import {
-    Button
-} from 'react-native-elements';
+import { View, StyleSheet, Text } from 'react-native';
+import { Button } from 'react-native-elements';
 
 class Homeview extends Component {
   constructor() {
     super();
-    this.state = {
-      sideIsHidden: true
-    };
-    this.pressFunct = this.pressFunct.bind(this);
-  }
-
-  pressFunct() {
-    var newSideIsHidden = !this.state.sideIsHidden;
-    this.setState({ sideIsHidden: newSideIsHidden });
-    this.props.onPressFunct(this.state.sideIsHidden);
   }
   render() {
+    const { toggled } = this.props;
     return (
       <View style={style.container} >
         <View style={style.view1} />
@@ -30,7 +15,7 @@ class Homeview extends Component {
           <Button
             buttonStyle={style.menuButton}
             icon={{ name: 'menu' }}
-            onPress={this.pressFunct}
+            onPress={toggled}
           />
         </View>
         <View style={style.view3} >
