@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+
+import TopNavBar from './TopNavBar';
 
 export default class Request extends Component {
   constructor() {
@@ -9,8 +11,7 @@ export default class Request extends Component {
     const { toggled } = this.props;
     return (
       <View style={style.container}>
-        <Text style={style.marginText} />
-        <Text onPress={toggled}>Click me to toggle the side</Text>
+        <TopNavBar toggled={toggled} />
       </View>
     );
   }
@@ -21,5 +22,4 @@ const style = StyleSheet.create({
     backgroundColor: white,
     flex: 1
   },
-  marginText:{ height: 50 }
 });
