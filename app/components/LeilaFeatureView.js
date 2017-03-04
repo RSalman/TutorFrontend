@@ -8,7 +8,6 @@ export default class LeilaFeatureView extends Component {
   constructor() {
     super();
     this.state = { isOpen: false };
-    this.toggleSideMenu = this.toggleSideMenu.bind(this);
   }
 
   toggleSideMenu() {
