@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 
 import TopNavBar from './TopNavBar';
 
@@ -9,21 +9,25 @@ export default class Profile extends Component {
   }
   render() {
     const { toggled } = this.props;
+    const { tabName } = this.props;
     return (
-      <View style={style.container} >
-        <TopNavBar toggled={toggled} />
-        <View style={style.view1} >
+      <ScrollView style={style.container} >
+        <TopNavBar toggled={toggled} tabName={tabName} />
+        <View style={style.viewContainer} >
           <Text>Blue background</Text>
+          {/*<Text>the text should go under this one</Text>*/}
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
+const white = 'white';
 const blue = '#8080ff';
 const style = StyleSheet.create({
-  container: { flex: 1 },
-  view1: {
+  container: {
     flex: 1,
-    backgroundColor: blue,
-  }
+    backgroundColor: white,
+
+  },
+  viewContainer: { backgroundColor: blue, }
 });
