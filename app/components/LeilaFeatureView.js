@@ -5,8 +5,8 @@ import Homeview from './Homeview';
 
 
 export default class LeilaFeatureView extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { isOpen: false };
   }
 
@@ -28,28 +28,20 @@ export default class LeilaFeatureView extends Component {
         <View style={style.middleView}>
           <List>
             <ListItem
-              title="Profile"
+              title={I18n.t('sideMenu.profile')}
               rightIcon={{ name: 'person-pin' }}
             />
             <ListItem
-              title="Appointments"
-              rightIcon={{ name: 'watch-later' }}
-            />
-            <ListItem
-              title="Payments"
-              rightIcon={{ name: 'payment' }}
-            />
-            <ListItem
-              title="Help"
+              title={I18n.t('sideMenu.help')}
               rightIcon={{ name: 'live-help' }}
             />
             <ListItem
-              title="Sign out"
+              title={I18n.t('sideMenu.signOut')}
             />
           </List>
         </View>
         <View style={style.bottomView}>
-          <Text>Terms and conditions of use</Text>
+          <Text>{I18n.t('sideMenu.termsConditions')}</Text>
         </View>
       </View>
     );
@@ -58,7 +50,7 @@ export default class LeilaFeatureView extends Component {
         isOpen={this.state.isOpen}
         menu={side}
       >
-        <Homeview toggled={this.toggleSideMenu.bind(this)} />
+        <Homeview toggled={()=>this.toggleSideMenu(this)} />
       </SideMenu>);
   }
 }
@@ -75,4 +67,3 @@ const style = StyleSheet.create({
   bottomView: { flex: 1 },
   image: { width: 50, height: 50, borderRadius: 20 }
 });
-

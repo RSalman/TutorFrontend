@@ -3,11 +3,10 @@ import { View, StyleSheet, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 
 class Homeview extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
   render() {
-    const { toggled } = this.props;
     return (
       <View style={style.container} >
         <View style={style.view1} />
@@ -15,7 +14,7 @@ class Homeview extends Component {
           <Button
             buttonStyle={style.menuButton}
             icon={{ name: 'menu' }}
-            onPress={toggled}
+            onPress={this.props.toggled}
           />
         </View>
         <View style={style.view3} >
