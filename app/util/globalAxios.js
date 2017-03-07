@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Alert, Platform } from 'react-native';
+import { Alert, Platform, NetInfo } from 'react-native';
 
 axios.defaults.baseURL = `http://${Platform.OS === 'ios' ? 'localhost' : '10.0.3.2'}:3000/api/v1`;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -7,23 +7,28 @@ axios.defaults.headers.get['Content-Type'] = 'application/json';
 axios.defaults.headers.post.Accept = 'application/json';
 axios.defaults.headers.get.Accept = 'application/json';
 
+var connection = true;
+function connectivityChange(isConnected) {
+  connection = isConnected;
+}
+
 function showNoInternetDialog(config) {
   return new Promise(function(resolve, reject) {
     Alert.alert(
-      'No internet connection',
-      'Please enable your internet connection and try again.',
+      I18n.t('globalWifiDialog.noInternetConnection'),
+      I18n.t('globalWifiDialog.fixInternet'),
       [
-        { text: 'Retry', onPress: () => resolve(axios(config)) },
+        { text: I18n.t('retry'), onPress: () => resolve(axios(config)) },
       ],
       { cancelable: false }
     );
   });
 }
 
+NetInfo.isConnected.addEventListener('change', connectivityChange);
+
 axios.interceptors.response.use(undefined, function(error) {
-  if (error.status === undefined && error.config)
-    return showNoInternetDialog(error.config);
-  return Promise.reject(error);
+  return connection ? Promise.reject(error) : showNoInternetDialog(error.config);
 });
 
 global.axios = axios;
