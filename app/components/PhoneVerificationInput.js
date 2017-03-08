@@ -12,13 +12,15 @@ class PhoneVerificationInput extends Component {
   constructor(props) {
     super(props);
     this.state = { isCodeValid: false };
+  }
+
+  componentWillMount() {
     this.props.setProgressBar(0.5);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.verified)
       Actions.becomeATutor();
-
   }
 
   verify(code) {

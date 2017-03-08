@@ -11,7 +11,9 @@ import { updateForm, setProgressBar } from '../actions/signup';
 class UserSignupFormComponent extends Component {
   constructor(props) {
     super(props);
-    this.props.updateForm();
+  }
+
+  componentWillMount() {
     this.props.setProgressBar(0.25);
   }
 
@@ -29,10 +31,10 @@ class UserSignupFormComponent extends Component {
           ref={(form) => { this.signup_form = form; }}
           type={User}
           options={options}
-          onChange={(formData) => {this.props.updateForm(formData);}}
+          onChange={(formData) => this.props.updateForm(formData)}
           value={this.props.signup_data}
         />
-        <Button raised title="Next" onPress={(form) => {this.onPress(form);}} backgroundColor={green} />
+        <Button raised title="Next" onPress={() => this.onPress()} backgroundColor={green} />
       </View>
     );
   }
@@ -56,11 +58,18 @@ const grey = '#696969';
 const stylesheet = _.cloneDeep(Form.stylesheet);
 const font_size = 14;
 const container_height = 30;
+const transparentColor = 'transparent';
 
 stylesheet.textbox.normal.borderWidth = 0;
 stylesheet.textbox.error.borderWidth = 0;
 stylesheet.textbox.normal.marginBottom = 0;
 stylesheet.textbox.error.marginBottom = 0;
+stylesheet.textbox.normal.marginBottom = 5;
+stylesheet.textbox.error.marginBottom = 5;
+stylesheet.textbox.normal.fontSize = font_size;
+stylesheet.textbox.error.fontSize = font_size;
+stylesheet.textbox.normal.height = container_height;
+stylesheet.textbox.error.height = container_height;
 
 stylesheet.textboxView.normal.borderWidth = 0;
 stylesheet.textboxView.error.borderWidth = 0;
@@ -68,21 +77,17 @@ stylesheet.textboxView.normal.borderRadius = 0;
 stylesheet.textboxView.error.borderRadius = 0;
 stylesheet.textboxView.normal.borderBottomWidth = 1;
 stylesheet.textboxView.error.borderBottomWidth = 1;
-stylesheet.textbox.normal.marginBottom = 5;
-stylesheet.textbox.error.marginBottom = 5;
-
-stylesheet.textbox.normal.fontSize = font_size;
-stylesheet.textbox.error.fontSize = font_size;
-stylesheet.controlLabel.normal.fontSize = font_size;
-stylesheet.controlLabel.error.fontSize = font_size;
-stylesheet.errorBlock.fontSize = font_size;
-
-stylesheet.textbox.normal.height = container_height;
-stylesheet.textbox.error.height = container_height;
 stylesheet.textboxView.normal.height = container_height;
 stylesheet.textboxView.error.height = container_height;
 
 stylesheet.controlLabel.normal.color = grey;
+stylesheet.controlLabel.normal.fontSize = font_size;
+stylesheet.controlLabel.error.fontSize = font_size;
+stylesheet.controlLabel.normal.backgroundColor = transparentColor;
+stylesheet.controlLabel.error.backgroundColor = transparentColor;
+
+stylesheet.errorBlock.fontSize = font_size;
+stylesheet.errorBlock.backgroundColor = transparentColor;
 
 var options = {
   stylesheet: stylesheet,
@@ -114,4 +119,3 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators({ updateForm, setProgressBar }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserSignupFormComponent);
-

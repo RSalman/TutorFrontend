@@ -439,6 +439,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
+                                  "backgroundColor": "transparent",
                                   "fontFamily": "HelveticaNeue-Thin",
                                 },
                                 undefined,
@@ -455,6 +456,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
+                                  "backgroundColor": "transparent",
                                   "fontFamily": "HelveticaNeue-Thin",
                                 },
                                 Object {
@@ -481,6 +483,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                         style={
                           Array [
                             Object {
+                              "backgroundColor": "transparent",
                               "fontFamily": "HelveticaNeue-Thin",
                             },
                             undefined,
@@ -868,6 +871,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
+                                  "backgroundColor": "transparent",
                                   "fontFamily": "HelveticaNeue-Thin",
                                 },
                                 undefined,
@@ -884,6 +888,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
+                                  "backgroundColor": "transparent",
                                   "fontFamily": "HelveticaNeue-Thin",
                                 },
                                 Object {
@@ -910,6 +915,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                         style={
                           Array [
                             Object {
+                              "backgroundColor": "transparent",
                               "fontFamily": "HelveticaNeue-Thin",
                             },
                             undefined,

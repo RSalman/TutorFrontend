@@ -81,6 +81,7 @@ exports[`test renders correctly 1`] = `
               style={
                 Array [
                   Object {
+                    "backgroundColor": "transparent",
                     "fontFamily": "HelveticaNeue-Thin",
                   },
                   Object {

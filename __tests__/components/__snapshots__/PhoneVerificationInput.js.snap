@@ -21,6 +21,7 @@ exports[`<PhoneVerificationInput /> should disable input when verifying 1`] = `
       style={
         Array [
           Object {
+            "backgroundColor": "transparent",
             "fontFamily": "HelveticaNeue-Thin",
           },
           Object {
@@ -66,6 +67,7 @@ exports[`<PhoneVerificationInput /> should disable input when verifying 1`] = `
       style={
         Array [
           Object {
+            "backgroundColor": "transparent",
             "fontFamily": "HelveticaNeue-Thin",
           },
           Object {
@@ -104,6 +106,7 @@ exports[`<PhoneVerificationInput /> should show no message when invalid code ent
       style={
         Array [
           Object {
+            "backgroundColor": "transparent",
             "fontFamily": "HelveticaNeue-Thin",
           },
           Object {
@@ -149,6 +152,7 @@ exports[`<PhoneVerificationInput /> should show no message when invalid code ent
       style={
         Array [
           Object {
+            "backgroundColor": "transparent",
             "fontFamily": "HelveticaNeue-Thin",
           },
           Object {

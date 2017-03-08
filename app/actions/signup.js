@@ -3,7 +3,7 @@ export const VERIFY_CODE_START = 'VERIFY_CODE_START';
 export const VERIFY_CODE_COMPLETE = 'VERIFY_CODE_COMPLETE';
 export const SET_PROGRESS_BAR = 'SET_PROGRESS_BAR';
 export const UPDATE_FORM = 'UPDATE_FORM';
-export const SUBMIT_FORM = 'SUBMIT_FORM';
+export const SUCCESSFUL_SIGNUP = 'SUCCESSFUL_SIGNUP';
 
 // action creators
 export function verifyCodeStart() {
@@ -26,19 +26,16 @@ export function verifyCode(code) {
 }
 
 export function setProgressBar(value) {
-  return dispatch => {
-    dispatch({ type: SET_PROGRESS_BAR, value });
-  };
+  return { type: SET_PROGRESS_BAR, value };
 }
 
 export function updateForm(formData) {
-  return dispatch => {
-    dispatch({ type: UPDATE_FORM, formData });
-  };
+  return { type: UPDATE_FORM, formData };
 }
 
 export function submitForm() {
   return dispatch => {
-    dispatch({ type: SUBMIT_FORM });
+    /* TODO(muraad): submit form */
+    dispatch({ type: SUCCESSFUL_SIGNUP });
   };
 }

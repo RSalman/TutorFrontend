@@ -1,8 +1,9 @@
 import ProgressBar from 'react-native-progress/Bar';
 import React, { Component } from 'react';
-import { StyleSheet, Text, Platform, ScrollView, Image } from 'react-native';
+import { StyleSheet, ScrollView, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { DefaultRenderer } from 'react-native-router-flux';
+import StyledText from './StyledText';
 
 class SignupComponent extends Component {
   render() {
@@ -11,7 +12,7 @@ class SignupComponent extends Component {
     return (
       <Image source={require('./img/signup_background.png')} style={styles.backgroundImage}>
         <ScrollView>
-          <Text style={styles.header}>Sign up for Prospr</Text>
+          <StyledText style={styles.header}>Sign up for Prospr</StyledText>
           <ProgressBar progress={this.props.progress_status} width={320} style={styles.progressStyling} color={green} />
           <DefaultRenderer
             navigationState={state}
@@ -31,12 +32,7 @@ const styles = StyleSheet.create({
   header: {
     textAlign: 'center',
     padding: 10,
-    fontSize: 30,
-    fontWeight: 'bold',
-    ...Platform.select({
-      ios: { fontFamily: 'HelveticaNeue-Thin' },
-      android: { fontFamily: 'sans-serif-thin' },
-    })
+    fontSize: 30
   },
   progressStyling: {
     alignSelf: 'center',
@@ -50,7 +46,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  return { progress_status: state.signup.progress_status };
+  return { progress_status: state.signup.progressStatus };
 };
 
 export default connect(mapStateToProps)(SignupComponent);

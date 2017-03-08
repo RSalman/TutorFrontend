@@ -1,19 +1,17 @@
-import { VERIFY_CODE_START, VERIFY_CODE_COMPLETE, UPDATE_FORM, SUBMIT_FORM, SET_PROGRESS_BAR } from '../actions/signup';
+import { VERIFY_CODE_START, VERIFY_CODE_COMPLETE, UPDATE_FORM, SUCCESSFUL_SIGNUP, SET_PROGRESS_BAR } from '../actions/signup';
 
 var initialState = {
   phoneVerified: false,
-  phoneVerifying: false
-};
-
-var signupState = {
-  value: {
+  phoneVerifying: false,
+  signup_data: {
     first_name: '',
     last_name: '',
     email: '',
     password: '',
     phone_number: ''
   },
-  progressStatus: 0
+  progressStatus: 0,
+  successfulSubmission: false
 };
 
 function signup(state = initialState, action) {
@@ -30,17 +28,13 @@ function signup(state = initialState, action) {
         phoneVerified: action.phoneVerified
       };
     case SET_PROGRESS_BAR:
-      signupState.progressStatus = action.value;
       return {
         ...state,
-        progress_status: signupState.progressStatus
+        progressStatus: action.value
       };
     case UPDATE_FORM:
-      if (action.formData)
-        signupState.value = action.formData;
-      return { signup_data: signupState.value, progress_status: signupState.progressStatus };
-    case SUBMIT_FORM:
-      /* TODO SUBMIT FORM - MURAAD HARED */
+      return { ...state, signup_data: action.formData };
+    case SUCCESSFUL_SIGNUP:
       return { ...state, successfulSubmission: true };
     default:
       return state;
