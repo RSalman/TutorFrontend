@@ -6,7 +6,8 @@ describe('tutors reducers', () => {
       tutors(undefined, {})
     ).toEqual({
       allTutors: [],
-      isLoading: false
+      isLoading: false,
+      error: ''
     });
   });
 });

@@ -8,5 +8,10 @@ export default {
     help: 'Help',
     signOut: 'Sign out',
     termsConditions: 'Terms and conditions of use'
+  },
+  tutors: {
+    searchPlaceholder: 'Enter a course code or subject...',
+    serversDownError: 'Our servers seem to be down, please try again!',
+    noTutorsFound: 'No tutors found! Please try another search query.'
   }
 };
