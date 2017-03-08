@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  return { progress_status: state.signup.progress_status };
+  return { progress_status: state.signup.progressStatus };
 };
 
 export default connect(mapStateToProps)(SignupComponent);

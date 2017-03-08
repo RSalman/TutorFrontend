@@ -10,6 +10,9 @@ import { submitForm, setProgressBar } from '../actions/signup';
 class BecomeATutorComponent extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
     this.props.setProgressBar(0.75);
   }
 
@@ -19,7 +22,7 @@ class BecomeATutorComponent extends Component {
   }
 
   navigateToTutorForm() {
-    /* TODO Navigate to tutor Form */
+    /* TODO(muraad): navigate to tutor Form */
     /* for now, navigates to home page */
     Actions.home({ type: 'reset' });
   }
@@ -29,8 +32,8 @@ class BecomeATutorComponent extends Component {
       <View style={styles.container}>
         <StyledText style={styles.headerText}>Would you like to become a tutor?</StyledText>
         <View style={styles.buttonContainer}>
-          <Button raised title="Yes" onPress={() => {this.props.submitForm(true);}} backgroundColor={green} />
-          <Button raised title="No" onPress={() => {this.props.submitForm();}} backgroundColor={grey} />
+          <Button raised title="Yes" onPress={() => this.navigateToTutorForm()} backgroundColor={green} />
+          <Button raised title="No" onPress={() => this.props.submitForm()} backgroundColor={grey} />
         </View>
       </View>
     );
@@ -58,10 +61,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  return {
-    navigateToTutorForm: state.signup.navigateToTutorForm,
-    successfulSubmission: state.signup.successfulSubmission
-  };
+  return { successfulSubmission: state.signup.successfulSubmission };
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({ submitForm, setProgressBar }, dispatch);

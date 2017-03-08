@@ -11,7 +11,9 @@ import { updateForm, setProgressBar } from '../actions/signup';
 class UserSignupFormComponent extends Component {
   constructor(props) {
     super(props);
-    this.props.updateForm();
+  }
+
+  componentWillMount() {
     this.props.setProgressBar(0.25);
   }
 
@@ -29,10 +31,10 @@ class UserSignupFormComponent extends Component {
           ref={(form) => { this.signup_form = form; }}
           type={User}
           options={options}
-          onChange={(formData) => {this.props.updateForm(formData);}}
+          onChange={(formData) => this.props.updateForm(formData)}
           value={this.props.signup_data}
         />
-        <Button raised title="Next" onPress={(form) => {this.onPress(form);}} backgroundColor={green} />
+        <Button raised title="Next" onPress={() => this.onPress()} backgroundColor={green} />
       </View>
     );
   }
@@ -114,4 +116,3 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators({ updateForm, setProgressBar }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserSignupFormComponent);
-
