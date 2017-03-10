@@ -10,7 +10,7 @@ import './util/I18n';
 import rootReducer from './reducers';
 import HomeScreen from './components/HomeScreen';
 import TutorsComponent from './components/TutorsComponent';
-import LeilaFeatureView from './views/LeilaFeatureView';
+import LeilaFeatureView from './components/LeilaFeatureView';
 import TutorProfileComponent from './components/TutorProfileComponent';
 import SignupComponent from './components/SignupComponent';
 import PhoneVerificationInput from './components/PhoneVerificationInput';
