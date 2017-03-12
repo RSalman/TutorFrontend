@@ -3,6 +3,12 @@ export default {
     enterCode: 'Please enter the code \n sent to your phone number',
     incorrectCode: 'Incorrect code entered! Please try again.'
   },
+  sideMenu: {
+    profile: 'Profile',
+    help: 'Help',
+    signOut: 'Sign out',
+    termsConditions: 'Terms and conditions of use'
+  },
   tutors: {
     searchPlaceholder: 'Enter a course code or subject...',
     serversDownError: 'Our servers seem to be down, please try again!',

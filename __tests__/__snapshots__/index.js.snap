@@ -81,6 +81,7 @@ exports[`test renders correctly 1`] = `
               style={
                 Array [
                   Object {
+                    "backgroundColor": "transparent",
                     "fontFamily": "HelveticaNeue-Thin",
                   },
                   Object {
@@ -384,7 +385,7 @@ exports[`test renders correctly 1`] = `
                           "letterSpacing": 1,
                         }
                       }>
-                      Muraad\'s Feature
+                      Signup Form
                     </Text>
                   </View>
                 </View>
