@@ -26,7 +26,7 @@ export function loginSuccess() {
 
 export function authenticate(email, password) {
   return dispatch => {
-    dispatch(loginStart()); //Maybe display a spinner here
+    dispatch(loginStart());
     axios.post('/auth/sign_in', { email, password })
       .then(function(response) {
         if (!_.isEmpty(response.data)) {
