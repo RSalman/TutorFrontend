@@ -40,7 +40,7 @@ describe('<TutorsComponent />', () => {
     });
     const tree = renderer.create(
       <TutorsComponent {...props} />
-    ).toJSON();
+        ).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
