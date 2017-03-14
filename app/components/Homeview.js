@@ -22,16 +22,16 @@ class Homeview extends Component {
         <Tab
           selected={selectedTab === 'profileTab'}
           onPress={()=>this.changeTab('profileTab')}
-          renderIcon={()=><Icon name="done" size={30} />}
-          renderSelectedIcon={()=><Icon name="done" color="green" size={30} />}
+          renderIcon={()=><Icon name="hourglass-empty" size={30} />}
+          renderSelectedIcon={()=><Icon name="hourglass-empty" color="orange" size={30} />}
         >
           <ProfileTab toggled={toggled} tabName="Pending Requests" />
         </Tab>
         <Tab
           selected={selectedTab === 'requestTab'}
           onPress={()=>this.changeTab('requestTab')}
-          renderIcon={()=><Icon name="hourglass-empty" size={30} />}
-          renderSelectedIcon={()=><Icon name="hourglass-empty" color="orange" size={30} />}
+          renderIcon={()=><Icon name="done" size={30} />}
+          renderSelectedIcon={()=><Icon name="done" color="green" size={30} />}
         >
           <RequestsTab toggled={toggled} tabName="Approved Requests" />
         </Tab>
