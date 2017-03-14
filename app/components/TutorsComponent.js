@@ -13,7 +13,7 @@ class TutorsComponent extends Component {
     this.state = { dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows(this.props.allTutors) };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.updateTutors();
   }
 
