@@ -10,10 +10,13 @@ import './util/I18n';
 import rootReducer from './reducers';
 import HomeScreen from './components/HomeScreen';
 import TutorsComponent from './components/TutorsComponent';
-import LeilaFeatureView from './views/LeilaFeatureView';
+import LeilaFeatureView from './components/LeilaFeatureView';
 import TutorProfileComponent from './components/TutorProfileComponent';
-import MuraadFeatureView from './views/MuraadFeatureView';
+import SignupComponent from './components/SignupComponent';
 import PhoneVerificationInput from './components/PhoneVerificationInput';
+import UserSignupFormComponent from './components/UserSignupFormComponent';
+import BecomeATutorComponent from './components/BecomeATutorComponent';
+import TempPushNotification from './components/TempPushNotification';
 
 global._ = _;
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -25,10 +28,15 @@ export default class TutoringApp extends Component {
           <Scene key="root" hideNavBar>
             <Scene key="home" component={HomeScreen} title="HomeScreen" />
             <Scene key="tutors" component={TutorsComponent} title="TutorsComponent" />
+            <Scene key="tempPushNotification" component={TempPushNotification} title="TempPushNotification" />
             <Scene key="tutorinfo" component={TutorProfileComponent} title="TutorProfileComponent" />
             <Scene key="leila" component={LeilaFeatureView} title="LeilaFeatureView" />
-            <Scene key="muraad" component={MuraadFeatureView} title="MuraadFeatureView" />
-            <Scene key="phoneVerification" component={PhoneVerificationInput} title="PhoneVerificationInput" />
+            <Scene key="signup" component={SignupComponent} title="SignupComponent">
+              <Scene key="userForm" component={UserSignupFormComponent} title="UserForm" />
+              <Scene key="phoneVerification" component={PhoneVerificationInput} title="PhoneVerificationInput" />
+              <Scene key="becomeATutor" component={BecomeATutorComponent} title="BecomeATutor" />
+            </Scene>
+
           </Scene>
         </Router>
       </Provider>

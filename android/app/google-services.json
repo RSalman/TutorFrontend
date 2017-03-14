@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "779865862095",
+    "firebase_url": "https://prospr-8a50d.firebaseio.com",
+    "project_id": "prospr-8a50d",
+    "storage_bucket": "prospr-8a50d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779865862095:android:1b83d4b60becf7dd",
+        "android_client_info": {
+          "package_name": "com.tutorfrontend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779865862095-4tk4rhhj654t9tepp8c6i5elqlaj6sgg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDjtDNEYE5WbvPy3VumSoq1dEDhKFcOH8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -7,3 +7,12 @@ jest.mock('Linking', () => {
     getInitialURL: jest.fn(),
   };
 });
+
+jest.mock('NetInfo', () => {
+  return {
+    isConnected: {
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn()
+    }
+  };
+});
