@@ -16,6 +16,7 @@ import SignupComponent from './components/SignupComponent';
 import PhoneVerificationInput from './components/PhoneVerificationInput';
 import UserSignupFormComponent from './components/UserSignupFormComponent';
 import BecomeATutorComponent from './components/BecomeATutorComponent';
+import LoginComponent from './components/LoginComponent';
 import TempPushNotification from './components/TempPushNotification';
 
 global._ = _;
@@ -36,7 +37,7 @@ export default class TutoringApp extends Component {
               <Scene key="phoneVerification" component={PhoneVerificationInput} title="PhoneVerificationInput" />
               <Scene key="becomeATutor" component={BecomeATutorComponent} title="BecomeATutor" />
             </Scene>
-
+            <Scene key="login" component={LoginComponent} title="LoginComponent" />
           </Scene>
         </Router>
       </Provider>

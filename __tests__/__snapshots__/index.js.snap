@@ -581,7 +581,7 @@ exports[`test renders correctly 1`] = `
                           "letterSpacing": 1,
                         }
                       }>
-                      Phone Verification (Sarmad)
+                      Login
                     </Text>
                   </View>
                 </View>

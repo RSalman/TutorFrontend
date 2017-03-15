@@ -14,7 +14,7 @@ export default class HomeScreen extends Component {
           <ButtonComponent style={styles.button} text="Tutor Profile Component (Salman)" onPress={Actions.tutorinfo} />
           <ButtonComponent style={styles.button} text="Signup Form" onPress={Actions.signup} />
           <ButtonComponent style={styles.button} text="Leila's Feature" onPress={Actions.leila} />
-          <ButtonComponent style={styles.button} text="Phone Verification (Sarmad)" onPress={Actions.phoneVerification} />
+          <ButtonComponent style={styles.button} text="Login" onPress={Actions.login} />
           <ButtonComponent style={styles.button} text="Temp Push Notification (Salman)" onPress={Actions.tempPushNotification} />
         </View>
       </Image>
