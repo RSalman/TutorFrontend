@@ -43,7 +43,7 @@
 		48136181F16E53BBFFAE4DF0 /* Pods_TutorFrontendTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6605BB6F46F259F11B2671 /* Pods_TutorFrontendTests.framework */; };
 		561490351E5290660012F121 /* RNI18n.xcodeproj in Frameworks */ = {isa = PBXBuildFile; fileRef = 7757D44F77DE4D0493DF9A8A /* RNI18n.xcodeproj */; };
 		561490361E5290810012F121 /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614902C1E5290270012F121 /* libRNI18n.a */; };
-		5651DC2C1E7A202200B5356D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5651DC2B1E7A202200B5356D /* GoogleService-Info.plist */; };
+		5651DC301E7A216900B5356D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5651DC2F1E7A216900B5356D /* GoogleService-Info.plist */; };
 		594789E22D01417ABAE35983 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ED521B0904341618225D0A9 /* Zocial.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		68A74816BF0977A6421689C7 /* Pods_TutorFrontend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F64F749CB0089C680E67871E /* Pods_TutorFrontend.framework */; };
@@ -327,7 +327,7 @@
 		3B0BA80B5608456777176907 /* Pods-TutorFrontend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TutorFrontend.release.xcconfig"; path = "Pods/Target Support Files/Pods-TutorFrontend/Pods-TutorFrontend.release.xcconfig"; sourceTree = "<group>"; };
 		45947128CD9A2B10B8DD6F98 /* Pods-TutorFrontendTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TutorFrontendTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TutorFrontendTests/Pods-TutorFrontendTests.release.xcconfig"; sourceTree = "<group>"; };
 		5651DB8C1E79EB8A00B5356D /* TutorFrontend.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = TutorFrontend.entitlements; path = TutorFrontend/TutorFrontend.entitlements; sourceTree = "<group>"; };
-		5651DC2B1E7A202200B5356D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5651DC2F1E7A216900B5356D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6415C082AF966F4B64706429 /* Pods-TutorFrontend-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TutorFrontend-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TutorFrontend-tvOS/Pods-TutorFrontend-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		64483142A8FED532B215274A /* Pods-TutorFrontend-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TutorFrontend-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TutorFrontend-tvOS/Pods-TutorFrontend-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -509,11 +509,11 @@
 		13B07FAE1A68108700A75B9A /* TutorFrontend */ = {
 			isa = PBXGroup;
 			children = (
-				5651DC2B1E7A202200B5356D /* GoogleService-Info.plist */,
 				5651DB8C1E79EB8A00B5356D /* TutorFrontend.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				5651DC2F1E7A216900B5356D /* GoogleService-Info.plist */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -1152,7 +1152,7 @@
 				8C5F689269C24104BB3ED816 /* SimpleLineIcons.ttf in Resources */,
 				594789E22D01417ABAE35983 /* Zocial.ttf in Resources */,
 				AE6F02227044479284D1F84A /* MaterialCommunityIcons.ttf in Resources */,
-				5651DC2C1E7A202200B5356D /* GoogleService-Info.plist in Resources */,
+				5651DC301E7A216900B5356D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
