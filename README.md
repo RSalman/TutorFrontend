@@ -18,6 +18,11 @@ Before every commit, `npm run lint` and `npm run test` will run automatically.
 
 IMPORTANT: Run `npm run lint` to fix some style and formatting issues automatically. Do this before committing!
 
+## iOS-Specific Steps
+Go to your `ios` folder and run:
+* `sudo gem install cocoapods`
+* `pod install`
+
 ## Steps for Testing
 Simply run `npm run test` to run all tests.
 
