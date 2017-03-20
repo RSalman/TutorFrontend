@@ -17,16 +17,7 @@ export default class TempPushNotification extends Component {
    this.creatEntryOnServer();
    }
 
-  render() {
-    return (
-      <View>
-      <StyledText>Temp Push Notification Component</StyledText> 
-      {this.showToken()}
-      </View>
-    );
-  }
-
-  showToken(){
+ showToken(){
     if(this.state.user_created)
       return (
         <View>        
@@ -89,5 +80,14 @@ sendAppToken(id){
   makePhoneNumber(len)
   {
       return Math.random() * (9999999999 - 1000000000) + 1000000000;
+  }
+
+  render() {
+    return (
+      <View>
+      <StyledText>Temp Push Notification Component</StyledText> 
+      {this.showToken()}
+      </View>
+    );
   }
 }
