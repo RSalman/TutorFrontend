@@ -248,7 +248,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "color": "#FFC321",
+                                  "color": "gray",
                                   "fontFamily": "FontAwesome",
                                   "fontSize": 20,
                                   "fontStyle": "normal",
@@ -257,7 +257,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                 undefined,
                               ]
                             }>
-                            
+                            
                           </Text>
                         </View>
                         <View
@@ -288,7 +288,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "color": "#FFC321",
+                                  "color": "gray",
                                   "fontFamily": "FontAwesome",
                                   "fontSize": 20,
                                   "fontStyle": "normal",
@@ -297,7 +297,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                 undefined,
                               ]
                             }>
-                            
+                            
                           </Text>
                         </View>
                         <View
@@ -328,7 +328,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "color": "#FFC321",
+                                  "color": "gray",
                                   "fontFamily": "FontAwesome",
                                   "fontSize": 20,
                                   "fontStyle": "normal",
@@ -337,7 +337,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                 undefined,
                               ]
                             }>
-                            
+                            
                           </Text>
                         </View>
                         <View
@@ -368,7 +368,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "color": "#FFC321",
+                                  "color": "gray",
                                   "fontFamily": "FontAwesome",
                                   "fontSize": 20,
                                   "fontStyle": "normal",
@@ -377,7 +377,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                 undefined,
                               ]
                             }>
-                            
+                            
                           </Text>
                         </View>
                         <View
@@ -408,7 +408,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "color": "#FFC321",
+                                  "color": "gray",
                                   "fontFamily": "FontAwesome",
                                   "fontSize": 20,
                                   "fontStyle": "normal",
@@ -417,7 +417,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                 undefined,
                               ]
                             }>
-                            
+                            
                           </Text>
                         </View>
                       </View>
@@ -490,7 +490,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                           ]
                         }>
                          
-                        TEST1
+                        undefined
                          
                       </Text>
                     </View>
@@ -680,7 +680,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "color": "#FFC321",
+                                  "color": "gray",
                                   "fontFamily": "FontAwesome",
                                   "fontSize": 20,
                                   "fontStyle": "normal",
@@ -689,7 +689,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                 undefined,
                               ]
                             }>
-                            
+                            
                           </Text>
                         </View>
                         <View
@@ -720,7 +720,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "color": "#FFC321",
+                                  "color": "gray",
                                   "fontFamily": "FontAwesome",
                                   "fontSize": 20,
                                   "fontStyle": "normal",
@@ -729,7 +729,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                 undefined,
                               ]
                             }>
-                            
+                            
                           </Text>
                         </View>
                         <View
@@ -922,7 +922,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                           ]
                         }>
                          
-                        TEST2
+                        undefined
                          
                       </Text>
                     </View>

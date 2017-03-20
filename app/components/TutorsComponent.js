@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, View, ListView, StyleSheet } from 'react-native';
+import { ActivityIndicator, Platform, View, ListView, StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
@@ -10,19 +10,31 @@ import ErrorView from './ErrorView';
 class TutorsComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = { dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows(this.props.allTutors) };
+    this.loadingRowObj = { loadingRow: true };
+    this.updateTutors = _.throttle(this.props.updateTutors, 100, { trailing: false }); // Prevent spam calls
+    this.state = {
+      dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== r2 || r1.loadingRow || r2.loadingRow) })
+      .cloneWithRows([...this.props.allTutors, this.loadingRowObj])
+    };
   }
 
   componentDidMount() {
-    this.props.updateTutors();
+    this.updateTutors();
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ dataSource: this.state.dataSource.cloneWithRows(nextProps.allTutors) });
+    this.setState({ dataSource: this.state.dataSource.cloneWithRows([...nextProps.allTutors, this.loadingRowObj]) });
   }
 
   onSearchBarTextEntered(text) {
-    this.props.updateTutors(text);
+    this.searchBarText = text;
+    this.updateTutors(text);
+  }
+
+  onEndReached() {
+    const nTutors = this.props.allTutors.length;
+    if (nTutors > 0)
+      this.updateTutors(this.searchBarText, this.props.allTutors[nTutors - 1].id);
   }
 
   renderErrorView() {
@@ -31,11 +43,25 @@ class TutorsComponent extends Component {
     );
   }
 
+  renderLoadingView() {
+    return (
+      <ActivityIndicator animating style={styles.loading} size="large" />
+    );
+  }
+
+  renderRow(row) {
+    if (row.loadingRow)
+      return this.props.isLoading ? this.renderLoadingView() : null;
+    return <TutorRow tutor={row} />;
+  }
+
   renderListView() {
     return (
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={(row) => <TutorRow tutor={row} />}
+        onEndReachedThreshold={20}
+        onEndReached={() => this.onEndReached()}
+        renderRow={(row) => this.renderRow(row)}
       />
     );
   }
@@ -63,6 +89,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     ...Platform.select({ ios: { marginTop: 20 } })
+  },
+  loading: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10
   },
   searchBarText: { paddingVertical: 0 },
   searchBarContainerStyle: { backgroundColor: searchBarBackgroundColor }

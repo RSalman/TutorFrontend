@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import TutorsComponent from '../../app/components/TutorsComponent';
+import '../../app/index';
 import '../../app/util/globalAxios';
 import '../../app/util/I18n';
 
