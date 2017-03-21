@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ScrollView, Alert } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { View, StyleSheet, ScrollView, Alert, Text } from 'react-native';
+import { List, ListItem, Icon } from 'react-native-elements';
 
 import TopNavBar from './TopNavBar';
 
@@ -134,44 +134,99 @@ export default class Profile extends Component {
       }
     ];
     return (
-      <ScrollView style={style.container} >
+      <View style={style.container}>
         <TopNavBar toggled={toggled} tabName={tabName} />
-        <View style={style.viewContainer} >
-          <List>
+        <ScrollView>
+          <Text style={style.text}>You have {pendingRequests.length} requests waiting</Text>
+          <List containerStyle={style.list}>
             {
-              pendingRequests.map((u) => (
-                <ListItem
-                  title={u.fname + ' ' + u.lname}
-                  subtitle={u.course + ' | ' + u.rate + ' | ' + u.rating}
-                  rightIcon={{ name:'textsms', size: 33, color: 'green' }}
-                  key={u.id}
-                  onPress={()=>{
-                    Alert.alert(
-                      'Confirmation',
-                      'Lets confirm or cancel this request',
-                      [
-                        { text: 'Confirm' },
-                        { text: 'Dismiss' }
-                      ],
-                      { cancelable: false }
-                  );
-                  }}
-                />
-              ))
-            }
+                pendingRequests.map((u) => (
+                  <ListItem
+                    title={u.fname + ' ' + u.lname}
+                    titleStyle={style.title}
+                    wrapperStyle={style.listItem}
+                    hideChevron
+                    subtitle={u.course + ' | ' + u.rate + ' | ' + u.rating}
+                    key={u.id}
+                    label={
+                      <View style={style.iconsView}>
+                        <Icon
+                          reverse
+                          raised
+                          name="textsms"
+                          color={textIconColor}
+                          size={18}
+                          containerStyle={style.icon}
+                          onPress={()=>{
+                            Alert.alert(
+                                      'Send a text',
+                                      'Lets confirm or cancel this request',
+                              [
+                                        { text: 'Confirm' },
+                                        { text: 'Cancel' }
+                              ],
+                                      { cancelable: false }
+                                  );
+                          }}
+                        />
+                        <Icon
+                          reverse
+                          raised
+                          name="email"
+                          color={emailIconColor}
+                          size={18}
+                          containerStyle={style.icon}
+                          onPress={()=>{
+                            Alert.alert(
+                                      'Send a mail',
+                                      'Lets confirm or cancel this request',
+                              [
+                                        { text: 'Confirm' },
+                                        { text: 'Cancel' }
+                              ],
+                                      { cancelable: false }
+                                  );
+                          }}
+                        />
+                      </View>
+                        }
+                  />
+                ))
+              }
           </List>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     );
   }
 }
+const emailIconColor = '#00aced';
+const textIconColor = '#517fa4';
 const white = 'white';
 const blue = '#8080ff';
+const black = 'black';
 const style = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: white,
-
   },
-  viewContainer: { backgroundColor: blue },
+  list: {
+    marginTop: 0,
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    borderBottomColor: white,
+  },
+  text: {
+    marginTop:10,
+    marginLeft: 25,
+    color: blue,
+    fontSize: 16
+  },
+  listItem: {
+    marginRight: 20,
+    marginLeft: 20,
+    marginBottom:0
+  },
+  title:{ color: black, fontSize: 14 },
+  iconsView: { flexDirection: 'row' },
+  icon: { width: 50 }
 });

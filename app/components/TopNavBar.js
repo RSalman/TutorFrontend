@@ -18,8 +18,6 @@ const style = StyleSheet.create({
   container:{
     backgroundColor: grey,
     marginTop: 20,
-    marginBottom: 5,
-    flex:1,
     flexDirection: 'row'
   },
 
