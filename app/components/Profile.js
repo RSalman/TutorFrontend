@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, ScrollView, Alert, Text } from 'react-native';
 import { List, ListItem, Icon } from 'react-native-elements';
+import StarRating from 'react-native-star-rating';
 
 import TopNavBar from './TopNavBar';
 
@@ -37,7 +38,7 @@ export default class Profile extends Component {
         fname: 'Leila',
         lname: 'Compaore',
         rate: '20$',
-        rating: '3/5',
+        rating: 3,
         course: 'adm1100',
         email: 'email@example.com',
         telephone: '1234567890'
@@ -47,7 +48,7 @@ export default class Profile extends Component {
         fname: 'Leila',
         lname: 'Compaore',
         rate: '20$',
-        rating: '3/5',
+        rating: 3,
         course: 'adm1100',
         email: 'email@example.com',
         telephone: '1234567890'
@@ -57,7 +58,7 @@ export default class Profile extends Component {
         fname: 'Leila',
         lname: 'Compaore',
         rate: '20$',
-        rating: '3/5',
+        rating: 3,
         course: 'adm1100',
         email: 'email@example.com',
         telephone: '1234567890'
@@ -67,7 +68,7 @@ export default class Profile extends Component {
         fname: 'Leila',
         lname: 'Compaore',
         rate: '20$',
-        rating: '3/5',
+        rating: 3,
         course: 'adm1100',
         email: 'email@example.com',
         telephone: '1234567890'
@@ -77,7 +78,7 @@ export default class Profile extends Component {
         fname: 'Leila',
         lname: 'Compaore',
         rate: '20$',
-        rating: '3/5',
+        rating: 3,
         course: 'adm1100',
         email: 'email@example.com',
         telephone: '1234567890'
@@ -87,7 +88,7 @@ export default class Profile extends Component {
         fname: 'Leila',
         lname: 'Compaore',
         rate: '20$',
-        rating: '3/5',
+        rating: 3,
         course: 'adm1100',
         email: 'email@example.com',
         telephone: '1234567890'
@@ -97,7 +98,7 @@ export default class Profile extends Component {
         fname: 'Leila',
         lname: 'Compaore',
         rate: '20$',
-        rating: '3/5',
+        rating: 3,
         course: 'adm1100',
         email: 'email@example.com',
         telephone: '1234567890'
@@ -107,7 +108,7 @@ export default class Profile extends Component {
         fname: 'Leila',
         lname: 'Compaore',
         rate: '20$',
-        rating: '3/5',
+        rating: 3,
         course: 'adm1100',
         email: 'email@example.com',
         telephone: '1234567890'
@@ -117,7 +118,7 @@ export default class Profile extends Component {
         fname: 'Leila',
         lname: 'Compaore',
         rate: '20$',
-        rating: '3/5',
+        rating: 3,
         course: 'adm1100',
         email: 'email@example.com',
         telephone: '1234567890'
@@ -127,7 +128,7 @@ export default class Profile extends Component {
         fname: 'Leila',
         lname: 'Compaore',
         rate: '20$',
-        rating: '3/5',
+        rating: 3 / 5,
         course: 'adm1100',
         email: 'email@example.com',
         telephone: '1234567890'
@@ -146,29 +147,37 @@ export default class Profile extends Component {
                     titleStyle={style.title}
                     wrapperStyle={style.listItem}
                     hideChevron
-                    subtitle={u.course + ' | ' + u.rate + ' | ' + u.rating}
+                    subtitle={u.course + ' | ' + u.rate}
                     key={u.id}
                     label={
-                      <Icon
-                        reverse
-                        raised
-                        name="details"
-                        color="green"
-                        size={18}
-                        containerStyle={style.icon}
-                        onPress={()=>{
-                          Alert.alert(
-                                'Accept the request',
-                                'Lets confirm or cancel this request',
-                            [
-                                  { text: 'Confirm' },
-                                  { text: 'Refuse' },
-                                  { text: 'Cancel' }
-                            ],
-                                { cancelable: false }
-                            );
-                        }}
-                      />
+                      <View>
+                        <StarRating
+                          maxStars={5}
+                          rating={u.rating}
+                          starSize={10}
+                          starColor={'gold'}
+                        />
+                        <Icon
+                          reverse
+                          raised
+                          name="details"
+                          color="orange"
+                          size={18}
+                          containerStyle={style.icon}
+                          onPress={()=>{
+                            Alert.alert(
+                                  'Accept the request',
+                                  'Lets confirm or cancel this request',
+                              [
+                                    { text: 'Confirm' },
+                                    { text: 'Refuse' },
+                                    { text: 'Cancel' }
+                              ],
+                                  { cancelable: false }
+                              );
+                          }}
+                        />
+                      </View>
                         }
                   />
                 ))
