@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import { Button } from 'react-native-elements';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -36,6 +36,19 @@ class BecomeATutorComponent extends Component {
     }
   }
 
+  renderSpinner() {
+    if (this.props.isLoading) {
+      return (
+        <ActivityIndicator
+          animating
+          style={styles.spinner}
+          size="large"
+          color={green}
+        />
+      );
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -45,6 +58,9 @@ class BecomeATutorComponent extends Component {
           <Button raised title="No" onPress={() => this.props.submitForm(this.props.signup_data)} backgroundColor={grey} />
         </View>
         { this.renderErrorView() }
+        <View style={styles.spinnerContainer}>
+          { this.renderSpinner() }
+        </View>
       </View>
     );
   }
@@ -73,14 +89,19 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 10,
     flexDirection: 'row'
-  }
+  },
+  spinnerContainer: {
+    paddingTop: 80
+  },
+  spinner: { height: 18 }
 });
 
 const mapStateToProps = (state) => {
   return {
     successfulSubmission: state.signup.successfulSubmission,
     signup_data: state.signup.signup_data,
-    error: state.signup.error
+    error: state.signup.error,
+    isLoading: state.signup.isLoading
   };
 };
 
