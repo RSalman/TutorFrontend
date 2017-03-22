@@ -42,12 +42,25 @@ class UserSignupFormComponent extends Component {
 
 var Form = t.form.Form;
 
+var PhoneNumber = t.refinement(t.Number, function(number) {
+  return number.toString().length === 10;
+});
+
+var ValidEmail = t.refinement(t.String, function(email) {
+  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return re.test(email);
+});
+
+var SecurePassword = t.refinement(t.String, function(password) {
+  return password.length >= 6;
+});
+
 var User = t.struct({
   first_name: t.String,
   last_name: t.String,
-  email: t.String,
-  password: t.String,
-  phone_number: t.Number
+  email: ValidEmail,
+  password: SecurePassword,
+  phone_number: PhoneNumber
 });
 
 /* Define colours */
@@ -93,7 +106,7 @@ var options = {
   stylesheet: stylesheet,
   fields: {
     email: { error: 'Please enter a valid email' },
-    password: { secureTextEntry: true },
+    password: { error: 'Must be a minimum of 6 characters', secureTextEntry: true },
     phone_number: { error: 'Please enter a valid phone number' }
   }
 };

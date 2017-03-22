@@ -12,7 +12,9 @@ var initialState = {
     phone_number: ''
   },
   progressStatus: 0,
-  successfulSubmission: false
+  successfulSubmission: false,
+  error: '',
+  isLoading: false
 };
 
 describe('signup reducers', () => {

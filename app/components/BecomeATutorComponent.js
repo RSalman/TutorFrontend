@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import StyledText from './StyledText';
 import { submitForm, setProgressBar } from '../actions/signup';
+import ErrorView from './ErrorView';
 
 class BecomeATutorComponent extends Component {
   constructor(props) {
@@ -27,14 +28,23 @@ class BecomeATutorComponent extends Component {
     Actions.home({ type: 'reset' });
   }
 
+  renderErrorView() {
+    if (this.props.error) {
+      return (
+        <ErrorView error={this.props.error} color={red} style={errorStyle} />
+      );
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <StyledText style={styles.headerText}>Would you like to become a tutor?</StyledText>
         <View style={styles.buttonContainer}>
           <Button raised title="Yes" onPress={() => this.navigateToTutorForm()} backgroundColor={green} />
-          <Button raised title="No" onPress={() => this.props.submitForm()} backgroundColor={grey} />
+          <Button raised title="No" onPress={() => this.props.submitForm(this.props.signup_data)} backgroundColor={grey} />
         </View>
+        { this.renderErrorView() }
       </View>
     );
   }
@@ -43,7 +53,9 @@ class BecomeATutorComponent extends Component {
 /* Define colours */
 const grey = '#bdc6cf';
 const green = '#61bd4f';
+const red = '#F2473F';
 
+const errorStyle = { paddingTop: 80 };
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
@@ -53,6 +65,10 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15
   },
+  headerText: {
+    fontSize: 20,
+    textAlign: 'center',
+  },
   buttonContainer: {
     alignSelf: 'center',
     marginTop: 10,
@@ -61,7 +77,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  return { successfulSubmission: state.signup.successfulSubmission };
+  return {
+    successfulSubmission: state.signup.successfulSubmission,
+    signup_data: state.signup.signup_data,
+    error: state.signup.error
+  };
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({ submitForm, setProgressBar }, dispatch);

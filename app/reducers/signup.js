@@ -1,4 +1,4 @@
-import { VERIFY_CODE_START, VERIFY_CODE_COMPLETE, UPDATE_FORM, SUCCESSFUL_SIGNUP, SET_PROGRESS_BAR } from '../actions/signup';
+import { VERIFY_CODE_START, VERIFY_CODE_COMPLETE, UPDATE_FORM, SIGNUP_SUCCESS, SIGNUP_ERROR, SIGNUP_START, SET_PROGRESS_BAR } from '../actions/signup';
 
 var initialState = {
   phoneVerified: false,
@@ -11,7 +11,9 @@ var initialState = {
     phone_number: ''
   },
   progressStatus: 0,
-  successfulSubmission: false
+  successfulSubmission: false,
+  error: '',
+  isLoading: false
 };
 
 function signup(state = initialState, action) {
@@ -34,8 +36,12 @@ function signup(state = initialState, action) {
       };
     case UPDATE_FORM:
       return { ...state, signup_data: action.formData };
-    case SUCCESSFUL_SIGNUP:
-      return { ...state, successfulSubmission: true };
+    case SIGNUP_SUCCESS:
+      return { ...state, successfulSubmission: true, isLoading: false };
+    case SIGNUP_ERROR:
+      return { ...state, error: action.error, isLoading: false };
+    case SIGNUP_START:
+      return { ...state, error: '' , isLoading: true };
     default:
       return state;
   }
