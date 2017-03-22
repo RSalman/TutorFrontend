@@ -16,7 +16,7 @@ export default class TempPushNotification extends Component {
   componentDidMount() {
     this.creatEntryOnServer();
   }
-      
+
   showToken() {
     if (this.state.user_created) {
       return (
@@ -36,11 +36,11 @@ export default class TempPushNotification extends Component {
   creatEntryOnServer() {
     axios.post('/users', {
       user: {
-        first_name: "salman",
-        last_name: "Rana",
+        first_name: 'salman',
+        last_name: 'Rana',
         email: 'sal@uottawa.ca',
         password: 'test1234',
-        phone_number: "613-744-4536"
+        phone_number: '613-744-4536'
       }
     })
       .then(response => this.sendAppToken(response.data.id))
@@ -77,19 +77,19 @@ export default class TempPushNotification extends Component {
   }
 }
 
-export function handleNotification(notif){
-  console.log("FCM Notification Event!");
-  if(notif.type === "request"){
-    data = JSON.parse(notif.associated_data);
+export function handleNotification(notif) {
+  console.log('FCM Notification Event!');
+  if (notif.type === 'request') {
+    var data = JSON.parse(notif.associated_data);
     Alert.alert(
-      "New Pending Request",
-      data.tutee + " has requested Tutoring for " + data.course + "!",
+      'New Pending Request',
+      data.tutee + ' has requested Tutoring for ' + data.course + '!',
       [
-        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-        {text: 'Reject', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: 'Accept', onPress: () => console.log('OK Pressed')},
+        { text: 'Ask me later', onPress: () => console.log('Ask me later pressed') },
+        { text: 'Reject', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+        { text: 'Accept', onPress: () => console.log('OK Pressed') },
       ],
       { cancelable: false }
-    )
+    );
   }
 }
