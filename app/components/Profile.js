@@ -149,46 +149,26 @@ export default class Profile extends Component {
                     subtitle={u.course + ' | ' + u.rate + ' | ' + u.rating}
                     key={u.id}
                     label={
-                      <View style={style.iconsView}>
-                        <Icon
-                          reverse
-                          raised
-                          name="textsms"
-                          color={textIconColor}
-                          size={18}
-                          containerStyle={style.icon}
-                          onPress={()=>{
-                            Alert.alert(
-                                      'Send a text',
-                                      'Lets confirm or cancel this request',
-                              [
-                                        { text: 'Confirm' },
-                                        { text: 'Cancel' }
-                              ],
-                                      { cancelable: false }
-                                  );
-                          }}
-                        />
-                        <Icon
-                          reverse
-                          raised
-                          name="email"
-                          color={emailIconColor}
-                          size={18}
-                          containerStyle={style.icon}
-                          onPress={()=>{
-                            Alert.alert(
-                                      'Send a mail',
-                                      'Lets confirm or cancel this request',
-                              [
-                                        { text: 'Confirm' },
-                                        { text: 'Cancel' }
-                              ],
-                                      { cancelable: false }
-                                  );
-                          }}
-                        />
-                      </View>
+                      <Icon
+                        reverse
+                        raised
+                        name="details"
+                        color="green"
+                        size={18}
+                        containerStyle={style.icon}
+                        onPress={()=>{
+                          Alert.alert(
+                                'Accept the request',
+                                'Lets confirm or cancel this request',
+                            [
+                                  { text: 'Confirm' },
+                                  { text: 'Refuse' },
+                                  { text: 'Cancel' }
+                            ],
+                                { cancelable: false }
+                            );
+                        }}
+                      />
                         }
                   />
                 ))
@@ -199,8 +179,7 @@ export default class Profile extends Component {
     );
   }
 }
-const emailIconColor = '#00aced';
-const textIconColor = '#517fa4';
+
 const white = 'white';
 const blue = '#8080ff';
 const black = 'black';
@@ -227,6 +206,5 @@ const style = StyleSheet.create({
     marginBottom:0
   },
   title:{ color: black, fontSize: 14 },
-  iconsView: { flexDirection: 'row' },
   icon: { width: 50 }
 });
