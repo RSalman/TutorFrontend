@@ -90,9 +90,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     flexDirection: 'row'
   },
-  spinnerContainer: {
-    paddingTop: 80
-  },
+  spinnerContainer: { paddingTop: 80 },
   spinner: { height: 18 }
 });
 

@@ -41,7 +41,7 @@ function signup(state = initialState, action) {
     case SIGNUP_ERROR:
       return { ...state, error: action.error, isLoading: false };
     case SIGNUP_START:
-      return { ...state, error: '' , isLoading: true };
+      return { ...state, error: '', isLoading: true };
     default:
       return state;
   }
