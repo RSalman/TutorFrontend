@@ -42,7 +42,7 @@ export function resetRequestCycle() {
 export function fetchProfile(userID) {
   return dispatch => {
     dispatch(getProfileStart(userID));
-    axios.get('/get_tutor_profile').then(function(response) {
+    axios.get('/tutor_infos?tutor_id='+userID).then(function(response) {
       if (response.status === 200)
         dispatch(getProfileComplete(response.data, userID));
     }).catch(function(error) {

@@ -140,12 +140,12 @@ class TutorProfileComponent extends Component {
               </View>
               <View style={styles.statSeperator} />
               <View style={styles.stat}>
-                <StyledText style={styles.statTop}>${this.props.profile.rate}/Hour</StyledText>
+                <StyledText style={styles.statTop}>${this.props.rate}/Hour</StyledText>
                 <StyledText style={styles.statBot}>Rate</StyledText>
               </View>
               <View style={styles.statSeperator} />
               <View style={styles.stat}>
-                <StyledText style={styles.statTop}>{this.props.profile.rating}/5</StyledText>
+                <StyledText style={styles.statTop}>{this.props.rating}/5</StyledText>
                 <StyledText style={styles.statBot}>Rating</StyledText>
               </View>
             </View>
