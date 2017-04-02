@@ -7,6 +7,8 @@ export const POST_REQUEST_START = 'POST_REQUEST_START';
 export const POST_REQUEST_COMPLETE = 'POST_REQUEST_COMPLETE';
 export const POST_REQUEST_ERROR = 'POST_REQUEST_ERROR';
 
+export const DELETE_REQUEST_COMPLETE = 'DELETE_REQUEST_COMPLETE';
+
 export const NEW_REQUEST = 'NEW_REQUEST';
 
 // action creators
@@ -34,6 +36,10 @@ export function tutorRequestComplete(tutorID) {
   return { type: POST_REQUEST_COMPLETE, tutorID };
 }
 
+export function tutorRequestCanceled() {
+  return { type: DELETE_REQUEST_COMPLETE };
+}
+
 export function resetRequestCycle() {
   return { type: NEW_REQUEST };
 }
@@ -42,7 +48,7 @@ export function resetRequestCycle() {
 export function fetchProfile(userID) {
   return dispatch => {
     dispatch(getProfileStart(userID));
-    axios.get('/tutor_infos?tutor_id='+userID).then(function(response) {
+    axios.get('/tutor_infos?tutor_id=' + userID).then(function(response) {
       if (response.status === 200)
         dispatch(getProfileComplete(response.data, userID));
     }).catch(function(error) {
@@ -54,12 +60,11 @@ export function fetchProfile(userID) {
   };
 }
 
-export function requestTutor(tutorID) {
+export function requestTutor(tutorID, studentID, subjectID) {
   return dispatch => {
     dispatch(tutorRequestStart(tutorID));
-    axios.post('/request_tutor', { tutorID: tutorID })
+    axios.post('/tutor_requests', { tutor_id: tutorID, student_id: studentID, tutor_subject_id: subjectID})
             .then(function(response) {
-                //TODO(Salman): Discuss responses for tutor request
               dispatch(tutorRequestComplete(tutorID));
             })
             .catch(function(error) {
@@ -67,6 +72,19 @@ export function requestTutor(tutorID) {
                 dispatch(tutorRequestError(error.response.data));
               else
                     dispatch(tutorRequestError('Our servers seem to be down, please try again!'));
+            });
+  };
+}
+
+
+export function cancelRequest(tutorID, studentID, subjectID) {
+  return dispatch => {
+    axios.post('/cancel_tutor_request', { tutor_id: tutorID, student_id: studentID, subject_id: subjectID})
+            .then(function(response) {
+              dispatch(tutorRequestCanceled());
+            })
+            .catch(function(error) {
+              //What kind of error?
             });
   };
 }

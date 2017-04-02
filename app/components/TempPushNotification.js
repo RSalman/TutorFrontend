@@ -93,3 +93,19 @@ export function handleNotification(notif) {
     );
   }
 }
+
+
+export function sendAppToken(id) {
+    FCM.getFCMToken().then(token => {
+      axios.post('/app_token', {
+        id: id,
+        token_data: {
+          app_token: token,
+          app_token_platform: 'Android'
+        }
+      })
+      .catch(function(error) {
+        console.log('Error Sending Token to the server!');
+      });
+    });
+}
