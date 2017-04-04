@@ -7,7 +7,7 @@ import Modal from 'react-native-modalbox';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Collapsible from 'react-native-collapsible';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { fetchProfile, requestTutor, resetRequestCycle } from '../actions/profile';
+import { fetchProfile, requestTutor, resetRequestCycle, cancelRequest } from '../actions/profile';
 import StyledText from './StyledText';
 
 
@@ -99,10 +99,19 @@ class TutorProfileComponent extends Component {
     );
   }
 
+//this.props.requestTutor(this.props.id)
   renderRequestStatus() {
-    if (this.props.requestSent) {
-      return (
-        <StyledText style={styles.requestSentText}>Request Pending <Icon name="check" size={20} color={leafGreenGradient} /></StyledText>
+    if (this.props.requestSent && !this.props.requestDeleted) {
+        return (
+      <Button
+        small
+        title="Request Sent"
+        icon={{name: 'check', size: 20, color: complement}}
+        buttonStyle={styles.requestButtonRequested}
+        borderRadius={100}
+        textStyle={styles.requestButtonTextRequested}
+        onPress={() => this.props.cancelRequest(1,2,1)}
+      />
       );
     } return (
       <Button
@@ -111,14 +120,14 @@ class TutorProfileComponent extends Component {
         buttonStyle={styles.requestButton}
         borderRadius={100}
         textStyle={styles.requestButtonText}
-        onPress={() => this.openRequestModal()}
+        onPress={() => this.props.requestTutor(1,2,1)}
       />
     );
   }
 
   renderProfileView() {
 
-    const buttons = ['About Me!', 'Courses/Subjects Taught!'];
+    const buttons = ['About Me!', 'Courses Teaching!'];
     const { selectedIndex } = this.state;
 
     return (
@@ -140,12 +149,12 @@ class TutorProfileComponent extends Component {
               </View>
               <View style={styles.statSeperator} />
               <View style={styles.stat}>
-                <StyledText style={styles.statTop}>${this.props.profile.rate}/Hour</StyledText>
+                <StyledText style={styles.statTop}>${this.props.rate}/Hour</StyledText>
                 <StyledText style={styles.statBot}>Rate</StyledText>
               </View>
               <View style={styles.statSeperator} />
               <View style={styles.stat}>
-                <StyledText style={styles.statTop}>{this.props.profile.rating}/5</StyledText>
+                <StyledText style={styles.statTop}>{this.props.rating}/5</StyledText>
                 <StyledText style={styles.statBot}>Rating</StyledText>
               </View>
             </View>
@@ -267,6 +276,10 @@ const styles = StyleSheet.create({
     color: white,
     fontSize: 16
   },
+  requestButtonTextRequested: {
+    color: complement,
+    fontSize: 16
+  },
   unselectedButtonText: { color: complement },
   selectedButtonText: { color: white },
   modalView: {
@@ -347,6 +360,13 @@ const styles = StyleSheet.create({
     borderColor: white,
     borderWidth: 2,
     marginTop: 15
+  },
+   requestButtonRequested: {
+    backgroundColor: transparent,
+    width: 200,
+    borderColor: complement,
+    borderWidth: 2,
+    marginTop: 15
   }
 
 });
@@ -362,6 +382,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ fetchProfile, requestTutor, resetRequestCycle }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ fetchProfile, requestTutor, resetRequestCycle, cancelRequest }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(TutorProfileComponent);

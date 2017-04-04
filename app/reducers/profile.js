@@ -1,4 +1,4 @@
-import { GET_PROFILE_START, GET_PROFILE_COMPLETE, GET_PROFILE_ERROR, POST_REQUEST_START, POST_REQUEST_COMPLETE, POST_REQUEST_ERROR, NEW_REQUEST } from '../actions/profile';
+import { GET_PROFILE_START, GET_PROFILE_COMPLETE, GET_PROFILE_ERROR, POST_REQUEST_START, POST_REQUEST_COMPLETE, POST_REQUEST_ERROR, NEW_REQUEST, DELETE_REQUEST_COMPLETE } from '../actions/profile';
 
 
 var initialState = {
@@ -7,7 +7,8 @@ var initialState = {
   requesting: false,
   requestSent: false,
   error: '',
-  requestError: false
+  requestError: false,
+  requestDeleted: false
 };
 
 function profile(state = initialState, action) {
@@ -42,6 +43,12 @@ function profile(state = initialState, action) {
         ...state,
         requestSent: true,
         requesting: false,
+      };
+    case DELETE_REQUEST_COMPLETE:
+      return {
+        ...state,
+        requestDeleted: true,
+        requestSent: false
       };
     case POST_REQUEST_ERROR:
       return {

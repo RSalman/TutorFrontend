@@ -1,3 +1,5 @@
+import { sendAppToken } from './../components/TempPushNotification';
+
 // action types
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -30,8 +32,10 @@ export function authenticate(email, password) {
     axios.post('/auth/sign_in', { email, password })
       .then(function(response) {
         if (!_.isEmpty(response.data)) {
-          // TODO(muraad): Handle access_token
+            sendAppToken(response.data.data.id);
+          
           dispatch(loginSuccess());
+          
         }
       }).catch(function(error) {
         if (error.response)
