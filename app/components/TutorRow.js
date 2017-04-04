@@ -39,7 +39,7 @@ export default class TutorRow extends Component {
     var image = require('./img/test.png');
     return (
       <ListItem
-        onPress={() => Actions.tutorinfo({ id: tutor.id })}
+        onPress={() => Actions.tutorinfo({ id: tutor.id, rating: tutor.agg_tutor_rating / tutor.num_tutor_rating, rate: tutor.average_rate })}
         roundAvatar
         avatar={image}
         avatarStyle={styles.avatarStyle}
