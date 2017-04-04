@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, View, Platform } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import ButtonComponent from 'react-native-button-component';
-import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
+import FCM, { FCMEvent } from 'react-native-fcm';
 import StyledText from './StyledText';
 import { handleNotification } from './TempPushNotification';
 

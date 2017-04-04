@@ -63,7 +63,7 @@ export function fetchProfile(userID) {
 export function requestTutor(tutorID, studentID, subjectID) {
   return dispatch => {
     dispatch(tutorRequestStart(tutorID));
-    axios.post('/tutor_requests', { tutor_id: tutorID, student_id: studentID, tutor_subject_id: subjectID})
+    axios.post('/tutor_requests', { tutor_id: tutorID, student_id: studentID, tutor_subject_id: subjectID })
             .then(function(response) {
               dispatch(tutorRequestComplete(tutorID));
             })
@@ -79,7 +79,7 @@ export function requestTutor(tutorID, studentID, subjectID) {
 
 export function cancelRequest(tutorID, studentID, subjectID) {
   return dispatch => {
-    axios.post('/cancel_tutor_request', { tutor_id: tutorID, student_id: studentID, subject_id: subjectID})
+    axios.post('/cancel_tutor_request', { tutor_id: tutorID, student_id: studentID, subject_id: subjectID })
             .then(function(response) {
               dispatch(tutorRequestCanceled());
             })

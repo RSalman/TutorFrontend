@@ -102,16 +102,16 @@ class TutorProfileComponent extends Component {
 //this.props.requestTutor(this.props.id)
   renderRequestStatus() {
     if (this.props.requestSent && !this.props.requestDeleted) {
-        return (
-      <Button
-        small
-        title="Request Sent"
-        icon={{name: 'check', size: 20, color: complement}}
-        buttonStyle={styles.requestButtonRequested}
-        borderRadius={100}
-        textStyle={styles.requestButtonTextRequested}
-        onPress={() => this.props.cancelRequest(1,2,1)}
-      />
+      return (
+        <Button
+          small
+          title="Request Sent"
+          icon={{ name: 'check', size: 20, color: complement }}
+          buttonStyle={styles.requestButtonRequested}
+          borderRadius={100}
+          textStyle={styles.requestButtonTextRequested}
+          onPress={() => this.props.cancelRequest(1, 2, 1)}
+        />
       );
     } return (
       <Button
@@ -120,7 +120,7 @@ class TutorProfileComponent extends Component {
         buttonStyle={styles.requestButton}
         borderRadius={100}
         textStyle={styles.requestButtonText}
-        onPress={() => this.props.requestTutor(1,2,1)}
+        onPress={() => this.props.requestTutor(1, 2, 1)}
       />
     );
   }
@@ -307,13 +307,6 @@ const styles = StyleSheet.create({
     color: white,
     fontSize:18
   },
-  requestSentText:{
-    fontWeight:'bold',
-    color: complement,
-    fontSize:18,
-    marginTop: 18,
-    color: leafGreenGradient
-  },
   nameCaption:{
     color: offGrey,
     fontSize:14
@@ -361,7 +354,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginTop: 15
   },
-   requestButtonRequested: {
+  requestButtonRequested: {
     backgroundColor: transparent,
     width: 200,
     borderColor: complement,
