@@ -14,20 +14,20 @@ export default class TutorRow extends Component {
             style={styles.stars}
             disabled
             maxStars={5}
-            rating={tutor.rating}
+            rating={tutor.agg_tutor_rating / tutor.num_tutor_rating}
             starSize={20}
             selectedStar={function() {}}
             starColor={starColor}
           />
           <View style={styles.rateRow}>
             <View style={styles.rateColumn}>
-              <StyledText style={styles.rate}> ${`${tutor.rate}`}/hr </StyledText>
+              <StyledText style={styles.rate}> ${`${tutor.average_rate}`}/hr </StyledText>
               <StyledText style={styles.averageRateText}> (Avg. Rate)</StyledText>
             </View>
           </View>
         </View>
         <View style={styles.row}>
-          <StyledText> {`${tutor.degree}`} </StyledText>
+          <StyledText> {`${tutor.first_name}`} </StyledText>
         </View>
       </View>
     );
@@ -39,7 +39,7 @@ export default class TutorRow extends Component {
     var image = require('./img/test.png');
     return (
       <ListItem
-        onPress={() => Actions.tutorinfo({ id: tutor.id })}
+        onPress={() => Actions.tutorinfo({ id: tutor.id, rating: tutor.agg_tutor_rating / tutor.num_tutor_rating, rate: tutor.average_rate })}
         roundAvatar
         avatar={image}
         avatarStyle={styles.avatarStyle}

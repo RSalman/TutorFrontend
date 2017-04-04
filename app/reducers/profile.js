@@ -1,32 +1,68 @@
-import { GET_PROFILE_START, GET_PROFILE_COMPLETE } from '../actions/tutors';
+import { GET_PROFILE_START, GET_PROFILE_COMPLETE, GET_PROFILE_ERROR, POST_REQUEST_START, POST_REQUEST_COMPLETE, POST_REQUEST_ERROR, NEW_REQUEST, DELETE_REQUEST_COMPLETE } from '../actions/profile';
 
-//TODO: TEMP REMOVE after integration with backend
-const test_profile = {
-  bio: 'Is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-  rate: 18.0,
-  firstname: 'Salman',
-  lastname: 'Rana',
-  imageURI: './img/test.png',
-  tempSample: 'PhD/MsC Math | $18/hr | Member since: 2009',
-  rating: 3.5
-};
 
 var initialState = {
-  profile: test_profile,
-  isLoading: false
+  profile: null,
+  isLoading: false,
+  requesting: false,
+  requestSent: false,
+  error: '',
+  requestError: false,
+  requestDeleted: false
 };
 
 function profile(state = initialState, action) {
   switch (action.type) {
     case GET_PROFILE_START:
       return {
-        profile: test_profile,
-        isLoading: true
+        profile: null,
+        isLoading: true,
+        error: ''
       };
     case GET_PROFILE_COMPLETE:
       return {
-        profile: test_profile,
-        isLoading: false
+        profile: action.profile,
+        isLoading: false,
+        requestSent: action.profile.requestPending,
+        error: ''
+      };
+    case GET_PROFILE_ERROR:
+      return {
+        profile: action.profile,
+        isLoading: false,
+        error: action.error
+      };
+    case POST_REQUEST_START:
+      return {
+        ...state,
+        requesting: true,
+        requestSent: false,
+      };
+    case POST_REQUEST_COMPLETE:
+      return {
+        ...state,
+        requestSent: true,
+        requesting: false,
+      };
+    case DELETE_REQUEST_COMPLETE:
+      return {
+        ...state,
+        requestDeleted: true,
+        requestSent: false
+      };
+    case POST_REQUEST_ERROR:
+      return {
+        ...state,
+        requestSent: false,
+        requesting: false,
+        requestError: action.error
+      };
+    case NEW_REQUEST:
+      return {
+        ...state,
+        requestSent: false,
+        requesting: false,
+        requestError: ''
       };
     default:
       return state;
