@@ -254,7 +254,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
                             
@@ -294,7 +294,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
                             
@@ -334,7 +334,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
                             
@@ -374,7 +374,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
                             
@@ -414,7 +414,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
                             
@@ -686,7 +686,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
                             
@@ -726,7 +726,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
                             
@@ -766,7 +766,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
                             
@@ -806,7 +806,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
                             
@@ -846,7 +846,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
                             

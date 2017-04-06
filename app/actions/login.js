@@ -32,10 +32,10 @@ export function authenticate(email, password) {
     axios.post('/auth/sign_in', { email, password })
       .then(function(response) {
         if (!_.isEmpty(response.data)) {
-            sendAppToken(response.data.data.id);
-          
+          sendAppToken(response.data.data.id);
+
           dispatch(loginSuccess());
-          
+
         }
       }).catch(function(error) {
         if (error.response)
