@@ -101,7 +101,7 @@ class TutorProfileComponent extends Component {
 
 //this.props.requestTutor(this.props.id)
   renderRequestStatus() {
-    if (this.props.requestSent && !this.props.requestDeleted) {
+    if (this.props.requestSent) {
       return (
         <Button
           small
@@ -110,7 +110,7 @@ class TutorProfileComponent extends Component {
           buttonStyle={styles.requestButtonRequested}
           borderRadius={100}
           textStyle={styles.requestButtonTextRequested}
-          onPress={() => this.props.cancelRequest(1, 2, 1)}
+          onPress={() => this.props.cancelRequest(this.props.id, 2, 1)}
         />
       );
     } return (
@@ -120,7 +120,7 @@ class TutorProfileComponent extends Component {
         buttonStyle={styles.requestButton}
         borderRadius={100}
         textStyle={styles.requestButtonText}
-        onPress={() => this.props.requestTutor(1, 2, 1)}
+        onPress={() => this.props.requestTutor(this.props.id, 2, 1)}
       />
     );
   }
