@@ -14,6 +14,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.imagepicker.ImagePickerPackage;
 
 
 import java.util.Arrays;
@@ -35,7 +36,8 @@ public class MainApplication extends Application implements ReactApplication {
             new VectorIconsPackage(),
             new LinearGradientPackage(),
             new ReactNativeI18n(),
-            new RNSpinkitPackage()
+            new RNSpinkitPackage(),
+            new ImagePickerPackage()
       );
     }
   };
