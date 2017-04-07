@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Tabs, Tab, Icon } from 'react-native-elements';
 
-import ProfileTab from './Profile';
-import RequestsTab from './Request';
+import PendingRequestsTab from './PendingRequests';
+import AcceptedRequestsTab from './AcceptedRequests';
 
 class Homeview extends Component {
   constructor() {
@@ -25,7 +25,7 @@ class Homeview extends Component {
           renderIcon={()=><Icon name="hourglass-empty" color="#5e6977" size={30} />}
           renderSelectedIcon={()=><Icon name="hourglass-empty" color="#517fa4" size={35} />}
         >
-          <ProfileTab toggled={toggled} tabName="Pending Requests" />
+          <PendingRequestsTab toggled={toggled} tabName="Pending Requests" />
         </Tab>
         <Tab
           selected={selectedTab === 'requestTab'}
@@ -33,7 +33,7 @@ class Homeview extends Component {
           renderIcon={()=><Icon name="done" color="#5e6977" size={30} />}
           renderSelectedIcon={()=><Icon name="done" color="#517fa4" size={35} />}
         >
-          <RequestsTab toggled={toggled} tabName="Approved Requests" />
+          <AcceptedRequestsTab toggled={toggled} tabName="Accepted Requests" />
         </Tab>
       </Tabs>
     );

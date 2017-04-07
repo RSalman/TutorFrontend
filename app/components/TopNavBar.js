@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Button } from 'react-native-elements';
+import StyledText from './StyledText';
 
 const TopNavBar = ({ toggled, tabName }) => (
   <View style={style.container}>
@@ -9,31 +10,25 @@ const TopNavBar = ({ toggled, tabName }) => (
       icon={{ name: 'menu', color: 'black' }}
       onPress={toggled}
     />
-    <Text style={style.tabName}>{tabName}</Text>
+    <StyledText style={style.tabName}>{tabName}</StyledText>
   </View>
 );
 const transparent = 'transparent';
 const grey = '#f2f2f2';
 const style = StyleSheet.create({
   container:{
-    backgroundColor: grey,
     marginTop: 20,
-    flexDirection: 'row'
-  },
-
-  buttonStyled: {
-    width: 50,
-    height: 50,
+    flexDirection: 'row',
     backgroundColor: transparent,
   },
+
+  buttonStyled: { backgroundColor: transparent, },
   tabName:{
+    backgroundColor: transparent,
     textAlign: 'center',
+    marginLeft: 30,
     alignSelf: 'center',
-    lineHeight: 50,
-    width: 150,
-    height: 50,
-    marginLeft: 40,
-    fontWeight: 'bold'
+    fontSize: 20,
   }
 });
 export default TopNavBar;
