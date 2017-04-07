@@ -15,7 +15,7 @@ class AcceptedRequests extends Component {
   }
 
   componentDidMount() {
-    this.props.updateAcceptedRequests(1);
+    this.props.updateAcceptedRequests(this.props.user_id);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -98,7 +98,10 @@ const style = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  return { acceptedRequests: state.profile.acceptedRequests };
+  return { 
+    user_id: state.profile.current_user.id,
+    acceptedRequests: state.profile.acceptedRequests
+  };
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({ updateAcceptedRequests }, dispatch);

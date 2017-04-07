@@ -16,7 +16,7 @@ class PendingRequests extends Component {
   }
 
   componentDidMount() {
-    this.props.updatePendingRequests(1);
+    this.props.updatePendingRequests(this.props.user_id);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -103,7 +103,10 @@ const style = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  return { pendingRequests: state.profile.pendingRequests };
+  return { 
+    user_id: state.profile.current_user.id,
+    pendingRequests: state.profile.pendingRequests
+  };
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({ updatePendingRequests, acceptPendingRequest }, dispatch);
