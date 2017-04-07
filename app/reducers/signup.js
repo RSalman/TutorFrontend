@@ -20,7 +20,8 @@ var initialState = {
   progressStatus: 0,
   successfulSubmission: false,
   error: '',
-  isLoading: false
+  isLoading: false,
+  isTutor: false
 };
 
 function signup(state = initialState, action) {
@@ -46,7 +47,9 @@ function signup(state = initialState, action) {
     case UPDATE_TUTOR_INFO:
       return { ...state, tutor_data: action.formData };
     case SIGNUP_SUCCESS:
-      return { ...state, successfulSubmission: true, isLoading: false };
+      if (action.tutor_data)
+        return { ...state, successfulSubmission: true, isLoading: false, isTutor: action.tutor_data.courseList.length > 0 };
+      return { ...state, successfulSubmission: true, isLoading: false, isTutor: false };
     case SIGNUP_ERROR:
       return { ...state, error: action.error, isLoading: false };
     case SIGNUP_START:

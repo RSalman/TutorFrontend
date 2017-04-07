@@ -21,7 +21,8 @@ var initialState = {
   progressStatus: 0,
   successfulSubmission: false,
   error: '',
-  isLoading: false
+  isLoading: false,
+  isTutor: false
 };
 
 describe('signup reducers', () => {
