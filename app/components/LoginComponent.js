@@ -9,7 +9,7 @@ import ErrorView from './ErrorView';
 class LoginComponent extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.successful_authentication)
-      Actions.home({ type: 'reset' });
+      Actions.tutors({ type: 'reset' });
   }
 
   renderErrorView() {

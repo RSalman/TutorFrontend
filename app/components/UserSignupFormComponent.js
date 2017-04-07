@@ -34,7 +34,7 @@ class UserSignupFormComponent extends Component {
           onChange={(formData) => this.props.updateForm(formData)}
           value={this.props.signup_data}
         />
-        <Button raised title="Next" onPress={() => this.onPress()} backgroundColor={green} />
+        <Button raised title="Next" onPress={() => this.onPress()} backgroundColor={buttonColor} />
       </View>
     );
   }
@@ -42,17 +42,32 @@ class UserSignupFormComponent extends Component {
 
 var Form = t.form.Form;
 
+var PhoneNumber = t.refinement(t.Number, function(number) {
+  return number.toString().length === 10;
+});
+
+var ValidEmail = t.refinement(t.String, function(email) {
+  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return re.test(email);
+});
+
+var SecurePassword = t.refinement(t.String, function(password) {
+  return password.length >= 6;
+});
+
 var User = t.struct({
   first_name: t.String,
   last_name: t.String,
-  email: t.String,
-  password: t.String,
-  phone_number: t.Number
+  email: ValidEmail,
+  password: SecurePassword,
+  phone_number: PhoneNumber
 });
 
 /* Define colours */
-const green = '#61bd4f';
-const grey = '#696969';
+const buttonColor = '#FF3366';
+const lightGrey = '#D8D8D8';
+const brightRed = '#ff7575';
+const white = '#FFF';
 
 /* Define Form Stylesheet */
 const stylesheet = _.cloneDeep(Form.stylesheet);
@@ -60,6 +75,8 @@ const font_size = 14;
 const container_height = 30;
 const transparentColor = 'transparent';
 
+stylesheet.textbox.normal.color = white;
+stylesheet.textbox.error.color = white;
 stylesheet.textbox.normal.borderWidth = 0;
 stylesheet.textbox.error.borderWidth = 0;
 stylesheet.textbox.normal.marginBottom = 0;
@@ -79,21 +96,25 @@ stylesheet.textboxView.normal.borderBottomWidth = 1;
 stylesheet.textboxView.error.borderBottomWidth = 1;
 stylesheet.textboxView.normal.height = container_height;
 stylesheet.textboxView.error.height = container_height;
+stylesheet.textboxView.normal.borderColor = white;
+stylesheet.textboxView.error.borderColor = brightRed;
 
-stylesheet.controlLabel.normal.color = grey;
+stylesheet.controlLabel.normal.color = lightGrey;
+stylesheet.controlLabel.error.color = brightRed;
 stylesheet.controlLabel.normal.fontSize = font_size;
 stylesheet.controlLabel.error.fontSize = font_size;
 stylesheet.controlLabel.normal.backgroundColor = transparentColor;
 stylesheet.controlLabel.error.backgroundColor = transparentColor;
 
 stylesheet.errorBlock.fontSize = font_size;
+stylesheet.errorBlock.color = brightRed;
 stylesheet.errorBlock.backgroundColor = transparentColor;
 
 var options = {
   stylesheet: stylesheet,
   fields: {
     email: { error: 'Please enter a valid email' },
-    password: { secureTextEntry: true },
+    password: { error: 'Must be a minimum of 6 characters', secureTextEntry: true },
     phone_number: { error: 'Please enter a valid phone number' }
   }
 };

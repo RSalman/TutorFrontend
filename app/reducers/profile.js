@@ -49,7 +49,6 @@ function profile(state = initialState, action) {
     case DELETE_REQUEST_COMPLETE:
       return {
         ...state,
-        requestDeleted: true,
         requestSent: false
       };
     case POST_REQUEST_ERROR:

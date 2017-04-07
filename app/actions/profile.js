@@ -55,12 +55,12 @@ export function getAcceptedRequestsComplete(acceptedRequests) {
   return { type: GET_ACCEPTED_REQUESTS_COMPLETE, acceptedRequests };
 }
 
-export function fetchProfile(userID) {
+export function fetchProfile(tutorID) {
   return dispatch => {
-    dispatch(getProfileStart(userID));
-    axios.get('/tutor_infos?tutor_id=' + userID).then(function(response) {
+    dispatch(getProfileStart(tutorID));
+    axios.get('/tutor_infos?tutor_id=' + tutorID + '&subject_id=' + 1 + '&student_id=' + 2 ).then(function(response) {
       if (response.status === 200)
-        dispatch(getProfileComplete(response.data, userID));
+        dispatch(getProfileComplete(response.data, tutorID));
     }).catch(function(error) {
       if (error.response)
         dispatch(getProfileError(error.response.data));
@@ -73,7 +73,8 @@ export function fetchProfile(userID) {
 export function requestTutor(tutorID, studentID, subjectID) {
   return dispatch => {
     dispatch(tutorRequestStart(tutorID));
-    axios.post('/tutor_requests', { tutor_id: tutorID, student_id: studentID, tutor_subject_id: subjectID })
+
+    axios.post('/tutor_requests', { tutor_id: tutorID, student_id: studentID, tutor_subject_id: subjectID})
             .then(function(response) {
               dispatch(tutorRequestComplete(tutorID));
             })
@@ -89,6 +90,7 @@ export function requestTutor(tutorID, studentID, subjectID) {
 
 export function cancelRequest(tutorID, studentID, subjectID) {
   return dispatch => {
+
     axios.post('/cancel_tutor_request', { tutor_id: tutorID, student_id: studentID, subject_id: subjectID })
             .then(function(response) {
               dispatch(tutorRequestCanceled());
@@ -131,4 +133,6 @@ export function updateAcceptedRequests(id) {
         // TODO: catch errors here
       });
   };
+}
+
 }
