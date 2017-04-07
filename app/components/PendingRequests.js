@@ -16,7 +16,7 @@ class PendingRequests extends Component {
   }
 
   componentDidMount() {
-    this.props.updatePendingRequests(13);
+    this.props.updatePendingRequests(1);
   }
 
   componentWillReceiveProps(nextProps) {

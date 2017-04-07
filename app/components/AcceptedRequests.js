@@ -15,7 +15,7 @@ class AcceptedRequests extends Component {
   }
 
   componentDidMount() {
-    this.props.updateAcceptedRequests(13);
+    this.props.updateAcceptedRequests(1);
   }
 
   componentWillReceiveProps(nextProps) {
