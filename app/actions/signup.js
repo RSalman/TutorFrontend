@@ -44,8 +44,9 @@ export function signupError(error) {
   return { type: SIGNUP_ERROR, error };
 }
 
-export function signupSuccess() {
-  return { type: SIGNUP_SUCCESS };
+export function signupSuccess(tutor_data) {
+  alert(tutor_data.courseList);
+  return { type: SIGNUP_SUCCESS, tutor_data };
 }
 
 export function signupStart() {
@@ -57,15 +58,14 @@ export function submitForm(signupData, tutorData = null) {
     var user = {};
     dispatch(signupStart());
     if (tutorData)
-      user = {...signupData, ...tutorData};
+      user = { ...signupData, ...tutorData };
     else
-      user = signupData
+      user = signupData;
     axios.post('/users', user)
       .then(function(response) {
         if (!_.isEmpty(response.data))
-          dispatch(signupSuccess());
+          dispatch(signupSuccess(tutorData));
       }).catch(function(error) {
-        alert(JSON.stringify(error.response));
         if (error.response)
           dispatch(signupError(error.response.data.errors));
         else

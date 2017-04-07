@@ -5,7 +5,8 @@ var initialState = {
   password: '',
   successful_authentication: false,
   error: '',
-  isLoading: false
+  isLoading: false,
+  isTutor: false
 };
 
 function login(state = initialState, action) {
@@ -17,7 +18,7 @@ function login(state = initialState, action) {
     case LOGIN_START:
       return { ...state, error: '', isLoading: true };
     case LOGIN_SUCCESS:
-      return { successful_authentication: true, isLoading: false };
+      return { successful_authentication: true, isLoading: false, isTutor: action.isTutor };
     case LOGIN_ERROR:
       return { ...state, error: action.error, isLoading: false };
     default:

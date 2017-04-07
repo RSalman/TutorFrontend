@@ -6,6 +6,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const UPDATE_EMAIL = 'UPDATE_EMAIL';
 export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
+export const UPDATE_USER = 'UPDATE_USER';
 // action creators
 export function updateEmail(email) {
   return { type: UPDATE_EMAIL, email };
@@ -22,8 +23,12 @@ export function loginError(error) {
   return { type: LOGIN_ERROR, error };
 }
 
-export function loginSuccess() {
-  return { type: LOGIN_SUCCESS };
+export function loginSuccess(isTutor) {
+  return { type: LOGIN_SUCCESS, isTutor };
+}
+
+export function updateUser(user, access_token) {
+  return { type: UPDATE_USER, user, access_token };
 }
 
 export function authenticate(email, password) {
@@ -32,8 +37,9 @@ export function authenticate(email, password) {
     axios.post('/auth/sign_in', { email, password })
       .then(function(response) {
         if (!_.isEmpty(response.data)) {
-           sendAppToken(response.data.data.id);
-           dispatch(loginSuccess());
+          sendAppToken(response.data.data.id);
+          dispatch(loginSuccess(response.data.data.is_tutor));
+          dispatch(updateUser(response.data.data, response.headers['access-token']));
         }
       }).catch(function(error) {
         if (error.response)

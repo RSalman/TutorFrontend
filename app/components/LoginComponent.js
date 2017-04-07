@@ -8,7 +8,9 @@ import ErrorView from './ErrorView';
 
 class LoginComponent extends Component {
   componentWillReceiveProps(nextProps) {
-    if (nextProps.successful_authentication)
+    if (nextProps.successful_authentication && nextProps.isTutor)
+      Actions.leila({ type: 'reset' });
+    else if (nextProps.successful_authentication && !nextProps.isTutor)
       Actions.tutors({ type: 'reset' });
   }
 
@@ -193,7 +195,8 @@ const mapStateToProps = (state) => {
     password: state.login.password,
     successful_authentication: state.login.successful_authentication,
     error: state.login.error,
-    isLoading: state.login.isLoading
+    isLoading: state.login.isLoading,
+    isTutor: state.login.isTutor
   };
 };
 

@@ -26,8 +26,14 @@ class TutorFormComponent extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.successfulSubmission)
+    /*
+    if (nextProps.successfulSubmission && nextProps.isTutor)
+      Actions.leila({ type: 'reset' });
+    else (nextProps.successfulSubmission && !nextProps.isTutor)
       Actions.tutors({ type: 'reset' });
+    */
+    if (nextProps.successfulSubmission)
+      Actions.leila({ type: 'reset' });
   }
 
   uploadProfilePicture() {
@@ -282,7 +288,8 @@ const mapStateToProps = (state) => {
     tutor_data: state.signup.tutor_data,
     signup_data: state.signup.signup_data,
     error: state.signup.error,
-    isLoading: state.signup.isLoading
+    isLoading: state.signup.isLoading,
+    isTutor: state.signup.isTutor
   };
 };
 
