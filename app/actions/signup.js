@@ -6,6 +6,7 @@ export const UPDATE_FORM = 'UPDATE_FORM';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
 export const SIGNUP_START = 'SIGNUP_START';
+export const UPDATE_TUTOR_INFO = 'UPDATE_TUTOR_INFO';
 
 // action creators
 export function verifyCodeStart() {
@@ -35,6 +36,10 @@ export function updateForm(formData) {
   return { type: UPDATE_FORM, formData };
 }
 
+export function updateTutorInfo(formData) {
+  return { type: UPDATE_TUTOR_INFO, formData };
+}
+
 export function signupError(error) {
   return { type: SIGNUP_ERROR, error };
 }
@@ -47,15 +52,20 @@ export function signupStart() {
   return { type: SIGNUP_START };
 }
 
-export function submitForm(signupData) {
+export function submitForm(signupData, tutorData = null) {
   return dispatch => {
+    var user = {};
     dispatch(signupStart());
-    axios.post('/users', { user: signupData })
+    if (tutorData)
+      user = {...signupData, ...tutorData};
+    else
+      user = signupData
+    axios.post('/users', user)
       .then(function(response) {
         if (!_.isEmpty(response.data))
           dispatch(signupSuccess());
-
       }).catch(function(error) {
+        alert(JSON.stringify(error.response));
         if (error.response)
           dispatch(signupError(error.response.data.errors));
         else

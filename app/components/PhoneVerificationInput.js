@@ -57,7 +57,8 @@ class PhoneVerificationInput extends Component {
 }
 
 const failureTextColor = 'red';
-const inputBorderColor = 'gray';
+const white = '#FFF';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 20,
     textAlign: 'center',
+    color: white
   },
   input: {
     alignSelf: 'center',
@@ -79,8 +81,9 @@ const styles = StyleSheet.create({
     fontSize: 85,
     padding: 5,
     textAlign: 'center',
-    borderColor: inputBorderColor,
-    borderWidth: 1
+    borderColor: white,
+    borderWidth: 1,
+    color: white
   },
   textContainer: {
     marginTop: 15,

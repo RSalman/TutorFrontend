@@ -10,10 +10,10 @@ class SignupComponent extends Component {
     const children = this.props.navigationState.children;
     const state = children[children.length - 1];
     return (
-      <Image source={require('./img/signup_background.png')} style={styles.backgroundImage}>
+      <Image source={require('./img/login1_bg.png')} style={styles.backgroundImage}>
         <ScrollView>
           <StyledText style={styles.header}>Sign up for Prospr</StyledText>
-          <ProgressBar progress={this.props.progress_status} width={320} style={styles.progressStyling} color={green} />
+          <ProgressBar progress={this.props.progress_status} width={320} style={styles.progressStyling} color={progressColor} />
           <DefaultRenderer
             navigationState={state}
             key={state.key}
@@ -26,13 +26,15 @@ class SignupComponent extends Component {
   }
 }
 /* Define colours */
-const green = '#61bd4f';
+const progressColor = '#FF3366';
+const white = '#FFF';
 
 const styles = StyleSheet.create({
   header: {
     textAlign: 'center',
     padding: 10,
-    fontSize: 30
+    fontSize: 30,
+    color: white
   },
   progressStyling: {
     alignSelf: 'center',

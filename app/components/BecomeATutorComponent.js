@@ -19,19 +19,17 @@ class BecomeATutorComponent extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.successfulSubmission)
-      Actions.home({ type: 'reset' });
+      Actions.tutors({ type: 'reset' });
   }
 
   navigateToTutorForm() {
-    /* TODO(muraad): navigate to tutor Form */
-    /* for now, navigates to home page */
-    Actions.home({ type: 'reset' });
+    Actions.tutorForm();
   }
 
   renderErrorView() {
     if (this.props.error) {
       return (
-        <ErrorView error={this.props.error} color={red} style={errorStyle} />
+        <ErrorView error={this.props.error} color={brightRed} style={errorStyle} />
       );
     }
   }
@@ -43,7 +41,7 @@ class BecomeATutorComponent extends Component {
           animating
           style={styles.spinner}
           size="large"
-          color={green}
+          color={buttonColor}
         />
       );
     }
@@ -54,7 +52,7 @@ class BecomeATutorComponent extends Component {
       <View style={styles.container}>
         <StyledText style={styles.headerText}>Would you like to become a tutor?</StyledText>
         <View style={styles.buttonContainer}>
-          <Button raised title="Yes" onPress={() => this.navigateToTutorForm()} backgroundColor={green} />
+          <Button raised title="Yes" onPress={() => this.navigateToTutorForm()} backgroundColor={buttonColor} />
           <Button raised title="No" onPress={() => this.props.submitForm(this.props.signup_data)} backgroundColor={grey} />
         </View>
         { this.renderErrorView() }
@@ -68,8 +66,9 @@ class BecomeATutorComponent extends Component {
 
 /* Define colours */
 const grey = '#bdc6cf';
-const green = '#61bd4f';
-const red = '#F2473F';
+const brightRed = '#ff7575';
+const white = '#FFF';
+const buttonColor = '#FF3366';
 
 const errorStyle = { paddingTop: 80 };
 const styles = StyleSheet.create({
@@ -84,6 +83,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 20,
     textAlign: 'center',
+    color: white
   },
   buttonContainer: {
     alignSelf: 'center',

@@ -1,4 +1,4 @@
-import { VERIFY_CODE_START, VERIFY_CODE_COMPLETE, UPDATE_FORM, SIGNUP_SUCCESS, SIGNUP_ERROR, SIGNUP_START, SET_PROGRESS_BAR } from '../actions/signup';
+import { VERIFY_CODE_START, VERIFY_CODE_COMPLETE, UPDATE_FORM, SIGNUP_SUCCESS, SIGNUP_ERROR, SIGNUP_START, SET_PROGRESS_BAR, UPDATE_TUTOR_INFO } from '../actions/signup';
 
 var initialState = {
   phoneVerified: false,
@@ -9,6 +9,13 @@ var initialState = {
     email: '',
     password: '',
     phone_number: ''
+  },
+  tutor_data: {
+    image: '',
+    courseList: '',
+    rate: '',
+    educationLevel: '',
+    tutor_description: ''
   },
   progressStatus: 0,
   successfulSubmission: false,
@@ -36,6 +43,8 @@ function signup(state = initialState, action) {
       };
     case UPDATE_FORM:
       return { ...state, signup_data: action.formData };
+    case UPDATE_TUTOR_INFO:
+      return { ...state, tutor_data: action.formData };
     case SIGNUP_SUCCESS:
       return { ...state, successfulSubmission: true, isLoading: false };
     case SIGNUP_ERROR:

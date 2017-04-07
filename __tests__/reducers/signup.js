@@ -11,6 +11,13 @@ var initialState = {
     password: '',
     phone_number: ''
   },
+  tutor_data: {
+    image: '',
+    courseList: '',
+    rate: '',
+    educationLevel: '',
+    tutor_description: ''
+  },
   progressStatus: 0,
   successfulSubmission: false,
   error: '',
