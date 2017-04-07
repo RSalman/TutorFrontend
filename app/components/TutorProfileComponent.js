@@ -149,7 +149,7 @@ class TutorProfileComponent extends Component {
               </View>
               <View style={styles.statSeperator} />
               <View style={styles.stat}>
-                <StyledText style={styles.statTop}>${this.props.rate}/Hour</StyledText>
+                <StyledText style={styles.statTop}>${this.props.rate}/hr</StyledText>
                 <StyledText style={styles.statBot}>Rate</StyledText>
               </View>
               <View style={styles.statSeperator} />
@@ -342,9 +342,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     height: 105,
     width: 105,
-    borderColor: white,
+    borderColor: transparent,
     borderWidth: 1,
-    borderRadius: 100
+    borderRadius: 50
 
   },
   requestButton: {
