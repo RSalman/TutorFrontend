@@ -45,12 +45,12 @@ export function resetRequestCycle() {
 }
 
 
-export function fetchProfile(userID) {
+export function fetchProfile(tutorID) {
   return dispatch => {
-    dispatch(getProfileStart(userID));
-    axios.get('/tutor_infos?tutor_id=' + userID).then(function(response) {
+    dispatch(getProfileStart(tutorID));
+    axios.get('/tutor_infos?tutor_id=' + tutorID + '&subject_id=' + 1 + '&student_id=' + 2 ).then(function(response) {
       if (response.status === 200)
-        dispatch(getProfileComplete(response.data, userID));
+        dispatch(getProfileComplete(response.data, tutorID));
     }).catch(function(error) {
       if (error.response)
         dispatch(getProfileError(error.response.data));
