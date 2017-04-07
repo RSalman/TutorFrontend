@@ -110,7 +110,7 @@ class TutorProfileComponent extends Component {
           buttonStyle={styles.requestButtonRequested}
           borderRadius={100}
           textStyle={styles.requestButtonTextRequested}
-          onPress={() => this.props.cancelRequest(this.props.id, 2, 1)}
+          onPress={() => this.props.cancelRequest(this.props.id, this.props.user_id, 1)}
         />
       );
     } return (
@@ -120,7 +120,7 @@ class TutorProfileComponent extends Component {
         buttonStyle={styles.requestButton}
         borderRadius={100}
         textStyle={styles.requestButtonText}
-        onPress={() => this.props.requestTutor(this.props.id, 2, 1)}
+        onPress={() => this.props.requestTutor(this.props.id, this.props.user_id, 1)}
       />
     );
   }
@@ -366,6 +366,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
+    user_id: state.profile.current_user.id,
     profile: state.profile.profile,
     isLoading: state.profile.isLoading,
     requestSent: state.profile.requestSent,
