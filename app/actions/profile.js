@@ -11,6 +11,9 @@ export const DELETE_REQUEST_COMPLETE = 'DELETE_REQUEST_COMPLETE';
 
 export const NEW_REQUEST = 'NEW_REQUEST';
 
+export const GET_PENDING_REQUESTS_COMPLETE = 'GET_PENDING_REQUESTS_COMPLETE';
+export const GET_ACCEPTED_REQUESTS_COMPLETE = 'GET_ACCEPTED_REQUESTS_COMPLETE';
+
 // action creators
 export function getProfileStart(userID) {
   return { type: GET_PROFILE_START, userID };
@@ -44,6 +47,13 @@ export function resetRequestCycle() {
   return { type: NEW_REQUEST };
 }
 
+export function getPendingRequestsComplete(pendingRequests) {
+  return { type: GET_PENDING_REQUESTS_COMPLETE, pendingRequests };
+}
+
+export function getAcceptedRequestsComplete(acceptedRequests) {
+  return { type: GET_ACCEPTED_REQUESTS_COMPLETE, acceptedRequests };
+}
 
 export function fetchProfile(userID) {
   return dispatch => {
@@ -86,5 +96,39 @@ export function cancelRequest(tutorID, studentID, subjectID) {
             .catch(function(error) {
               //What kind of error?
             });
+  };
+}
+
+export function updatePendingRequests(id) {
+  return dispatch => {
+    axios.get('/pending_tutor_requests', { params: { tutor_id: id } })
+      .then(function(response) {
+        dispatch(getPendingRequestsComplete(response.data));
+      }).catch(function(error) {
+        // TODO: catch errors here
+      });
+  };
+}
+
+export function acceptPendingRequest(pending_request_id, user_id) {
+  return dispatch => {
+    axios.put('/tutor_requests/' + pending_request_id)
+      .then(function(response) {
+        dispatch(updatePendingRequests(user_id));
+        dispatch(updateAcceptedRequests(user_id));
+      }).catch(function(error) {
+        // TODO: catch errors here
+      });
+  };
+}
+
+export function updateAcceptedRequests(id) {
+  return dispatch => {
+    axios.get('/accepted_tutor_requests', { params: { tutor_id: id } })
+      .then(function(response) {
+        dispatch(getAcceptedRequestsComplete(response.data));
+      }).catch(function(error) {
+        // TODO: catch errors here
+      });
   };
 }

@@ -64,6 +64,6 @@ const style = StyleSheet.create({
     alignItems: 'center'
   },
   middleView: { flex: 3 },
-  bottomView: { flex: 1 },
+  bottomView: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   image: { width: 50, height: 50, borderRadius: 20 }
 });

@@ -1,4 +1,4 @@
-import { GET_PROFILE_START, GET_PROFILE_COMPLETE, GET_PROFILE_ERROR, POST_REQUEST_START, POST_REQUEST_COMPLETE, POST_REQUEST_ERROR, NEW_REQUEST, DELETE_REQUEST_COMPLETE } from '../actions/profile';
+import { GET_PROFILE_START, GET_PROFILE_COMPLETE, GET_PROFILE_ERROR, POST_REQUEST_START, POST_REQUEST_COMPLETE, POST_REQUEST_ERROR, NEW_REQUEST, DELETE_REQUEST_COMPLETE, GET_ACCEPTED_REQUESTS_COMPLETE, GET_PENDING_REQUESTS_COMPLETE } from '../actions/profile';
 
 
 var initialState = {
@@ -8,7 +8,9 @@ var initialState = {
   requestSent: false,
   error: '',
   requestError: false,
-  requestDeleted: false
+  requestDeleted: false,
+  pendingRequests: [],
+  acceptedRequests: []
 };
 
 function profile(state = initialState, action) {
@@ -63,6 +65,16 @@ function profile(state = initialState, action) {
         requestSent: false,
         requesting: false,
         requestError: ''
+      };
+    case GET_PENDING_REQUESTS_COMPLETE:
+      return {
+        ...state,
+        pendingRequests: action.pendingRequests,
+      };
+    case GET_ACCEPTED_REQUESTS_COMPLETE:
+      return {
+        ...state,
+        acceptedRequests: action.acceptedRequests,
       };
     default:
       return state;
