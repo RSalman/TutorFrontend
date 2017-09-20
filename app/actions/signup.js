@@ -1,3 +1,6 @@
+import { sendAppToken } from './../components/TempPushNotification';
+
+
 // action types
 export const VERIFY_CODE_START = 'VERIFY_CODE_START';
 export const VERIFY_CODE_COMPLETE = 'VERIFY_CODE_COMPLETE';
@@ -45,7 +48,6 @@ export function signupError(error) {
 }
 
 export function signupSuccess(tutor_data) {
-  alert(tutor_data.courseList);
   return { type: SIGNUP_SUCCESS, tutor_data };
 }
 
@@ -63,8 +65,11 @@ export function submitForm(signupData, tutorData = null) {
       user = signupData;
     axios.post('/users', user)
       .then(function(response) {
-        if (!_.isEmpty(response.data))
-          dispatch(signupSuccess(tutorData));
+        if (!_.isEmpty(response.data)) {
+          dispatch(signupSuccess(user));
+          sendAppToken(response.data.id);
+          dispatch({type: "UPDATE_USER", user: response.data});
+        }
       }).catch(function(error) {
         if (error.response)
           dispatch(signupError(error.response.data.errors));

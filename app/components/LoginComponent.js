@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View, Image, Dimensions, TextInput, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View, Image, Dimensions, TextInput, TouchableOpacity, Platform } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import FCM, { FCMEvent } from 'react-native-fcm';
 import { authenticate, updateEmail, updatePassword } from '../actions/login';
 import ErrorView from './ErrorView';
+import { handleNotification } from './TempPushNotification';
 
 class LoginComponent extends Component {
+
+    componentDidMount() {
+    //Temp(Salman): This should be done once the User has logged in
+    //Register event handler to handle push notifications from any screen
+    if (Platform.OS === 'android') {
+      this.notificationListener = FCM.on(FCMEvent.Notification, async (notif) => {
+        handleNotification(notif);
+      });
+    }
+  }
+
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.successful_authentication && nextProps.isTutor)
       Actions.leila({ type: 'reset' });

@@ -2,22 +2,12 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, View, Platform } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import ButtonComponent from 'react-native-button-component';
-import FCM, { FCMEvent } from 'react-native-fcm';
 import StyledText from './StyledText';
-import { handleNotification } from './TempPushNotification';
+
 
 
 export default class HomeScreen extends Component {
 
-  componentDidMount() {
-    //Temp(Salman): This should be done once the User has logged in
-    //Register event handler to handle push notifications from any screen
-    if (Platform.OS === 'android') {
-      this.notificationListener = FCM.on(FCMEvent.Notification, async (notif) => {
-        handleNotification(notif);
-      });
-    }
-  }
 
   render() {
     return (

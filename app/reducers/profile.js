@@ -12,7 +12,7 @@ var initialState = {
   requestDeleted: false,
   pendingRequests: [],
   acceptedRequests: [],
-  current_user: null,
+  current_user: { id: null },
   access_token: null
 };
 
@@ -20,12 +20,14 @@ function profile(state = initialState, action) {
   switch (action.type) {
     case GET_PROFILE_START:
       return {
+         ...state,
         profile: null,
         isLoading: true,
         error: ''
       };
     case GET_PROFILE_COMPLETE:
       return {
+         ...state,
         profile: action.profile,
         isLoading: false,
         requestSent: action.profile.requestPending,
@@ -33,6 +35,7 @@ function profile(state = initialState, action) {
       };
     case GET_PROFILE_ERROR:
       return {
+         ...state,
         profile: action.profile,
         isLoading: false,
         error: action.error
