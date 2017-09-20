@@ -13,6 +13,8 @@ class PendingRequests extends Component {
   constructor(props) {
     super(props);
     this.state = { dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows(this.props.pendingRequests) };
+
+    setInterval(() => this.props.updatePendingRequests(this.props.user_id), 2000);
   }
 
   componentDidMount() {

@@ -48,7 +48,7 @@ function signup(state = initialState, action) {
       return { ...state, tutor_data: action.formData };
     case SIGNUP_SUCCESS:
       if (action.tutor_data)
-        return { ...state, successfulSubmission: true, isLoading: false, isTutor: action.tutor_data.courseList.length > 0 };
+        return { ...state, successfulSubmission: true, isLoading: false, isTutor: action.tutor_data.courseList ? action.tutor_data.courseList.length > 0 : false };
       return { ...state, successfulSubmission: true, isLoading: false, isTutor: false };
     case SIGNUP_ERROR:
       return { ...state, error: action.error, isLoading: false };

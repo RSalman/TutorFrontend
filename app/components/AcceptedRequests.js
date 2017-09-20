@@ -12,6 +12,7 @@ class AcceptedRequests extends Component {
   constructor(props) {
     super(props);
     this.state = { dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows(this.props.acceptedRequests) };
+    setInterval(() => this.props.updateAcceptedRequests(this.props.user_id), 2000);
   }
 
   componentDidMount() {

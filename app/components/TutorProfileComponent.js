@@ -19,10 +19,18 @@ class TutorProfileComponent extends Component {
 
   constructor(props) {
     super(props);
+
+    var rating;
+    if(isNaN(this.props.rating))
+       rating = "N/A"
+    else
+      rating = "$" + this.props.rating + "/hr"
+
     this.state = {
       selectedIndex: 0,
       collapsedBio: false,
-      collapsedCourseList: true
+      collapsedCourseList: true,
+      tutorRating: rating
     };
   }
 
@@ -154,7 +162,7 @@ class TutorProfileComponent extends Component {
               </View>
               <View style={styles.statSeperator} />
               <View style={styles.stat}>
-                <StyledText style={styles.statTop}>{this.props.rating}/5</StyledText>
+                <StyledText style={styles.statTop}>{this.state.tutorRating}</StyledText>
                 <StyledText style={styles.statBot}>Rating</StyledText>
               </View>
             </View>
