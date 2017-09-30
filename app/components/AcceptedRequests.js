@@ -34,21 +34,25 @@ class AcceptedRequests extends Component {
         subtitle={u.course_prefix + u.course_code}
         label={
           <View>
-            <StarRating
-              maxStars={5}
-              rating={u.agg_tutor_rating / u.num_tutor_rating}
-              starSize={10}
-              starColor={'gold'}
-              selectedStar={function() {}}
-              disabled
-            />
-            <Icon
-              name="textsms"
-              color="#29ce6b"
-              size={30}
-              containerStyle={style.icon}
-              onPress={()=> Communications.text(u.phone_number, 'Hey ' + u.first_name + '!')}
-            />
+             <StarRating
+                maxStars={5}
+                rating={this.props.tutorMode ? (u.agg_user_rating / u.num_user_rating) : (u.agg_tutor_rating / u.num_tutor_rating)}
+                starSize={10}
+                starColor={'gold'}
+                selectedStar={function() {}}
+                disabled
+              />
+            {
+              // Only show button when user is in tutor mode
+              this.props.tutorMode &&
+                <Icon
+                  name="textsms"
+                  color="#29ce6b"
+                  size={30}
+                  containerStyle={style.icon}
+                  onPress={()=> Communications.text(u.phone_number, 'Hey ' + u.first_name + '!')}
+                />
+            }
           </View>
         }
       />
@@ -101,7 +105,8 @@ const style = StyleSheet.create({
 const mapStateToProps = (state) => {
   return { 
     user_id: state.profile.current_user.id,
-    acceptedRequests: state.profile.acceptedRequests
+    acceptedRequests: state.profile.acceptedRequests,
+    tutorMode: state.profile.tutorMode,
   };
 };
 

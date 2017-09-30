@@ -4,6 +4,7 @@ import { UPDATE_USER } from '../actions/login';
 
 var initialState = {
   profile: null,
+  tutorMode: false,
   isLoading: false,
   requesting: false,
   requestSent: false,
@@ -82,7 +83,7 @@ function profile(state = initialState, action) {
         acceptedRequests: action.acceptedRequests,
       };
     case UPDATE_USER:
-      return { ...state, current_user: action.user, access_token: action.access_token };
+      return { ...state, current_user: action.user, access_token: action.access_token, tutorMode: action.user.is_tutor };
     default:
       return state;
   }

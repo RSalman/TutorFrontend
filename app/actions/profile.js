@@ -102,8 +102,18 @@ export function cancelRequest(tutorID, studentID, subjectID) {
 }
 
 export function updatePendingRequests(id) {
-  return dispatch => {
-    axios.get('/pending_tutor_requests', { params: { tutor_id: id } })
+  return (dispatch, getState) => {
+    var params;
+    var url;
+    var tutorMode = getState().profile.tutorMode;
+    if (tutorMode) {
+      params = { tutor_id: id };
+      url = '/pending_tutor_requests';
+    } else {
+      params = { student_id: id };
+      url = '/pending_student_requests';
+    }
+    axios.get(url, { params, })
       .then(function(response) {
         dispatch(getPendingRequestsComplete(response.data));
       }).catch(function(error) {
@@ -125,8 +135,18 @@ export function acceptPendingRequest(pending_request_id, user_id) {
 }
 
 export function updateAcceptedRequests(id) {
-  return dispatch => {
-    axios.get('/accepted_tutor_requests', { params: { tutor_id: id } })
+  return (dispatch, getState) => {
+    var params;
+    var url;
+    var tutorMode = getState().profile.tutorMode;
+    if (tutorMode) {
+      params = { tutor_id: id };
+      url = '/accepted_tutor_requests';
+    } else {
+      params = { student_id: id };
+      url = '/accepted_student_requests';
+    }
+    axios.get(url, { params, })
       .then(function(response) {
         dispatch(getAcceptedRequestsComplete(response.data));
       }).catch(function(error) {

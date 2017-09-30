@@ -36,31 +36,35 @@ class PendingRequests extends Component {
         subtitle={u.course_prefix + u.course_code}
         label={
           <View>
-            <StarRating
-              maxStars={5}
-              rating={u.agg_tutor_rating / u.num_tutor_rating}
-              starSize={10}
-              starColor={'gold'}
-              selectedStar={function() {}}
-              disabled
-            />
-            <Icon
-              name="reply"
-              color="#42bcf4"
-              size={30}
-              containerStyle={style.icon}
-              onPress={()=>{
-                Alert.alert(
-                  'Pending Request',
-                  'Do you want to tutor ' + u.first_name + ' ' + u.last_name + '?',
-                  [
-                    { text: 'Yes', onPress: () => { this.props.acceptPendingRequest(u.id, u.user_id); } },
-                    { text: 'No' }
-                  ],
-                  { cancelable: false }
-                );
-              }}
-            />
+                <StarRating
+                  maxStars={5}
+                  rating={this.props.tutorMode ? (u.agg_user_rating / u.num_user_rating) : (u.agg_tutor_rating / u.num_tutor_rating)}
+                  starSize={10}
+                  starColor={'gold'}
+                  selectedStar={function() {}}
+                  disabled
+                />
+            {
+              // Only show button when user is in tutor mode
+              this.props.tutorMode &&
+                 <Icon
+                  name="reply"
+                  color="#42bcf4"
+                  size={30}
+                  containerStyle={style.icon}
+                  onPress={()=>{
+                    Alert.alert(
+                      'Pending Request',
+                      'Do you want to tutor ' + u.first_name + ' ' + u.last_name + '?',
+                      [
+                        { text: 'Yes', onPress: () => { this.props.acceptPendingRequest(u.id, u.user_id); } },
+                        { text: 'No' }
+                      ],
+                      { cancelable: false }
+                    );
+                  }}
+                />
+            }
           </View>
         }
       />
@@ -68,11 +72,11 @@ class PendingRequests extends Component {
   }
 
   render() {
-    const { pendingRequests } = this.props;
+    const { pendingRequests, tutorMode } = this.props;
     return (
       <View style={style.container}>
         <TopNavBar toggled={this.props.toggled} tabName={this.props.tabName} />
-        <StyledText style={style.text}>You have {pendingRequests.length} requests waiting.</StyledText>
+        { tutorMode && <StyledText style={style.text}>You have {pendingRequests.length} request(s) waiting.</StyledText>}
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(row) => this.renderRow(row)}
@@ -107,7 +111,8 @@ const style = StyleSheet.create({
 const mapStateToProps = (state) => {
   return { 
     user_id: state.profile.current_user.id,
-    pendingRequests: state.profile.pendingRequests
+    pendingRequests: state.profile.pendingRequests,
+    tutorMode: state.profile.tutorMode,
   };
 };
 
