@@ -23,8 +23,8 @@ export function loginError(error) {
   return { type: LOGIN_ERROR, error };
 }
 
-export function loginSuccess(isTutor) {
-  return { type: LOGIN_SUCCESS, isTutor };
+export function loginSuccess(isTutor, user_data) {
+  return { type: LOGIN_SUCCESS, isTutor, user_data };
 }
 
 export function updateUser(user, access_token) {
@@ -38,7 +38,7 @@ export function authenticate(email, password) {
       .then(function(response) {
         if (!_.isEmpty(response.data)) {
           sendAppToken(response.data.data.id);
-          dispatch(loginSuccess(response.data.data.is_tutor));
+          dispatch(loginSuccess(response.data.data.is_tutor, response.data.data));
           dispatch(updateUser(response.data.data, response.headers['access-token']));
         }
       }).catch(function(error) {

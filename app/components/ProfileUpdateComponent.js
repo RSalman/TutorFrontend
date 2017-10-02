@@ -6,10 +6,12 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import ImagePicker from 'react-native-image-picker';
 import StyledText from './StyledText';
-import { submitForm, setProgressBar } from '../actions/signup';
+import { fetchProfile, updateProfile } from '../actions/profileupdate';
+import { Akira } from 'react-native-textinput-effects';
 import ErrorView from './ErrorView';
 
-class TutorFormComponent extends Component {
+
+class ProfileUpdateComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,23 +19,19 @@ class TutorFormComponent extends Component {
       courseList: '',
       rate: '',
       education: '',
-      tutor_description: ''
+      tutor_description: '',
+      first_name: '',
+      last_name: '',
+      phone_number: ''
     };
   }
 
   componentWillMount() {
-    this.props.setProgressBar(0.90);
+    this.props.fetchProfile(this.props.id);
   }
 
   componentWillReceiveProps(nextProps) {
-    /*
-    if (nextProps.successfulSubmission && nextProps.isTutor)
-      Actions.leila({ type: 'reset' });
-    else (nextProps.successfulSubmission && !nextProps.isTutor)
-      Actions.tutors({ type: 'reset' });
-    */
-    if (nextProps.successfulSubmission)
-      Actions.leila({ type: 'reset', user_data: nextProps.user_data });
+      this.state = nextProps.tutor_data;
   }
 
   uploadProfilePicture() {
@@ -84,12 +82,13 @@ class TutorFormComponent extends Component {
       );
     }
     return (
-      <Text style={styles.buttonText}>Submit</Text>
+      <Text style={styles.buttonText}>Update Profile</Text>
     );
   }
 
     render() {
     return (
+      <Image source={require('./img/login1_bg.png')} style={styles.backgroundImage}>
         <View style={styles.container}>
           <View style={styles.wrapper}>
             <View style={styles.profilePictureWrap}>
@@ -104,6 +103,46 @@ class TutorFormComponent extends Component {
                 onPress={() => this.uploadProfilePicture()}/>
                 </View>
             </View>
+
+
+
+            <View style={styles.inputWrap}>
+              
+            <TextInput
+                placeholderTextColor={grey}
+                placeholder="First Name"
+                underlineColorAndroid={transparent}
+                style={styles.input}
+                defaultValue = {this.state.first_name}
+                onChangeText={(first_name) => this.setState({first_name})}
+              />
+            </View>
+
+
+            <View style={styles.inputWrap}>        
+            <TextInput
+                placeholderTextColor={grey}
+                placeholder="Last Name"
+                underlineColorAndroid={transparent}
+                style={styles.input}
+                defaultValue = {this.state.last_name}
+                onChangeText={(last_name) => this.setState({last_name})}
+              />
+            </View>
+
+            <View style={styles.inputWrap}>
+              <TextInput
+                placeholderTextColor={grey}
+                placeholder="Phone Number"
+                underlineColorAndroid={transparent}
+                style={styles.input}
+                defaultValue = {this.state.phone_number }
+                onChangeText={(phone_number) => this.setState({phone_number})}
+              />
+            </View>
+
+
+
             <View style={styles.inputWrap}>
               <View style={styles.iconWrap}>
                 <Image source={bookIcon} style={styles.icon} resizeMode="contain" />
@@ -113,9 +152,11 @@ class TutorFormComponent extends Component {
                 placeholder="Courses To Tutor"
                 underlineColorAndroid={transparent}
                 style={styles.input}
+                defaultValue = {this.state.courseList == '' ? '' : this.state.courseList.join() }
                 onChangeText={(courses) => this.setState({courseList: courses.split(',')})}
               />
             </View>
+
             <View style={styles.inputWrap}>
               <View style={styles.iconWrap}>
                 <Image source={dollarIcon} style={styles.icon} resizeMode="contain" />
@@ -126,6 +167,7 @@ class TutorFormComponent extends Component {
                 underlineColorAndroid={transparent}
                 keyboardType = 'numeric'
                 style={styles.input}
+                defaultValue = {this.state.rate}
                 onChangeText={(rate) => this.setState({rate})}
               />
             </View>
@@ -148,10 +190,11 @@ class TutorFormComponent extends Component {
               multiline={true}
               underlineColorAndroid={transparent}
               placeholder="Brief Bio"
+              defaultValue = {this.state.tutor_description}
               onChangeText={(tutor_description) => this.setState({tutor_description})}
               style={styles.textarea} />
               </View>
-            <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.submitForm(this.props.signup_data, this.state)}>
+            <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.updateProfile(this.state, this.props.id)}>
               <View style={styles.button}>
                 { this.renderButtonContent() }
               </View>
@@ -159,6 +202,7 @@ class TutorFormComponent extends Component {
           </View>
           { this.renderErrorView() }
         </View>
+        </Image>
     );
   }
 }
@@ -279,21 +323,18 @@ const styles = StyleSheet.create({
   textarea: {
     backgroundColor: lightGrey,
     flex: 1,
+  },
+    backgroundImage: {
+    flex: 1,
+    width: null,
+    height: null
   }
 });
 
 const mapStateToProps = (state) => {
-  return {
-    successfulSubmission: state.signup.successfulSubmission,
-    tutor_data: state.signup.tutor_data,
-    signup_data: state.signup.signup_data,
-    error: state.signup.error,
-    isLoading: state.signup.isLoading,
-    isTutor: state.signup.isTutor,
-    user_data: state.signup.user_data
-  };
+  return { tutor_data: state.profileupdate.tutor_data };
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ submitForm, setProgressBar }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ fetchProfile, updateProfile }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(TutorFormComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileUpdateComponent);
