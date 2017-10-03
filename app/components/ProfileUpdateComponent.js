@@ -7,6 +7,7 @@ import { Madoka } from 'react-native-textinput-effects';
 import { fetchProfile, updateProfile } from '../actions/profileupdate';
 
 class ProfileUpdateComponent extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -26,6 +27,7 @@ class ProfileUpdateComponent extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if(this.props.tutor_data != nextProps.tutor_data)
       this.state = nextProps.tutor_data;
   }
 
@@ -159,7 +161,6 @@ const buttonColor = '#FF3366';
 const brightRed = '#cd3232';
 const brightGreen = '#5bd75b';
 const formBackground = '#F9F7F6';
-const formBackground = '#F9F7F6';
 const madokaBorderColor = '#aee2c9';
 const titleCardColor = '#404d5b';
 
@@ -191,8 +192,6 @@ const styles = StyleSheet.create({
     color: darkGrey,
     width: 165,
     height: 25,
-    fontSize: 20,
-    fontWeight: 'bold'
   },
   inputWrapTutorBio: {
     flexDirection: 'row',
@@ -262,7 +261,8 @@ const styles = StyleSheet.create({
      color: inputBox
   },
   MadokaInputStyle: {
-    color: darkGrey
+    color: darkGrey,
+    fontSize: 15
   }
 });
 

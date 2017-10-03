@@ -12,7 +12,6 @@ export function fetchProfile(tutorID) {
     axios.get('/tutor_infos?tutor_id=' + tutorID).then(function(response) {
       if (response.status === 200){
         dispatch(getProfileComplete(response.data, tutorID));
-        console.log("Got profile")
       }
     }).catch(function(error) {
         //TODO(SALMAN) PASS THE ERROR MESSAGE
