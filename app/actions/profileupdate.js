@@ -15,7 +15,7 @@ export function fetchProfile(tutorID) {
         console.log("Got profile")
       }
     }).catch(function(error) {
-        //TODO(SALMAN)
+        //TODO(SALMAN) PASS THE ERROR MESSAGE
     });
   };
 }
@@ -27,12 +27,9 @@ export function updateProfile(profileData, user_id) {
       .then(function(response) {
         if (response.status === 200){
           dispatch({type: "UPDATING_PROFILE_SUCCESS"});
-          console.log("SUCCESS**********************")
         }
-        console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
       }).catch(function(error) {
-        dispatch({type: "UPDATING_PROFILE_ERROR"}); //TODO(SALMAN PASS THE ERROR MESSAGE)
-        console.log("ERROR**********************************************")
+        dispatch({type: "UPDATING_PROFILE_ERROR"});  //TODO(SALMAN PASS THE ERROR MESSAGE)
       });
   };
 }

@@ -37,7 +37,7 @@ function profileupdate(state = initialState, action) {
         ...state,
         isLoading: false,
         success: true,
-        message: 'Profile Updated Successfully!'
+        message: 'Profile Updated!'
       };
     case UPDATING_PROFILE_ERROR:
       return {
