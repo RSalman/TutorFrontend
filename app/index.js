@@ -25,6 +25,7 @@ global._ = _;
 const store = createStore(rootReducer, applyMiddleware(thunk));
 export default class TutoringApp extends Component {
   render() {
+    console.disableYellowBox = true;
     return (
       <Provider store={store}>
         <Router>

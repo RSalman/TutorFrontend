@@ -1,4 +1,4 @@
-import { GET_PROFILE_COMPLETE } from '../actions/profileupdate';
+import { GET_PROFILE_COMPLETE, UPDATING_PROFILE_SUCCESS, UPDATING_PROFILE_ERROR, UPDATING_PROFILE } from '../actions/profileupdate';
 
 var initialState = {
   tutor_data: {
@@ -10,13 +10,16 @@ var initialState = {
     phone_number: '',
     first_name: '',
     last_name: ''
-  }
+  },
+  isLoading: false,
+  error: false,
+  success: false,
+  message: ''
 };
 
 function profileupdate(state = initialState, action) {
   switch (action.type) {
     case GET_PROFILE_COMPLETE:
-      console.log('Get profile complete')
       return {
         tutor_data: {
           image: '',
@@ -28,6 +31,28 @@ function profileupdate(state = initialState, action) {
           last_name: action.profile.lastname,
           phone_number: action.profile.phonenumber,
         }
+      };
+    case UPDATING_PROFILE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        success: true,
+        message: 'Profile Updated Successfully!'
+      };
+    case UPDATING_PROFILE_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        error: true,
+        message: 'Error Updating Profile!' //TODO(SALMAN): Should come from ther server
+      };
+    case UPDATING_PROFILE:
+      return {
+        ...state,
+        isLoading: true,
+        error: false,
+        success: false,
+        message: ''
       };
     default:
       return state;
