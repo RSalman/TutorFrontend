@@ -16,7 +16,7 @@ class TutorFormComponent extends Component {
       image: '',
       courseList: '',
       rate: '',
-      educationLevel: '',
+      education: '',
       tutor_description: ''
     };
   }
@@ -33,7 +33,7 @@ class TutorFormComponent extends Component {
       Actions.tutors({ type: 'reset' });
     */
     if (nextProps.successfulSubmission)
-      Actions.leila({ type: 'reset' });
+      Actions.leila({ type: 'reset', user_data: nextProps.user_data });
   }
 
   uploadProfilePicture() {
@@ -135,8 +135,8 @@ class TutorFormComponent extends Component {
               </View>
               <Picker
                 style={styles.input}
-                selectedValue={this.state.educationLevel}
-                onValueChange={(education) => this.setState({educationLevel: education})}>
+                selectedValue={this.state.education}
+                onValueChange={(education) => this.setState({education})}>
                 <Picker.Item label="High School Diploma" value="Highschool" />
                 <Picker.Item label="Bachelors" value="Bachelors" />
                 <Picker.Item label="Masters" value="Masters" />
@@ -289,7 +289,8 @@ const mapStateToProps = (state) => {
     signup_data: state.signup.signup_data,
     error: state.signup.error,
     isLoading: state.signup.isLoading,
-    isTutor: state.signup.isTutor
+    isTutor: state.signup.isTutor,
+    user_data: state.signup.user_data
   };
 };
 

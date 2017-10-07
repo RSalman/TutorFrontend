@@ -20,10 +20,10 @@ class LoginComponent extends Component {
     }
   }
 
-
   componentWillReceiveProps(nextProps) {
-    if (nextProps.successful_authentication && nextProps.isTutor)
-      Actions.leila({ type: 'reset' });
+    if (nextProps.successful_authentication && nextProps.isTutor){
+      Actions.leila({ type: 'reset', user_data: nextProps.user_data });
+    }
     else if (nextProps.successful_authentication && !nextProps.isTutor)
       Actions.tutors({ type: 'reset' });
   }
@@ -210,7 +210,8 @@ const mapStateToProps = (state) => {
     successful_authentication: state.login.successful_authentication,
     error: state.login.error,
     isLoading: state.login.isLoading,
-    isTutor: state.login.isTutor
+    isTutor: state.login.isTutor,
+    user_data: state.login.user_data
   };
 };
 

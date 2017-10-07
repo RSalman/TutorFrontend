@@ -19,6 +19,7 @@ import BecomeATutorComponent from './components/BecomeATutorComponent';
 import LoginComponent from './components/LoginComponent';
 import TempPushNotification from './components/TempPushNotification';
 import TutorFormComponent from './components/TutorFormComponent';
+import ProfileUpdateComponent from './components/ProfileUpdateComponent';
 
 global._ = _;
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -40,6 +41,7 @@ export default class TutoringApp extends Component {
               <Scene key="tutorinfo" component={TutorProfileComponent} title="TutorProfileComponent" />
               <Scene key="leila" component={LeilaFeatureView} title="LeilaFeatureView" />
               <Scene key="home" component={HomeScreen} title="HomeScreen" />
+              <Scene key="profileupdate" component={ProfileUpdateComponent} title="ProfileUpdateComponent" />
           </Scene>
         </Router>
       </Provider>

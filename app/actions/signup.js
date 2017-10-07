@@ -47,8 +47,8 @@ export function signupError(error) {
   return { type: SIGNUP_ERROR, error };
 }
 
-export function signupSuccess(tutor_data) {
-  return { type: SIGNUP_SUCCESS, tutor_data };
+export function signupSuccess(tutor_data, user_data) {
+  return { type: SIGNUP_SUCCESS, tutor_data, user_data};
 }
 
 export function signupStart() {
@@ -66,7 +66,7 @@ export function submitForm(signupData, tutorData = null) {
     axios.post('/users', user)
       .then(function(response) {
         if (!_.isEmpty(response.data)) {
-          dispatch(signupSuccess(user));
+          dispatch(signupSuccess(user, response.data));
           sendAppToken(response.data.id);
           dispatch({type: "UPDATE_USER", user: response.data});
         }
