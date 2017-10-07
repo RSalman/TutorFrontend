@@ -33,35 +33,31 @@ class TutorFormComponent extends Component {
       Actions.tutors({ type: 'reset' });
     */
     if (nextProps.successfulSubmission)
-      Actions.leila({ type: 'reset' });
+      Actions.tutor_home_screen({ type: 'reset' });
   }
 
   uploadProfilePicture() {
     ImagePicker.showImagePicker(null, (response) => {
       if (response.didCancel) {
         // Do nothing
-      }
-      else if (response.error) {
+      } else if (response.error) {
         // TODO(Muraad): handle error
-      }
-      else {
+      } else {
         var source = { uri: 'data:image/jpeg;base64,' + response.data };
-        this.setState({
-          image: source
-        });
+        this.setState({ image: source });
       }
     });
   }
 
   renderProfilePicture() {
-    if(this.state.image) 
+    if (this.state.image) {
       return (
-          <Image source={this.state.image} style={styles.profilePicture} resizeMode="contain" />
-          );
-    else
-      return (
-          <Image source={personIcon} style={styles.icon} resizeMode="contain" />
-          );
+        <Image source={this.state.image} style={styles.profilePicture} resizeMode="contain" />
+      );
+    }
+    return (
+      <Image source={personIcon} style={styles.icon} resizeMode="contain" />
+    );
   }
 
   renderErrorView() {
@@ -88,77 +84,80 @@ class TutorFormComponent extends Component {
     );
   }
 
-    render() {
+  render() {
     return (
-        <View style={styles.container}>
-          <View style={styles.wrapper}>
-            <View style={styles.profilePictureWrap}>
-              <View style={styles.iconWrap}>
+      <View style={styles.container}>
+        <View style={styles.wrapper}>
+          <View style={styles.profilePictureWrap}>
+            <View style={styles.iconWrap}>
               { this.renderProfilePicture() }
-              </View>
-              <View style={styles.profileButton}>
+            </View>
+            <View style={styles.profileButton}>
               <Button
                 raised
-                icon={{name: 'file-upload'}}
-                title='Upload Profile Picture' 
-                onPress={() => this.uploadProfilePicture()}/>
-                </View>
-            </View>
-            <View style={styles.inputWrap}>
-              <View style={styles.iconWrap}>
-                <Image source={bookIcon} style={styles.icon} resizeMode="contain" />
-              </View>
-              <TextInput
-                placeholderTextColor={grey}
-                placeholder="Courses To Tutor"
-                underlineColorAndroid={transparent}
-                style={styles.input}
-                onChangeText={(courses) => this.setState({courseList: courses.split(',')})}
+                icon={{ name: 'file-upload' }}
+                title="Upload Profile Picture"
+                onPress={() => this.uploadProfilePicture()}
               />
             </View>
-            <View style={styles.inputWrap}>
-              <View style={styles.iconWrap}>
-                <Image source={dollarIcon} style={styles.icon} resizeMode="contain" />
-              </View>
-              <TextInput
-                placeholderTextColor={grey}
-                placeholder="Hourly Rate"
-                underlineColorAndroid={transparent}
-                keyboardType = 'numeric'
-                style={styles.input}
-                onChangeText={(rate) => this.setState({rate})}
-              />
+          </View>
+          <View style={styles.inputWrap}>
+            <View style={styles.iconWrap}>
+              <Image source={bookIcon} style={styles.icon} resizeMode="contain" />
             </View>
-            <View style={styles.inputWrap}>
-              <View style={styles.iconWrap}>
-                <Image source={capIcon} style={styles.icon} resizeMode="contain" />
-              </View>
-              <Picker
-                style={styles.input}
-                selectedValue={this.state.educationLevel}
-                onValueChange={(education) => this.setState({educationLevel: education})}>
-                <Picker.Item label="High School Diploma" value="Highschool" />
-                <Picker.Item label="Bachelors" value="Bachelors" />
-                <Picker.Item label="Masters" value="Masters" />
-                <Picker.Item label="PHD" value="PHD" />
-              </Picker>
-            </View>
-            <View style={styles.inputWrap}>
             <TextInput
-              multiline={true}
+              placeholderTextColor={grey}
+              placeholder="Courses To Tutor"
+              underlineColorAndroid={transparent}
+              style={styles.input}
+              onChangeText={(courses) => this.setState({ courseList: courses.split(',') })}
+            />
+          </View>
+          <View style={styles.inputWrap}>
+            <View style={styles.iconWrap}>
+              <Image source={dollarIcon} style={styles.icon} resizeMode="contain" />
+            </View>
+            <TextInput
+              placeholderTextColor={grey}
+              placeholder="Hourly Rate"
+              underlineColorAndroid={transparent}
+              keyboardType="numeric"
+              style={styles.input}
+              onChangeText={(rate) => this.setState({ rate })}
+            />
+          </View>
+          <View style={styles.inputWrap}>
+            <View style={styles.iconWrap}>
+              <Image source={capIcon} style={styles.icon} resizeMode="contain" />
+            </View>
+            <Picker
+              style={styles.input}
+              selectedValue={this.state.educationLevel}
+              onValueChange={(education) => this.setState({ educationLevel: education })}
+            >
+              <Picker.Item label="High School Diploma" value="Highschool" />
+              <Picker.Item label="Bachelors" value="Bachelors" />
+              <Picker.Item label="Masters" value="Masters" />
+              <Picker.Item label="PHD" value="PHD" />
+            </Picker>
+          </View>
+          <View style={styles.inputWrap}>
+            <TextInput
+              multiline
               underlineColorAndroid={transparent}
               placeholder="Brief Bio"
-              onChangeText={(tutor_description) => this.setState({tutor_description})}
-              style={styles.textarea} />
-              </View>
-            <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.submitForm(this.props.signup_data, this.state)}>
-              <View style={styles.button}>
-                { this.renderButtonContent() }
-              </View>
-            </TouchableOpacity>
+              onChangeText={(tutor_description) => this.setState({ tutor_description })}
+              style={styles.textarea}
+            />
           </View>
-          { this.renderErrorView() }
+          <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.submitForm(this.props.signup_data, this.state)}>
+            <View style={styles.button}>
+              { this.renderButtonContent() }
+            </View>
+          </TouchableOpacity>
         </View>
+        { this.renderErrorView() }
+      </View>
     );
   }
 }
@@ -196,19 +195,6 @@ const styles = StyleSheet.create({
     padding: 0,
     marginLeft: 15,
     marginRight: 15
-  },
-  markWrap: {
-    flex: 1,
-    paddingVertical: 30,
-  },
-  mark: {
-    width: null,
-    height: null,
-    flex: 1,
-  },
-  background: {
-    width,
-    height,
   },
   wrapper: { paddingVertical: 30 },
   inputWrap: {
@@ -257,23 +243,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: white,
     fontSize: 18,
-  },
-  forgotPasswordText: {
-    color: lightGrey,
-    backgroundColor: transparent,
-    textAlign: 'right',
-    paddingRight: 15,
-  },
-  signupWrap: {
-    backgroundColor: transparent,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  accountText: { color: lightGrey },
-  signupLinkText: {
-    color: white,
-    marginLeft: 5,
   },
   spinner: { height: 18 },
   textarea: {

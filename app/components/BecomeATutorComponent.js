@@ -19,7 +19,7 @@ class BecomeATutorComponent extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.successfulSubmission)
-      Actions.tutors({ type: 'reset' });
+      Actions.student_home_screen({ type: 'reset' });
   }
 
   navigateToTutorForm() {

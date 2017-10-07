@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
 import { SideMenu, List, ListItem } from 'react-native-elements';
-import { DefaultRenderer } from 'react-native-router-flux';
-
+import { DefaultRenderer, Actions } from 'react-native-router-flux';
 
 export default class SideMenuComponent extends Component {
   constructor(props) {
@@ -38,7 +37,13 @@ export default class SideMenuComponent extends Component {
               rightIcon={{ name: 'live-help' }}
             />
             <ListItem
+              title="Your Requests"
+              rightIcon={{ name: 'live-help' }}
+              onPress={() => Actions.tutor_home_screen()}
+            />
+            <ListItem
               title={I18n.t('sideMenu.signOut')}
+              onPress={() => Actions.login({ type: 'reset' })}
             />
           </List>
         </View>

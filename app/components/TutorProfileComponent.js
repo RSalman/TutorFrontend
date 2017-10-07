@@ -21,10 +21,10 @@ class TutorProfileComponent extends Component {
     super(props);
 
     var rating;
-    if(isNaN(this.props.rating))
-       rating = "N/A"
+    if (isNaN(this.props.rating))
+      rating = 'N/A';
     else
-      rating = "$" + this.props.rating + "/hr"
+      rating = '$' + this.props.rating + '/hr';
 
     this.state = {
       selectedIndex: 0,

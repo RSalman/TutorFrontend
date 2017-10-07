@@ -10,7 +10,7 @@ import { handleNotification } from './TempPushNotification';
 
 class LoginComponent extends Component {
 
-    componentDidMount() {
+  componentDidMount() {
     //Temp(Salman): This should be done once the User has logged in
     //Register event handler to handle push notifications from any screen
     if (Platform.OS === 'android') {
@@ -22,10 +22,9 @@ class LoginComponent extends Component {
 
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.successful_authentication && nextProps.isTutor)
-      Actions.leila({ type: 'reset' });
-    else if (nextProps.successful_authentication && !nextProps.isTutor)
-      Actions.tutors({ type: 'reset' });
+    if (nextProps.successful_authentication)
+      Actions.side_menu({ isTutor: nextProps.isTutor, type: 'reset' });
+
   }
 
   renderErrorView() {

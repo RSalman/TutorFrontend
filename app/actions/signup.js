@@ -68,7 +68,7 @@ export function submitForm(signupData, tutorData = null) {
         if (!_.isEmpty(response.data)) {
           dispatch(signupSuccess(user));
           sendAppToken(response.data.id);
-          dispatch({type: "UPDATE_USER", user: response.data});
+          dispatch({ type: 'UPDATE_USER', user: response.data });
         }
       }).catch(function(error) {
         if (error.response)

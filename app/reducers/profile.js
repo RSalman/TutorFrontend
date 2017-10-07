@@ -21,14 +21,14 @@ function profile(state = initialState, action) {
   switch (action.type) {
     case GET_PROFILE_START:
       return {
-         ...state,
+        ...state,
         profile: null,
         isLoading: true,
         error: ''
       };
     case GET_PROFILE_COMPLETE:
       return {
-         ...state,
+        ...state,
         profile: action.profile,
         isLoading: false,
         requestSent: action.profile.requestPending,
@@ -36,7 +36,7 @@ function profile(state = initialState, action) {
       };
     case GET_PROFILE_ERROR:
       return {
-         ...state,
+        ...state,
         profile: action.profile,
         isLoading: false,
         error: action.error
