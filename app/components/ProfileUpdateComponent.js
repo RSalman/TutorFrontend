@@ -201,11 +201,14 @@ const styles = StyleSheet.create({
     borderBottomColor: inputBox
   },
   button: {
-    backgroundColor: buttonColor,
+    backgroundColor: transparent,
     paddingVertical: 10,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 20,
+    borderColor: white,
+    borderWidth: 2,
+    borderRadius: 200
   },
   buttonText: {
     color: white,

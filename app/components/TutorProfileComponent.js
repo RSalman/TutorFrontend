@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Collapsible from 'react-native-collapsible';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { fetchProfile, requestTutor, resetRequestCycle, cancelRequest } from '../actions/profile';
+import { Actions } from 'react-native-router-flux';
 import StyledText from './StyledText';
 
 
@@ -20,6 +21,9 @@ class TutorProfileComponent extends Component {
   constructor(props) {
     super(props);
 
+    if(this.props.id == this.props.user_id) //Extra check in case demoProfile is not passed
+      this.props.demoProfile = true;
+
     this.state = {
       selectedIndex: 0,
       collapsedBio: false,
@@ -28,21 +32,12 @@ class TutorProfileComponent extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchProfile(this.props.id);
+    this.props.fetchProfile(this.props.id, this.props.user_id, this.props.demoProfile);
   }
 
   updateIndex(selectedIndex) {
-    if (this.state.selectedIndex !== selectedIndex) {
       this.setState({ selectedIndex });
-      this.setState({ collapsedBio: !this.state.collapsedBio });
-    }
-  }
-
-  openRequestModal() {
-    if (this.props.requestError)
-      this.props.resetRequestCycle();
-
-    this.modal.open();
+      this.setState({ collapsedBio: selectedIndex == 0 ? false : true });
   }
 
   renderNoProfileView() {
@@ -59,49 +54,51 @@ class TutorProfileComponent extends Component {
         <Icon name="exclamation-triangle" size={30} color={errorIconColor} />
         <StyledText style={styles.errorText}>{ this.props.error }</StyledText>
         <View style={styles.refreshView} >
-          <Icon name="refresh" size={40} color={errorIconColor} onPress={() => this.props.fetchProfile(this.props.id)} />
-          <Text style={styles.errorText} onPress={() => this.props.fetchProfile(this.props.id)}>Refresh</Text>
+          <Icon name="refresh" size={40} color={errorIconColor} onPress={() => this.props.fetchProfile(this.props.id, this.props.demoProfile)} />
+          <Text style={styles.errorText} onPress={() => this.props.fetchProfile(this.props.id, this.props.demoProfile)}>Refresh</Text>
         </View>
       </View>
     );
   }
 
-  renderRequest() {
-    if (this.props.requestSent || this.props.requestError ) {
-      const iconName = this.props.requestError ? 'remove' : 'check';
-      const iconColor = this.props.requestError ? errorRed : checkMarkColor;
-
-      const modalText = this.props.requestError ? 'Error sending request, please try again' :
-            'A request has been sent to ' + this.props.profile.firstname + '!';
-
-      return (
-        <View style={styles.modalView}>
-          <Icon style={styles.modalCheck} name={iconName} size={45} color={iconColor} />
-          <StyledText style={styles.requestSentModalText}>{modalText}</StyledText>
-          <Button raised onPress={() => this.modal.close()} style={styles.ModalButton} borderRadius={25} backgroundColor={modalButtonColor} title="Got it!" />
-        </View>
-      );
-    } else if (this.props.requesting) {
-      return (
-        <View style={styles.modalView}>
-          <Text style={styles.modalText}> Please wait while we poke {this.props.profile.firstname}</Text>
-          <ActivityIndicator
-            animating style={styles.waitCursor} size="large"
-          />
-        </View>
-      );
-    }
-
+  renderRequestButtons(courseInfo) {
+    if(this.props.demoProfile)
+      return(<View/>);
+    
     return (
-      <View style={styles.modalView}>
-        <StyledText style={styles.modalText}>A request will be sent to {this.props.profile.firstname}! </StyledText>
-        <Button onPress={() => this.props.requestTutor(this.props.id)} style={styles.ModalButton} borderRadius={25} backgroundColor={modalButtonColor} title="Send Request" />
-      </View>
+      <Button
+        small
+        title={courseInfo.isRequested ? "Cancel" : "Request"}
+        buttonStyle={courseInfo.isRequested ? styles.requestCourseButtonRequested : styles.requestCourseButton }
+        borderRadius={50}
+        textStyle={courseInfo.isRequested ? styles.requestCourseButtonTextRequested : styles.requestCourseButtonText}
+        onPress={() => courseInfo.isRequested ?  this.props.cancelRequest(this.props.id, this.props.user_id, courseInfo.subjectID) : this.props.requestTutor(this.props.id, this.props.user_id, courseInfo.subjectID)}
+      />  
     );
   }
 
-//this.props.requestTutor(this.props.id)
   renderRequestStatus() {
+    if(this.props.demoProfile){
+      return (
+        <Button
+          small
+          title="Edit Profile"
+          buttonStyle={styles.requestButton}
+          borderRadius={100}
+          textStyle={styles.requestButtonText}
+          onPress={() => Actions.profileupdate({id: this.props.id})}
+        />
+      );   
+    }            
+    if(this.props.requesting){
+      return (
+        <ActivityIndicator
+          animating          
+          size="large"
+          color={leafGreenGradient}
+        />
+      );
+    }            
     if (this.props.requestSent) {
       return (
         <Button
@@ -111,17 +108,18 @@ class TutorProfileComponent extends Component {
           buttonStyle={styles.requestButtonRequested}
           borderRadius={100}
           textStyle={styles.requestButtonTextRequested}
-          onPress={() => this.props.cancelRequest(this.props.id, this.props.user_id, 1)}
+          onPress={() => this.updateIndex(1)}
         />
       );
-    } return (
+    } 
+    return (
       <Button
         small
         title="Request Tutor"
         buttonStyle={styles.requestButton}
         borderRadius={100}
         textStyle={styles.requestButtonText}
-        onPress={() => this.props.requestTutor(this.props.id, this.props.user_id, 1)}
+        onPress={() => this.updateIndex(1)}
       />
     );
   }
@@ -173,21 +171,17 @@ class TutorProfileComponent extends Component {
           />
           <Collapsible collapsed={this.state.collapsedBio} align="center">
             <List containerStyle={styles.collapsibleList}>
-              <ListItem key={0} subtitle={this.props.profile.biography} hideChevron />
+              <ListItem key="bio" subtitle={this.props.profile.biography} hideChevron />
             </List>
           </Collapsible>
           <ScrollView>
             <Collapsible collapsed={!this.state.collapsedBio} align="center">
               <List containerStyle={styles.collapsibleList}>
-                { this.props.profile.coursesTeaching.map((course, index) => ( <ListItem key={course} title={course} hideChevron />))}
+                { this.props.courses_request_status.map((courseInfo, index) => ( <ListItem key={courseInfo.course} title={courseInfo.course} badge={{element: this.renderRequestButtons(courseInfo)}} hideChevron/>))}
               </List>
             </Collapsible>
           </ScrollView>
         </View>
-
-        <Modal style={styles.modal} position={'center'} ref={(ref) => this.modal = ref} >
-          {this.renderRequest()}
-        </Modal>
       </View>
     );
   }
@@ -338,7 +332,6 @@ const styles = StyleSheet.create({
     width: null,
     height: 300
   },
-
   photo: {
     marginTop: 10,
     height: 105,
@@ -346,7 +339,6 @@ const styles = StyleSheet.create({
     borderColor: transparent,
     borderWidth: 1,
     borderRadius: 50
-
   },
   requestButton: {
     backgroundColor: transparent,
@@ -361,6 +353,28 @@ const styles = StyleSheet.create({
     borderColor: complement,
     borderWidth: 2,
     marginTop: 15
+  },
+  requestCourseButton: {
+    backgroundColor: transparent,
+    width: 100,
+    height: 35,
+    borderColor: complement,
+    borderWidth: 2
+  },
+  requestCourseButtonText: {
+    color: complement,
+    fontSize: 12
+  },
+  requestCourseButtonRequested: {
+    backgroundColor: complement,
+    width: 100,
+    height: 35,
+    borderColor: white,
+    borderWidth: 2
+  },
+  requestCourseButtonTextRequested: {
+    color: white,
+    fontSize: 12
   }
 
 });
@@ -373,7 +387,8 @@ const mapStateToProps = (state) => {
     requestSent: state.profile.requestSent,
     requesting: state.profile.requesting,
     error: state.profile.error,
-    requestError: state.profile.requestError
+    requestError: state.profile.requestError,
+    courses_request_status: state.profile.courses_request_status
   };
 };
 

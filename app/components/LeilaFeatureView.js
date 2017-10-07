@@ -29,7 +29,7 @@ export default class LeilaFeatureView extends Component {
         <View style={style.middleView}>
           <List>
             <ListItem
-              onPress={() => Actions.tutorinfo({ id: this.props.user_data.id})}
+              onPress={() => Actions.tutorinfo({ id: this.props.user_data.id, demoProfile: true})}
               title="View Profile"
               rightIcon={{ name: 'person-pin' }}
             />
