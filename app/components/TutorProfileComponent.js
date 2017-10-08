@@ -11,10 +11,6 @@ import { fetchProfile, requestTutor, resetRequestCycle, cancelRequest } from '..
 import { Actions } from 'react-native-router-flux';
 import StyledText from './StyledText';
 
-
-//TODO(Salman) - Use image URI
-var image = require('./img/profile-sample.png');
-
 //TODO(Salman) - store stings in Locale
 class TutorProfileComponent extends Component {
 
@@ -133,7 +129,7 @@ class TutorProfileComponent extends Component {
       <View style={styles.wrapper}>
         <Image source={require('./img/profileCardBackground.jpg')} style={styles.backgroundImage}>
           <View style={styles.profileCard}>
-            <Image source={image} style={styles.photo} />
+            <Image source={ this.props.profile.image ? {uri: this.props.profile.image} :  require('./img/profile-sample.png')} style={styles.photo} />
             <View style={styles.nameView}>
               <StyledText style={styles.name}>{this.props.profile.firstname} {this.props.profile.lastname}</StyledText>
             </View>

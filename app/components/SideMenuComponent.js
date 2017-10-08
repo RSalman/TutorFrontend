@@ -28,6 +28,16 @@ export default class SideMenuComponent extends Component {
         </View>
         <View style={style.middleView}>
           <List>
+          <ListItem
+              onPress={() => Actions.tutorinfo({ id: this.props.user_data.id, demoProfile: true})}
+              title="View Profile"
+              rightIcon={{ name: 'person-pin' }}
+            />
+            <ListItem
+              onPress={() => Actions.profileupdate({id: this.props.user_data.id})}
+              title="Edit Profile"
+              rightIcon={{ name: 'brush' }}
+            />
             <ListItem
               title={I18n.t('sideMenu.profile')}
               rightIcon={{ name: 'person-pin' }}

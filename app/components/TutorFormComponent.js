@@ -39,7 +39,7 @@ class TutorFormComponent extends Component {
         // TODO(Muraad): handle error
       }
       else {
-        var source = { uri: 'data:image/jpeg;base64,' + response.data };
+        var source = 'data:image/jpeg;base64,' + response.data;
         this.setState({
           image: source
         });
@@ -50,7 +50,7 @@ class TutorFormComponent extends Component {
   renderProfilePicture() {
     if(this.state.image) 
       return (
-          <Image source={this.state.image} style={styles.profilePicture} resizeMode="contain" />
+          <Image source={{uri: this.state.image}} style={styles.profilePicture} resizeMode="contain" />
           );
     else
       return (

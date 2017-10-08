@@ -22,7 +22,7 @@ function profileupdate(state = initialState, action) {
     case GET_PROFILE_COMPLETE:
       return {
         tutor_data: {
-          image: '',
+          image: action.profile.image,
           courseList: action.profile.coursesTeaching,
           rate: action.profile.rate,
           education: action.profile.degree,

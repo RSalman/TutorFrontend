@@ -22,7 +22,7 @@ class LoginComponent extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.successful_authentication)
-      Actions.side_menu({ isTutor: nextProps.isTutor, type: 'reset' });
+      Actions.side_menu({ isTutor: nextProps.isTutor, type: 'reset', user_data: nextProps.user_data });
   }
 
   renderErrorView() {
