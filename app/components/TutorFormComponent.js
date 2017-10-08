@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View, Image, Dimensions, TextInput, TouchableOpacity, Picker } from 'react-native';
+import { Platform, ActivityIndicator, StyleSheet, Text, View, Image, Dimensions, TextInput, TouchableOpacity } from 'react-native';
+import ModalDropdown from 'react-native-modal-dropdown';
 import { Button } from 'react-native-elements';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -127,15 +128,15 @@ class TutorFormComponent extends Component {
               <View style={styles.iconWrap}>
                 <Image source={capIcon} style={styles.icon} resizeMode="contain" />
               </View>
-              <Picker
-                style={styles.input}
-                selectedValue={this.state.education}
-                onValueChange={(education) => this.setState({education})}>
-                <Picker.Item label="High School Diploma" value="Highschool" />
-                <Picker.Item label="Bachelors" value="Bachelors" />
-                <Picker.Item label="Masters" value="Masters" />
-                <Picker.Item label="PHD" value="PHD" />
-              </Picker>
+              <ModalDropdown 
+                options={['High School Diploma', 'Bachelors', 'Masters', 'PHD']} 
+                animated={false}
+                textStyle={styles.pickerTextStyle}
+                dropdownStyle={styles.pickerStyle} 
+                dropdownTextStyle={styles.pickerItemStyle}
+                defaultValue='Education'
+                onSelect={(index, education) => this.setState({education})}
+              />
             </View>
             <View style={styles.inputWrap}>
             <TextInput
@@ -226,10 +227,24 @@ const styles = StyleSheet.create({
     height: 20,
     width: 20,
   },
+  pickerStyle: {
+    backgroundColor: 'transparent'
+  },
+  pickerTextStyle: {
+    backgroundColor: 'transparent',
+    fontSize: 18,
+    paddingLeft: 10,
+    color: 'lightgrey',
+  },
+  pickerItemStyle: {
+    backgroundColor: '#4d4d4d',
+    fontSize: 18,
+    color: white,
+  },
   input: {
     flex: 1,
     paddingHorizontal: 10,
-    color: white
+    color: white,
   },
   profileButton: {
     alignItems: 'center',
