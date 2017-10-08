@@ -10,20 +10,18 @@ import ImagePicker from 'react-native-image-picker';
 
 class ProfileUpdateComponent extends Component {
 
-  
-
   constructor(props) {
     super(props);
     this.state = {
       formData: {
         image: '',
-      courseList: '',
-      rate: '',
-      education: '',
-      tutor_description: '',
-      first_name: '',
-      last_name: '',
-      phone_number: ''
+        courseList: '',
+        rate: '',
+        education: '',
+        tutor_description: '',
+        first_name: '',
+        last_name: '',
+        phone_number: ''
       },
       viewTutorForm: false
     };
@@ -49,22 +47,21 @@ class ProfileUpdateComponent extends Component {
       else {
         var source = 'data:image/jpeg;base64,' + response.data;
         this.setState({
-          image: source
+          formData: {...this.state.formData, image: source}
         });
       }
     });
   }
 
   renderProfilePicture() {
-    if(this.state.formData.image) {
+    if(this.state.formData.image) 
       return (
-          <Image source={{uri: this.state.formData.image }} style={styles.profilePicture} resizeMode="contain" />
-          );
-    }
-    else
-      return (
-          <Image source={personIcon} style={styles.icon} resizeMode="contain" />
-          );
+        <Image source={{uri: this.state.formData.image }} style={styles.profilePicture} resizeMode="contain" />
+        );
+    else 
+      return ( 
+        <Image source={personIcon} style={styles.icon} resizeMode="contain" /> 
+        );
   }
 
   renderMessageView() {
@@ -79,116 +76,97 @@ class ProfileUpdateComponent extends Component {
     }
   }
 
-    renderFormContents() {
+  renderFormContents() {
     if (this.state.viewTutorForm) {
       return (
-
-
-      <View>
-
-       <Madoka
-                style={styles.inputCard}
-                label={'Courses'}
-                value = {this.state.formData.courseList == '' ? '' : this.state.formData.courseList.join() }
-                onChangeText={(courses) => this.setState({courseList: courses.split(',')})}
-                borderColor={madokaBorderColor}
-                labelStyle={styles.MadokaLabelStyle}
-                inputStyle={styles.MadokaInputStyle}
-              />
-              <View style={styles.content}>
-                <Madoka
-                  style={styles.inputCardNames}
-                  label={'Rate'}
-                  borderColor={madokaBorderColor}
-                  labelStyle={styles.MadokaLabelStyle}
-                  inputStyle={styles.MadokaInputStyle}
-                  value = {this.state.formData.rate}
-                  onChangeText={(rate) => this.setState({rate})}
-                />          
-                <View style={styles.inputWrap}>
-                  <Picker
-                    style={styles.input}
-                    selectedValue={this.state.formData.education}
-                    onValueChange={(education) => this.setState({education})}>
-                    <Picker.Item label="High School Diploma" value="Highschool" />
-                    <Picker.Item label="Bachelors" value="Bachelors" />
-                    <Picker.Item label="Masters" value="Masters" />
-                    <Picker.Item label="PHD" value="PHD" />
-                  </Picker>
-                </View>
-              </View>
-
-
-
-              <View style={styles.inputWrapTutorBio}>
-                 <TextInput
-                   multiline={true}
-                   underlineColorAndroid={transparent}
-                   placeholder="Brief Bio"
-                   defaultValue = {this.state.formData.tutor_description}
-                   onChangeText={(tutor_description) => this.setState({tutor_description})}
-                   style={styles.textarea} />
-               </View>
-
-
-
-               </View>
-            
-        
-      );
+        <View>
+          <Madoka
+            style={styles.inputCard}
+            label={'Courses'}
+            value = {this.state.formData.courseList ? this.state.formData.courseList.join(): ''  }
+            onChangeText={(courses) => this.setState({formData: {...this.state.formData, courseList: courses.split(',')}})}
+            borderColor={madokaBorderColor}
+            labelStyle={styles.MadokaLabelStyle}
+            inputStyle={styles.MadokaInputStyle}
+          />
+          <View style={styles.content}>
+            <Madoka
+              style={styles.inputCardNames}
+              label={'Rate'}
+              borderColor={madokaBorderColor}
+              labelStyle={styles.MadokaLabelStyle}
+              inputStyle={styles.MadokaInputStyle}
+              value = {this.state.formData.rate}
+              onChangeText={(rate) => this.setState({formData: {...this.state.formData, rate}})}
+            />          
+            <View style={styles.inputWrap}>
+              <Picker
+                style={styles.input}
+                selectedValue={this.state.formData.education}
+                onValueChange={(education) => this.setState( {formData:{...this.state.formData, education}})}>
+                <Picker.Item label="High School Diploma" value="Highschool" />
+                <Picker.Item label="Bachelors" value="Bachelors" />
+                <Picker.Item label="Masters" value="Masters" />
+                <Picker.Item label="PHD" value="PHD" />
+              </Picker>
+            </View>
+          </View>
+          <View style={styles.inputWrapTutorBio}>
+             <TextInput
+               multiline={true}
+               underlineColorAndroid={transparent}
+               placeholder="Brief Bio"
+               defaultValue = {this.state.formData.tutor_description}
+               onChangeText={(tutor_description) => this.setState({formData:{...this.state.formData, tutor_description}})}
+               style={styles.textarea} />
+           </View>
+          </View>
+        );
     } else{
       return (
       <View>
-
-             <View style={styles.profilePictureWrap}>
-                <View style={styles.iconWrap}>
-                { this.renderProfilePicture() }
-                </View>
-                <View style={styles.profileButton}>
-                <Button
-                  raised
-                  icon={{name: 'file-upload'}}
-                  title='Upload Profile Picture' 
-                  onPress={() => this.uploadProfilePicture()}/>
-                </View>
-              </View>
-
-                      <View style={styles.content}>
-                <Madoka
-                  style={styles.inputCardNames}
-                  label={'First Name'}
-                  value = {this.state.formData.first_name}
-                  borderColor={madokaBorderColor}
-                  labelStyle={styles.MadokaLabelStyle}
-                  inputStyle={styles.MadokaInputStyle}
-                  onChangeText={(first_name) => this.setState({first_name})}
-                />
-                <Madoka
-                  style={styles.inputCardNames}
-                  label={'Last Name'}
-                  value={this.state.formData.last_name}
-                  borderColor={madokaBorderColor}
-                  labelStyle={styles.MadokaLabelStyle}
-                  inputStyle={styles.MadokaInputStyle}
-                  onChangeText={(last_name) => this.setState({last_name})}
-                />
-              </View>
-
-                  <Madoka
-                style={styles.inputCard}
-                label={'Number'}
-                value = {this.state.formData.phone_number }
-                borderColor={madokaBorderColor}
-                labelStyle={styles.MadokaLabelStyle}
-                inputStyle={styles.MadokaInputStyle}
-                onChangeText={(phone_number) => this.setState({phone_number})}
-              />
-             
-
-
-              </View>
-
-
+       <View style={styles.profilePictureWrap}>
+          <View style={styles.iconWrap}>
+          { this.renderProfilePicture() }
+          </View>
+          <View style={styles.profileButton}>
+          <Button
+            raised
+            icon={{name: 'file-upload'}}
+            title='Upload Profile Picture' 
+            onPress={() => this.uploadProfilePicture()}/>
+          </View>
+        </View>
+        <View style={styles.content}>
+          <Madoka
+            style={styles.inputCardNames}
+            label={'First Name'}
+            value = {this.state.formData.first_name}
+            borderColor={madokaBorderColor}
+            labelStyle={styles.MadokaLabelStyle}
+            inputStyle={styles.MadokaInputStyle}
+            onChangeText={(first_name) => this.setState({formData: {...this.state.formData, first_name} })}
+          />
+          <Madoka
+            style={styles.inputCardNames}
+            label={'Last Name'}
+            value={this.state.formData.last_name}
+            borderColor={madokaBorderColor}
+            labelStyle={styles.MadokaLabelStyle}
+            inputStyle={styles.MadokaInputStyle}
+            onChangeText={(last_name) => this.setState({formData: {...this.state.formData, last_name}})}
+          />
+        </View>
+        <Madoka
+          style={styles.inputCard}
+          label={'Number'}
+          value = {this.state.formData.phone_number }
+          borderColor={madokaBorderColor}
+          labelStyle={styles.MadokaLabelStyle}
+          inputStyle={styles.MadokaInputStyle}
+          onChangeText={(phone_number) => this.setState({formData: {...this.state.formData, phone_number}})}
+        />
+        </View>
       );
     }
   }
@@ -209,7 +187,7 @@ class ProfileUpdateComponent extends Component {
     );
   }
 
-    render() {
+  render() {
     return (
       <Image source={require('./img/editprofilebackground.jpg')} style={styles.backgroundImage}>
         <View style={styles.container}>
@@ -217,40 +195,21 @@ class ProfileUpdateComponent extends Component {
             <View style={styles.card} >
               <Text style={styles.titleCard}>Edit Your Profile!</Text>
               { this.renderMessageView() }
-
-       
-<View style={styles.navButtons}>
-              <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ viewTutorForm: !this.state.viewTutorForm})} >
-              <View style={!this.state.viewTutorForm ? styles.buttonNavSelected: styles.buttonNav }>
-                <Text style={styles.buttonTextx}>Personal</Text>
+              <View style={styles.navButtons}>
+                <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ viewTutorForm: !this.state.viewTutorForm})} >
+                  <View style={!this.state.viewTutorForm ? styles.buttonNavSelected: styles.buttonNav }>
+                    <Text style={styles.buttonTextx}>Personal</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ viewTutorForm: !this.state.viewTutorForm})} >
+                  <View style={this.state.viewTutorForm ? styles.buttonNavSelected: styles.buttonNav }>
+                    <Text style={styles.buttonTextx}>Tutor</Text>
+                  </View>
+                </TouchableOpacity>
               </View>
-            </TouchableOpacity>
-
-
-              <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ viewTutorForm: !this.state.viewTutorForm})} >
-              <View style={this.state.viewTutorForm ? styles.buttonNavSelected: styles.buttonNav }>
-                <Text style={styles.buttonTextx}>Tutor</Text>
-              </View>
-            </TouchableOpacity>
-
-            </View>
-
-
-
-
-
-
-
-
-
               { this.renderFormContents() }
-
-
-
-
-
             </View>
-            <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.updateProfile(this.state.formData.formData, this.props.id)}>
+            <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.updateProfile(this.state.formData, this.props.id)}>
               <View style={styles.button}>
                 { this.renderButtonContent() }
               </View>

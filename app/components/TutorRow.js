@@ -35,11 +35,8 @@ export default class TutorRow extends Component {
 
   render() {
     const { tutor } = this.props;
-
-
     // TODO: Use image URI instead of static image
     var image = tutor.image ? tutor.image : require('./img/test.png');
-
     return (
       <ListItem
         onPress={() => Actions.tutorinfo({ id: tutor.id, rating: tutor.agg_tutor_rating / tutor.num_tutor_rating, rate: tutor.average_rate })}
