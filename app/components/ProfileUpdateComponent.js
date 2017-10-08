@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View, Image, Dimensions, TextInput, TouchableOpacity, Picker } from 'react-native';
+import ModalDropdown from 'react-native-modal-dropdown';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
@@ -7,6 +8,13 @@ import { Madoka } from 'react-native-textinput-effects';
 import { fetchProfile, updateProfile } from '../actions/profileupdate';
 import { Button } from 'react-native-elements';
 import ImagePicker from 'react-native-image-picker';
+
+const educationMap = {
+  'High School Diploma': 0,
+  'Bachelors': 1,
+  'Masters': 2,
+  'PHD': 3,
+};
 
 class ProfileUpdateComponent extends Component {
 
@@ -78,6 +86,7 @@ class ProfileUpdateComponent extends Component {
 
   renderFormContents() {
     if (this.state.viewTutorForm) {
+      console.log(this.props.educationMap);
       return (
         <View>
           <Madoka
@@ -100,15 +109,16 @@ class ProfileUpdateComponent extends Component {
               onChangeText={(rate) => this.setState({formData: {...this.state.formData, rate}})}
             />          
             <View style={styles.inputWrap}>
-              <Picker
-                style={styles.input}
-                selectedValue={this.state.formData.education}
-                onValueChange={(education) => this.setState( {formData:{...this.state.formData, education}})}>
-                <Picker.Item label="High School Diploma" value="Highschool" />
-                <Picker.Item label="Bachelors" value="Bachelors" />
-                <Picker.Item label="Masters" value="Masters" />
-                <Picker.Item label="PHD" value="PHD" />
-              </Picker>
+              <ModalDropdown 
+                  options={['High School Diploma', 'Bachelors', 'Masters', 'PHD']} 
+                  animated={false}
+                  defaultIndex={this.state.formData.education ? educationMap[this.state.formData.education] : -1}
+                  textStyle={styles.pickerTextStyle}
+                  dropdownStyle={styles.pickerStyle} 
+                  dropdownTextStyle={styles.pickerItemStyle}
+                  defaultValue={this.state.formData.education ? this.state.formData.education : 'Education'}
+                  onSelect={(index, education) => this.setState({formData:{...this.state.formData, education}})}
+                />
             </View>
           </View>
           <View style={styles.inputWrapTutorBio}>
@@ -381,6 +391,20 @@ const styles = StyleSheet.create({
   profilePicture: {
     height: 60,
     width: 60
+  },
+  pickerStyle: {
+    backgroundColor: 'transparent'
+  },
+  pickerTextStyle: {
+    backgroundColor: 'transparent',
+    fontSize: 18,
+    paddingLeft: 10,
+    color: darkGrey,
+  },
+  pickerItemStyle: {
+    backgroundColor: '#4d4d4d',
+    fontSize: 18,
+    color: white,
   },
 });
 
