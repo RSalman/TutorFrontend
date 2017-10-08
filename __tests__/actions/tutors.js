@@ -1,6 +1,8 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import moxios from 'moxios';
 import { updateTutors, GET_TUTORS_START, GET_TUTORS_COMPLETE } from '../../app/actions/tutors';
+import '../../app/util/globalAxios';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -14,6 +16,8 @@ describe('tutors actions', () => {
 
     const store = mockStore({ tutors: {} });
     store.dispatch(updateTutors());
-    expect(store.getActions()).toEqual(expectedActions);
+    moxios.wait(function() {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
   });
 });

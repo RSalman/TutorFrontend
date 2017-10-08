@@ -1,153 +1,213 @@
-import ButtonComponent from 'react-native-button-component';
-import Modal from 'react-native-modalbox';
-import StarRating from 'react-native-star-rating';
-import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Image, View, StyleSheet, Button, ActivityIndicator } from 'react-native';
-import { retriveProfile } from '../actions/profile';
+import { Image, View, StyleSheet, ActivityIndicator, Text, ScrollView } from 'react-native';
+import { Button, ButtonGroup, ListItem, List } from 'react-native-elements';
+import Modal from 'react-native-modalbox';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Collapsible from 'react-native-collapsible';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { fetchProfile, requestTutor, resetRequestCycle, cancelRequest } from '../actions/profile';
+import { Actions } from 'react-native-router-flux';
 import StyledText from './StyledText';
 
 
 //TODO(Salman) - Use image URI
-var image = require('./img/test.png');
+var image = require('./img/profile-sample.png');
 
+//TODO(Salman) - store stings in Locale
 class TutorProfileComponent extends Component {
 
   constructor(props) {
     super(props);
+    
+    if(this.props.id == this.props.user_id) //Extra check in case demoProfile is not passed
+      this.props.demoProfile = true;
+
     this.state = {
-      animating: true,
-      requesting: false,
-      requestSent: false,
-      messageAcknowledged: false
+      selectedIndex: 0,
+      collapsedBio: false,
+      collapsedCourseList: true,
     };
   }
 
-  onClose() {
-    if (this.state.requestSent)
-      this.setState({ messageAcknowledged: true });
+  componentWillMount() {
+    this.props.fetchProfile(this.props.id, this.props.user_id, this.props.demoProfile);
   }
 
-  openRequestModal() {
-    this.modal.open();
+  updateIndex(selectedIndex) {
+      this.setState({ selectedIndex });
+      this.setState({ collapsedBio: selectedIndex == 0 ? false : true });
   }
 
-  toggleRequest() {
-    this.setState({ requesting: !this.state.requesting });
-  }
-
-  mockRequestSent() {
-    this.setState({ requestSent: true });
-  }
-
-  renderRequest() {
-    if (this.state.messageAcknowledged) {
+  renderNoProfileView() {
+    if (this.props.isLoading) {
       return (
-        <View style={styles.modalView}>
-          <StyledText style={styles.modalText}>Ahhh! A request was already sent to {this.props.profile.firstname}!</StyledText>
-          <Button onPress={() => this.modal.close()} style={styles.ModalButton} title="Got it!" />
-        </View>
-      );
-    } else if (this.state.requestSent) {
-      return (
-        <View style={styles.modalView}>
-          <StyledText style={styles.modalText}><Icon name="thumbs-up" size={40} color={leafGreenGradient} /> We&apos;ve nudged {this.props.profile.firstname} for you!</StyledText>
-          <Button onPress={() => this.modal.close()} style={styles.ModalButton} title="Got it!" />
-        </View>
-      );
-    } else if (this.state.requesting) {
-      return (
-        <View style={styles.modalView}>
-          <StyledText onPress={() => this.mockRequestSent()} style={styles.modalText}> Please wait while we poke {this.props.profile.firstname}</StyledText>
-          <ActivityIndicator
-            animating={this.state.animating}
-            style={[styles.waitCursor, styles.centering]}
-            size="large"
-          />
+        <View style={styles.errorContainer}>
+          <Spinner visible textContent={'Loading Tutor Profile...'} textStyle={{ color: white }} />
         </View>
       );
     }
 
     return (
-      <View style={styles.modalView}>
-        <StyledText style={styles.modalText}>A request will be sent to {this.props.profile.firstname}! </StyledText>
-        <Button onPress={() => this.toggleRequest()} style={styles.ModalButton} title="Send Request" />
+      <View style={styles.errorContainer} >
+        <Icon name="exclamation-triangle" size={30} color={errorIconColor} />
+        <StyledText style={styles.errorText}>{ this.props.error }</StyledText>
+        <View style={styles.refreshView} >
+          <Icon name="refresh" size={40} color={errorIconColor} onPress={() => this.props.fetchProfile(this.props.id, this.props.demoProfile)} />
+          <Text style={styles.errorText} onPress={() => this.props.fetchProfile(this.props.id, this.props.demoProfile)}>Refresh</Text>
+        </View>
       </View>
     );
   }
 
-  renderRequestStatusBadge() {
-    if (this.state.requestSent) {
-      return (
-        <View style={styles.pendingRequest}>
-          <Icon name="check" size={40} color={leafGreenGradient} /><StyledText> Pending Request! </StyledText>
-        </View>
-      );
-    }
-
-    return null;
+  renderRequestButtons(courseInfo) {
+    if(this.props.demoProfile)
+      return(<View/>);
+    
+    return (
+      <Button
+        small
+        title={courseInfo.isRequested ? "Cancel" : "Request"}
+        buttonStyle={courseInfo.isRequested ? styles.requestCourseButtonRequested : styles.requestCourseButton }
+        borderRadius={50}
+        textStyle={courseInfo.isRequested ? styles.requestCourseButtonTextRequested : styles.requestCourseButtonText}
+        onPress={() => courseInfo.isRequested ?  this.props.cancelRequest(this.props.id, this.props.user_id, courseInfo.subjectID) : this.props.requestTutor(this.props.id, this.props.user_id, courseInfo.subjectID)}
+      />  
+    );
   }
 
-  render() {
+  renderRequestStatus() {
+    if(this.props.demoProfile){
+      return (
+        <Button
+          small
+          title="Edit Profile"
+          buttonStyle={styles.requestButton}
+          borderRadius={100}
+          textStyle={styles.requestButtonText}
+          onPress={() => Actions.profileupdate({id: this.props.id})}
+        />
+      );   
+    }            
+    if(this.props.requesting){
+      return (
+        <ActivityIndicator
+          animating          
+          size="large"
+          color={leafGreenGradient}
+        />
+      );
+    }            
+    if (this.props.requestSent) {
+      return (
+        <Button
+          small
+          title="Request Sent"
+          icon={{ name: 'check', size: 20, color: complement }}
+          buttonStyle={styles.requestButtonRequested}
+          borderRadius={100}
+          textStyle={styles.requestButtonTextRequested}
+          onPress={() => this.updateIndex(1)}
+        />
+      );
+    } 
+    return (
+      <Button
+        small
+        title="Request Tutor"
+        buttonStyle={styles.requestButton}
+        borderRadius={100}
+        textStyle={styles.requestButtonText}
+        onPress={() => this.updateIndex(1)}
+      />
+    );
+  }
+
+  renderProfileView() {
+
+    const buttons = ['About Me!', 'Courses Teaching!'];
+    const { selectedIndex } = this.state;
+
     return (
       <View style={styles.wrapper}>
-        <LinearGradient colors={[offWhite, offGrey]}>
-          {this.renderRequestStatusBadge()}
+        <Image source={require('./img/profileCardBackground.jpg')} style={styles.backgroundImage}>
           <View style={styles.profileCard}>
             <Image source={image} style={styles.photo} />
-            <View >
+            <View style={styles.nameView}>
               <StyledText style={styles.name}>{this.props.profile.firstname} {this.props.profile.lastname}</StyledText>
             </View>
             <View >
-              <StarRating
-                disabled
-                maxStars={5}
-                rating={this.props.profile.rating}
-                starSize={30}
-                selectedStar={function() {}}
-                starColor={'gold'}
-              />
+              <StyledText style={styles.nameCaption}>{this.props.profile.caption}</StyledText>
+            </View>
+            {this.renderRequestStatus()}
+            <View style={styles.statsCard}>
+              <View style={styles.stat}>
+                <StyledText style={styles.statTop}>{this.props.profile.degree}</StyledText>
+                <StyledText style={styles.statBot}>Credentials</StyledText>
+              </View>
+              <View style={styles.statSeperator} />
+              <View style={styles.stat}>
+                <StyledText style={styles.statTop}>${this.props.profile.rate}/hr</StyledText>
+                <StyledText style={styles.statBot}>Rate</StyledText>
+              </View>
+              <View style={styles.statSeperator} />
+              <View style={styles.stat}>
+                <StyledText style={styles.statTop}>{isNaN(this.props.profile.rating) ? "N/A" : this.props.profile.rating + '/5'  }</StyledText>
+                <StyledText style={styles.statBot}>Rating</StyledText>
+              </View>
             </View>
           </View>
-          <View style={styles.stripeWrapper}>
-            <View style={styles.stripe}>
-              <StyledText style={styles.stripeText}>{this.props.profile.tempSample}</StyledText>
-            </View>
-            <View>
-              <LinearGradient colors={[leafGreenGradient, greendFadeGradient, greendFadeGradient]} style={styles.bio}>
-                <StyledText style={styles.messageBoxTitleText}>A Little About Me:</StyledText>
-                <StyledText style={styles.bioBodyText}>{this.props.profile.bio}</StyledText>
-              </LinearGradient>
-            </View>
-          </View>
-          <View>
-            <View style={styles.Line} />
-            <ButtonComponent style={styles.requestButton} text="Request Tutoring!" onPress={() => this.openRequestModal()} textStyle={styles.requestButtonText} />
-            <View style={styles.Line} />
-          </View>
-        </LinearGradient>
-        <Modal style={styles.modal} onClosed={() => this.onClose()} position={'center'} ref={(ref) => this.modal = ref} isDisabled={this.state.isDisabled}>
-          {this.renderRequest()}
-        </Modal>
+        </Image>
+        <View style={{ backgroundColor: offGrey }}>
+          <ButtonGroup
+            onPress={(selectedIndex) => this.updateIndex(selectedIndex)}
+            selectedIndex={selectedIndex}
+            buttons={buttons}
+            containerStyle={styles.buttonGroup}
+            selectedBackgroundColor={complement}
+            selectedTextStyle={styles.selectedButtonText}
+            textStyle={styles.unselectedButtonText}
+          />
+          <Collapsible collapsed={this.state.collapsedBio} align="center">
+            <List containerStyle={styles.collapsibleList}>
+              <ListItem key="bio" subtitle={this.props.profile.biography} hideChevron />
+            </List>
+          </Collapsible>
+          <ScrollView>
+            <Collapsible collapsed={!this.state.collapsedBio} align="center">
+              <List containerStyle={styles.collapsibleList}>
+                { this.props.courses_request_status.map((courseInfo, index) => ( <ListItem key={courseInfo.course} title={courseInfo.course} badge={{element: this.renderRequestButtons(courseInfo)}} hideChevron/>))}
+              </List>
+            </Collapsible>
+          </ScrollView>
+        </View>
       </View>
-
     );
+  }
+
+  render() {
+    if (this.props.profile)
+      return this.renderProfileView();
+    return this.renderNoProfileView();
   }
 }
 
-const leafGreenGradient = '#3CB371';
-const greendFadeGradient = '#4EC8A5';
-const stripeRGBBackground = 'rgba(0,0,0,0.65)';
+const complement = '#5ddeb4';
+const checkMarkColor = '#3CB371';
+const leafGreenGradient = '#45e99e';
 const white = '#fff';
 const offWhite = '#E0E0E0';
 const offGrey = '#FAFAFA';
 const grey = '#808080';
 const darkBlue = '#3B5998';
+const modalButtonColor = '#469fe9';
+
 const black = 'black';
 const transparent = 'transparent';
+const errorRed = '#ff0000';
+const errorIconColor = '#E6E6E6';
+const errorTextColor = '#ADADAD';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -160,53 +220,66 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  stripeWrapper: {
+  collapsibleList: { marginTop: 5 },
+  refreshView:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 40
+  },
+  buttonGroup:{
+    height: 30,
+    backgroundColor: white
+  },
+  statTop:{
+    fontWeight:'bold',
+    color: white,
+    fontSize:16
+  },
+  nameView:{ marginTop: 5 },
+  statBot:{
+    color: offWhite,
+    fontSize:12
+  },
+  statsCard: {
+    marginTop: 30,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
   },
-  bio: {
-    width: 325,
-    paddingTop:10,
-    paddingLeft:20,
-    paddingRight:20,
-    borderRadius:10,
-    paddingBottom:10
 
+  stat: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   waitCursor:{
     height: 60,
     transform: [{ scale: 1.5 }]
   },
-
+  errorContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column'
+  },
+  errorText: {
+    color: errorTextColor,
+    fontSize: 15,
+    textAlign: 'center'
+  },
   requestButtonText: {
     color: white,
-    fontSize: 20
+    fontSize: 16
   },
-  pendingRequest: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    left:     2,
-    top:      4
+  requestButtonTextRequested: {
+    color: complement,
+    fontSize: 16
   },
+  unselectedButtonText: { color: complement },
+  selectedButtonText: { color: white },
   modalView: {
     flexDirection: 'column',
     flex: 1,
-  },
-  stripe: {
-    backgroundColor: stripeRGBBackground,
-    width: 500,
-    borderRadius: 3,
-    marginBottom: 10,
-    marginTop: 10,
-    height: 27,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  bioBodyText: {
-    color: white,
-    fontSize:13
   },
   modal: {
     alignItems: 'center',
@@ -216,35 +289,31 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: offWhite
   },
-  messageBoxTitleText:{
-    fontWeight:'bold',
-    color: white,
-    textAlign:'left',
-    fontSize:16,
-    marginBottom:10
-  },
-  stripeText:{
-
-    color: white,
-    textAlign:'center',
-    fontSize:15
-  },
-  Line: {
-    marginTop: 10,
+  statSeperator: {
     marginLeft: 20,
     marginRight: 20,
-    height: 2,
-    backgroundColor: grey
+    height: 27,
+    opacity: 0.8,
+    borderWidth: 0.5,
+    borderColor: grey
   },
   name:{
     fontWeight:'bold',
+    color: white,
     fontSize:18
+  },
+  nameCaption:{
+    color: offGrey,
+    fontSize:14
   },
 
   ModalButton: {
     backgroundColor: darkBlue,
     color: white,
+    borderRadius: 25,
+    opacity: 50
   },
+  modalCheck: { textAlign: 'center' },
   modalText: {
     color: black,
     fontSize: 16,
@@ -252,22 +321,77 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     textAlign: 'center'
   },
-
-  photo: {
-    height: 100,
-    width: 100,
-    borderRadius: 20
+  requestSentModalText: {
+    color: black,
+    fontSize: 16,
+    marginTop: 7,
+    marginBottom: 17,
+    textAlign: 'center'
   },
-  requestButton: { marginTop: 10 }
+  backgroundImage: {
+    width: null,
+    height: 300
+  },
+  photo: {
+    marginTop: 10,
+    height: 105,
+    width: 105,
+    borderColor: transparent,
+    borderWidth: 1,
+    borderRadius: 50
+  },
+  requestButton: {
+    backgroundColor: transparent,
+    width: 200,
+    borderColor: white,
+    borderWidth: 2,
+    marginTop: 15
+  },
+  requestButtonRequested: {
+    backgroundColor: transparent,
+    width: 200,
+    borderColor: complement,
+    borderWidth: 2,
+    marginTop: 15
+  },
+  requestCourseButton: {
+    backgroundColor: transparent,
+    width: 100,
+    height: 35,
+    borderColor: complement,
+    borderWidth: 2
+  },
+  requestCourseButtonText: {
+    color: complement,
+    fontSize: 12
+  },
+  requestCourseButtonRequested: {
+    backgroundColor: complement,
+    width: 100,
+    height: 35,
+    borderColor: white,
+    borderWidth: 2
+  },
+  requestCourseButtonTextRequested: {
+    color: white,
+    fontSize: 12
+  }
+
 });
 
 const mapStateToProps = (state) => {
   return {
+    user_id: state.profile.current_user.id,
     profile: state.profile.profile,
-    isLoading: state.profile.isLoading
+    isLoading: state.profile.isLoading,
+    requestSent: state.profile.requestSent,
+    requesting: state.profile.requesting,
+    error: state.profile.error,
+    requestError: state.profile.requestError,
+    courses_request_status: state.profile.courses_request_status
   };
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ retriveProfile }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ fetchProfile, requestTutor, resetRequestCycle, cancelRequest }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(TutorProfileComponent);

@@ -248,16 +248,16 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "color": "#FFC321",
+                                  "color": "gray",
                                   "fontFamily": "FontAwesome",
                                   "fontSize": 20,
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
-                            
+                            
                           </Text>
                         </View>
                         <View
@@ -288,16 +288,16 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "color": "#FFC321",
+                                  "color": "gray",
                                   "fontFamily": "FontAwesome",
                                   "fontSize": 20,
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
-                            
+                            
                           </Text>
                         </View>
                         <View
@@ -328,16 +328,16 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "color": "#FFC321",
+                                  "color": "gray",
                                   "fontFamily": "FontAwesome",
                                   "fontSize": 20,
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
-                            
+                            
                           </Text>
                         </View>
                         <View
@@ -368,16 +368,16 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "color": "#FFC321",
+                                  "color": "gray",
                                   "fontFamily": "FontAwesome",
                                   "fontSize": 20,
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
-                            
+                            
                           </Text>
                         </View>
                         <View
@@ -408,16 +408,16 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "color": "#FFC321",
+                                  "color": "gray",
                                   "fontFamily": "FontAwesome",
                                   "fontSize": 20,
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
-                            
+                            
                           </Text>
                         </View>
                       </View>
@@ -439,6 +439,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
+                                  "backgroundColor": "transparent",
                                   "fontFamily": "HelveticaNeue-Thin",
                                 },
                                 undefined,
@@ -455,6 +456,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
+                                  "backgroundColor": "transparent",
                                   "fontFamily": "HelveticaNeue-Thin",
                                 },
                                 Object {
@@ -481,13 +483,14 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                         style={
                           Array [
                             Object {
+                              "backgroundColor": "transparent",
                               "fontFamily": "HelveticaNeue-Thin",
                             },
                             undefined,
                           ]
                         }>
                          
-                        TEST1
+                        undefined
                          
                       </Text>
                     </View>
@@ -677,93 +680,13 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "color": "#FFC321",
-                                  "fontFamily": "FontAwesome",
-                                  "fontSize": 20,
-                                  "fontStyle": "normal",
-                                  "fontWeight": "normal",
-                                },
-                                undefined,
-                              ]
-                            }>
-                            
-                          </Text>
-                        </View>
-                        <View
-                          accessibilityComponentType="button"
-                          accessibilityLabel={undefined}
-                          accessibilityTraits="button"
-                          accessible={true}
-                          hitSlop={undefined}
-                          isTVSelectable={true}
-                          onLayout={undefined}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
-                          onResponderTerminationRequest={[Function]}
-                          onStartShouldSetResponder={[Function]}
-                          style={
-                            Object {
-                              "opacity": 1,
-                            }
-                          }
-                          testID={undefined}
-                          tvParallaxProperties={undefined}>
-                          <Text
-                            accessible={true}
-                            allowFontScaling={false}
-                            ellipsizeMode="tail"
-                            style={
-                              Array [
-                                Object {
-                                  "color": "#FFC321",
-                                  "fontFamily": "FontAwesome",
-                                  "fontSize": 20,
-                                  "fontStyle": "normal",
-                                  "fontWeight": "normal",
-                                },
-                                undefined,
-                              ]
-                            }>
-                            
-                          </Text>
-                        </View>
-                        <View
-                          accessibilityComponentType="button"
-                          accessibilityLabel={undefined}
-                          accessibilityTraits="button"
-                          accessible={true}
-                          hitSlop={undefined}
-                          isTVSelectable={true}
-                          onLayout={undefined}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
-                          onResponderTerminationRequest={[Function]}
-                          onStartShouldSetResponder={[Function]}
-                          style={
-                            Object {
-                              "opacity": 1,
-                            }
-                          }
-                          testID={undefined}
-                          tvParallaxProperties={undefined}>
-                          <Text
-                            accessible={true}
-                            allowFontScaling={false}
-                            ellipsizeMode="tail"
-                            style={
-                              Array [
-                                Object {
                                   "color": "gray",
                                   "fontFamily": "FontAwesome",
                                   "fontSize": 20,
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
                             
@@ -803,7 +726,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
                               ]
                             }>
                             
@@ -843,7 +766,87 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                                   "fontStyle": "normal",
                                   "fontWeight": "normal",
                                 },
-                                undefined,
+                                Object {},
+                              ]
+                            }>
+                            
+                          </Text>
+                        </View>
+                        <View
+                          accessibilityComponentType="button"
+                          accessibilityLabel={undefined}
+                          accessibilityTraits="button"
+                          accessible={true}
+                          hitSlop={undefined}
+                          isTVSelectable={true}
+                          onLayout={undefined}
+                          onResponderGrant={[Function]}
+                          onResponderMove={[Function]}
+                          onResponderRelease={[Function]}
+                          onResponderTerminate={[Function]}
+                          onResponderTerminationRequest={[Function]}
+                          onStartShouldSetResponder={[Function]}
+                          style={
+                            Object {
+                              "opacity": 1,
+                            }
+                          }
+                          testID={undefined}
+                          tvParallaxProperties={undefined}>
+                          <Text
+                            accessible={true}
+                            allowFontScaling={false}
+                            ellipsizeMode="tail"
+                            style={
+                              Array [
+                                Object {
+                                  "color": "gray",
+                                  "fontFamily": "FontAwesome",
+                                  "fontSize": 20,
+                                  "fontStyle": "normal",
+                                  "fontWeight": "normal",
+                                },
+                                Object {},
+                              ]
+                            }>
+                            
+                          </Text>
+                        </View>
+                        <View
+                          accessibilityComponentType="button"
+                          accessibilityLabel={undefined}
+                          accessibilityTraits="button"
+                          accessible={true}
+                          hitSlop={undefined}
+                          isTVSelectable={true}
+                          onLayout={undefined}
+                          onResponderGrant={[Function]}
+                          onResponderMove={[Function]}
+                          onResponderRelease={[Function]}
+                          onResponderTerminate={[Function]}
+                          onResponderTerminationRequest={[Function]}
+                          onStartShouldSetResponder={[Function]}
+                          style={
+                            Object {
+                              "opacity": 1,
+                            }
+                          }
+                          testID={undefined}
+                          tvParallaxProperties={undefined}>
+                          <Text
+                            accessible={true}
+                            allowFontScaling={false}
+                            ellipsizeMode="tail"
+                            style={
+                              Array [
+                                Object {
+                                  "color": "gray",
+                                  "fontFamily": "FontAwesome",
+                                  "fontSize": 20,
+                                  "fontStyle": "normal",
+                                  "fontWeight": "normal",
+                                },
+                                Object {},
                               ]
                             }>
                             
@@ -868,6 +871,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
+                                  "backgroundColor": "transparent",
                                   "fontFamily": "HelveticaNeue-Thin",
                                 },
                                 undefined,
@@ -884,6 +888,7 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                             style={
                               Array [
                                 Object {
+                                  "backgroundColor": "transparent",
                                   "fontFamily": "HelveticaNeue-Thin",
                                 },
                                 Object {
@@ -910,13 +915,14 @@ exports[`<TutorsComponent /> should render tutors in rows 1`] = `
                         style={
                           Array [
                             Object {
+                              "backgroundColor": "transparent",
                               "fontFamily": "HelveticaNeue-Thin",
                             },
                             undefined,
                           ]
                         }>
                          
-                        TEST2
+                        undefined
                          
                       </Text>
                     </View>

@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { verifyCode } from '../actions/signup';
+import { verifyCode, setProgressBar } from '../actions/signup';
 import StyledText from './StyledText';
 
 const CODE_LENGTH = 4;
@@ -14,9 +14,13 @@ class PhoneVerificationInput extends Component {
     this.state = { isCodeValid: false };
   }
 
+  componentWillMount() {
+    this.props.setProgressBar(0.5);
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.verified)
-      Actions.muraad({ type: 'reset' }); // reset so user can't go back
+      Actions.becomeATutor();
   }
 
   verify(code) {
@@ -53,11 +57,13 @@ class PhoneVerificationInput extends Component {
 }
 
 const failureTextColor = 'red';
-const inputBorderColor = 'gray';
+const white = '#FFF';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    marginTop: 60
   },
   headerContainer: {
     alignSelf: 'center',
@@ -66,6 +72,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 20,
     textAlign: 'center',
+    color: white
   },
   input: {
     alignSelf: 'center',
@@ -74,8 +81,9 @@ const styles = StyleSheet.create({
     fontSize: 85,
     padding: 5,
     textAlign: 'center',
-    borderColor: inputBorderColor,
-    borderWidth: 1
+    borderColor: white,
+    borderWidth: 1,
+    color: white
   },
   textContainer: {
     marginTop: 15,
@@ -96,6 +104,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ verifyCode }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ verifyCode, setProgressBar }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(PhoneVerificationInput);
