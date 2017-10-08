@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
 import { SideMenu, List, ListItem } from 'react-native-elements';
+import { Actions } from 'react-native-router-flux';
 import Homeview from './Homeview';
 
 
@@ -28,8 +29,14 @@ export default class LeilaFeatureView extends Component {
         <View style={style.middleView}>
           <List>
             <ListItem
-              title={I18n.t('sideMenu.profile')}
+              onPress={() => Actions.tutorinfo({ id: this.props.user_data.id, demoProfile: true})}
+              title="View Profile"
               rightIcon={{ name: 'person-pin' }}
+            />
+            <ListItem
+              onPress={() => Actions.profileupdate({id: this.props.user_data.id})}
+              title="Edit Profile"
+              rightIcon={{ name: 'brush' }}
             />
             <ListItem
               title={I18n.t('sideMenu.help')}

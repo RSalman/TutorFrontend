@@ -18,6 +18,7 @@ import BecomeATutorComponent from './components/BecomeATutorComponent';
 import LoginComponent from './components/LoginComponent';
 import TempPushNotification from './components/TempPushNotification';
 import TutorFormComponent from './components/TutorFormComponent';
+import ProfileUpdateComponent from './components/ProfileUpdateComponent';
 import SideMenuComponent from './components/SideMenuComponent';
 import Homeview from './components/Homeview';
 
@@ -41,6 +42,7 @@ export default class TutoringApp extends Component {
               <Scene key="student_home_screen" component={TutorsComponent} title="TutorsComponent" />
               <Scene key="tempPushNotification" component={TempPushNotification} title="TempPushNotification" />
               <Scene key="tutorinfo" component={TutorProfileComponent} title="TutorProfileComponent" />
+              <Scene key="profileupdate" component={ProfileUpdateComponent} title="ProfileUpdateComponent" />
               <Scene key="tutor_home_screen" component={Homeview} title="Homeview" />
             </Scene>
           </Scene>
