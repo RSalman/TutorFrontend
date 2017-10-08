@@ -4,8 +4,8 @@ import { ListItem, Icon } from 'react-native-elements';
 import Communications from 'react-native-communications';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { updateAcceptedRequests } from '../actions/profile';
 import StarRating from 'react-native-star-rating';
+import { updateAcceptedRequests } from '../actions/profile';
 import TopNavBar from './TopNavBar';
 
 class AcceptedRequests extends Component {
@@ -34,14 +34,14 @@ class AcceptedRequests extends Component {
         subtitle={u.course_prefix + u.course_code}
         label={
           <View>
-             <StarRating
-                maxStars={5}
-                rating={this.props.tutorMode ? (u.agg_user_rating / u.num_user_rating) : (u.agg_tutor_rating / u.num_tutor_rating)}
-                starSize={10}
-                starColor={'gold'}
-                selectedStar={function() {}}
-                disabled
-              />
+            <StarRating
+              maxStars={5}
+              rating={this.props.tutorMode ? (u.agg_user_rating / u.num_user_rating) : (u.agg_tutor_rating / u.num_tutor_rating)}
+              starSize={10}
+              starColor={'gold'}
+              selectedStar={function() {}}
+              disabled
+            />
             {
               // Only show button when user is in tutor mode
               this.props.tutorMode &&
@@ -81,29 +81,16 @@ const style = StyleSheet.create({
     backgroundColor: white,
     flex: 1
   },
-  list: {
-    marginTop: 0,
-    borderTopWidth: 0,
-    borderBottomWidth: 0,
-    borderBottomColor: white,
-  },
   listItem: {
     marginRight: 20,
     marginLeft: 20,
     marginBottom:0
   },
   icon: { width: 50 },
-  iconsView: { flexDirection: 'row' },
-  text: {
-    marginTop:10,
-    marginLeft: 25,
-    color: blue,
-    fontSize: 16
-  }
 });
 
 const mapStateToProps = (state) => {
-  return { 
+  return {
     user_id: state.profile.current_user.id,
     acceptedRequests: state.profile.acceptedRequests,
     tutorMode: state.profile.tutorMode,

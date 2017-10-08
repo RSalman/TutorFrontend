@@ -36,34 +36,34 @@ class PendingRequests extends Component {
         subtitle={u.course_prefix + u.course_code}
         label={
           <View>
-                <StarRating
-                  maxStars={5}
-                  rating={this.props.tutorMode ? (u.agg_user_rating / u.num_user_rating) : (u.agg_tutor_rating / u.num_tutor_rating)}
-                  starSize={10}
-                  starColor={'gold'}
-                  selectedStar={function() {}}
-                  disabled
-                />
+            <StarRating
+              maxStars={5}
+              rating={this.props.tutorMode ? (u.agg_user_rating / u.num_user_rating) : (u.agg_tutor_rating / u.num_tutor_rating)}
+              starSize={10}
+              starColor={'gold'}
+              selectedStar={function() {}}
+              disabled
+            />
             {
               // Only show button when user is in tutor mode
               this.props.tutorMode &&
-                 <Icon
-                  name="reply"
-                  color="#42bcf4"
-                  size={30}
-                  containerStyle={style.icon}
-                  onPress={()=>{
-                    Alert.alert(
+              <Icon
+                name="reply"
+                color="#42bcf4"
+                size={30}
+                containerStyle={style.icon}
+                onPress={()=>{
+                  Alert.alert(
                       'Pending Request',
                       'Do you want to tutor ' + u.first_name + ' ' + u.last_name + '?',
-                      [
+                    [
                         { text: 'Yes', onPress: () => { this.props.acceptPendingRequest(u.id, u.user_id); } },
                         { text: 'No' }
-                      ],
+                    ],
                       { cancelable: false }
                     );
-                  }}
-                />
+                }}
+              />
             }
           </View>
         }
@@ -89,6 +89,7 @@ class PendingRequests extends Component {
 const white = 'white';
 const blue = '#8080ff';
 const black = 'black';
+const green = 'green';
 const style = StyleSheet.create({
   container: {
     flex: 1,
@@ -97,7 +98,7 @@ const style = StyleSheet.create({
   text: {
     textAlign: 'center',
     marginTop:10,
-    color: 'green',
+    color: green,
     fontSize: 16
   },
   listItem: {
@@ -109,7 +110,7 @@ const style = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  return { 
+  return {
     user_id: state.profile.current_user.id,
     pendingRequests: state.profile.pendingRequests,
     tutorMode: state.profile.tutorMode,

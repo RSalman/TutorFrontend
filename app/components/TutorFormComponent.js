@@ -26,14 +26,8 @@ class TutorFormComponent extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    /*
-    if (nextProps.successfulSubmission && nextProps.isTutor)
-      Actions.leila({ type: 'reset' });
-    else (nextProps.successfulSubmission && !nextProps.isTutor)
-      Actions.tutors({ type: 'reset' });
-    */
     if (nextProps.successfulSubmission)
-      Actions.leila({ type: 'reset', user_data: nextProps.user_data });
+      Actions.tutor_home_screen({ type: 'reset', user_data: nextProps.user_data });
   }
 
   uploadProfilePicture() {

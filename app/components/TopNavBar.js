@@ -5,11 +5,6 @@ import StyledText from './StyledText';
 
 const TopNavBar = ({ toggled, tabName }) => (
   <View style={style.container}>
-    <Button
-      buttonStyle={style.buttonStyled}
-      icon={{ name: 'menu', color: 'black' }}
-      onPress={toggled}
-    />
     <StyledText style={style.tabName}>{tabName}</StyledText>
   </View>
 );
@@ -21,13 +16,9 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: transparent,
   },
-
-  buttonStyled: { backgroundColor: transparent, },
   tabName:{
     backgroundColor: transparent,
     textAlign: 'center',
-    marginLeft: 30,
-    alignSelf: 'center',
     fontSize: 20,
   }
 });

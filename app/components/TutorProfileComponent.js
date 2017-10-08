@@ -20,7 +20,7 @@ class TutorProfileComponent extends Component {
 
   constructor(props) {
     super(props);
-
+    
     if(this.props.id == this.props.user_id) //Extra check in case demoProfile is not passed
       this.props.demoProfile = true;
 

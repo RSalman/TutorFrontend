@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, Platform, View, ListView, StyleSheet } from 'react-native';
+import { ActivityIndicator, Platform, View, ListView, StyleSheet, Image, Dimensions } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
@@ -68,22 +68,27 @@ class TutorsComponent extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <SearchBar
-          round
-          lightTheme
-          containerStyle={styles.searchBarContainerStyle}
-          inputStyle={styles.searchBarText}
-          onChangeText={(text) => this.onSearchBarTextEntered(text)}
-          placeholder={I18n.t('tutors.searchPlaceholder')}
-        />
-        { this.props.error ? this.renderErrorView() : this.renderListView() }
-      </View>
+      <Image source={background} style={styles.background} resizeMode="cover">
+        <View style={styles.container}>
+          <SearchBar
+            round
+            lightTheme
+            containerStyle={styles.searchBarContainerStyle}
+            inputStyle={styles.searchBarText}
+            onChangeText={(text) => this.onSearchBarTextEntered(text)}
+            placeholder={I18n.t('tutors.searchPlaceholder')}
+          />
+          { this.props.error ? this.renderErrorView() : this.renderListView() }
+        </View>
+      </Image>
     );
   }
 }
 
 const searchBarBackgroundColor = 'transparent';
+const background = require('./img/white_background.png');
+
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -97,7 +102,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10
   },
   searchBarText: { paddingVertical: 0 },
-  searchBarContainerStyle: { backgroundColor: searchBarBackgroundColor }
+  searchBarContainerStyle: { backgroundColor: searchBarBackgroundColor },
+  background: {
+    width,
+    height,
+  }
 });
 
 const mapStateToProps = (state) => {
