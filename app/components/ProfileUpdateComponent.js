@@ -203,7 +203,7 @@ class ProfileUpdateComponent extends Component {
         <View style={styles.container}>
           <View style={styles.wrapper}>
             <View style={styles.card} >
-              <Text style={styles.titleCard}>Edit Your Profile!</Text>
+              <Text style={styles.titleCard}>{this.props.becomeTutor? "Become a Tutor!": "Edit Your Profile!"}</Text>
               { this.renderMessageView() }
               <View style={styles.navButtons}>
                 <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ viewTutorForm: !this.state.viewTutorForm})} >

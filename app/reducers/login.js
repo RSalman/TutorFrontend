@@ -1,4 +1,4 @@
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR, UPDATE_EMAIL, UPDATE_PASSWORD } from '../actions/login';
+import { LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR, UPDATE_EMAIL, UPDATE_PASSWORD, SIGN_OUT } from '../actions/login';
 
 var initialState = {
   email: '',
@@ -6,7 +6,6 @@ var initialState = {
   successful_authentication: false,
   error: '',
   isLoading: false,
-  isTutor: false,
   user_data: null
 };
 
@@ -19,9 +18,11 @@ function login(state = initialState, action) {
     case LOGIN_START:
       return { ...state, error: '', isLoading: true };
     case LOGIN_SUCCESS:
-      return { successful_authentication: true, isLoading: false, isTutor: action.isTutor, user_data: action.user_data };
+      return { successful_authentication: true, isLoading: false, user_data: action.user_data };
     case LOGIN_ERROR:
       return { ...state, error: action.error, isLoading: false };
+    case SIGN_OUT: 
+      return initialState;
     default:
       return state;
   }

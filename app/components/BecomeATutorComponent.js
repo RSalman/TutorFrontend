@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import StyledText from './StyledText';
 import { submitForm, setProgressBar } from '../actions/signup';
+import { setStudentMode } from '../actions/session';
 import ErrorView from './ErrorView';
 
 class BecomeATutorComponent extends Component {
@@ -18,8 +19,10 @@ class BecomeATutorComponent extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.successfulSubmission)
-      Actions.student_home_screen({ type: 'reset' });
+    if (nextProps.successfulSubmission) {
+      this.props.setStudentMode();
+      Actions.side_menu({ type: 'reset' });
+    }
   }
 
   navigateToTutorForm() {
@@ -103,6 +106,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ submitForm, setProgressBar }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ submitForm, setProgressBar, setStudentMode }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(BecomeATutorComponent);

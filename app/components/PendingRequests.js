@@ -113,7 +113,7 @@ const mapStateToProps = (state) => {
   return {
     user_id: state.profile.current_user.id,
     pendingRequests: state.profile.pendingRequests,
-    tutorMode: state.profile.tutorMode,
+    tutorMode: state.session.tutorMode,
   };
 };
 

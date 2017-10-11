@@ -9,6 +9,7 @@ import ImagePicker from 'react-native-image-picker';
 import StyledText from './StyledText';
 import { submitForm, setProgressBar } from '../actions/signup';
 import ErrorView from './ErrorView';
+import { setTutorMode } from '../actions/session';
 
 class TutorFormComponent extends Component {
   constructor(props) {
@@ -27,8 +28,10 @@ class TutorFormComponent extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.successfulSubmission)
-      Actions.tutor_home_screen({ type: 'reset', user_data: nextProps.user_data });
+    if (nextProps.successfulSubmission) {
+      this.props.setTutorMode();
+      Actions.side_menu({ type: 'reset', user_data: nextProps.user_data });
+  }
   }
 
   uploadProfilePicture() {
@@ -303,6 +306,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ submitForm, setProgressBar }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ submitForm, setProgressBar, setTutorMode }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(TutorFormComponent);

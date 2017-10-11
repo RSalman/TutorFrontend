@@ -33,7 +33,6 @@ export default class TutoringApp extends Component {
             <Scene key="login" component={LoginComponent} title="LoginComponent" />
             <Scene key="signup" component={SignupComponent} title="SignupComponent">
               <Scene key="userForm" component={UserSignupFormComponent} title="UserForm" />
-              <Scene key="phoneVerification" component={PhoneVerificationInput} title="PhoneVerificationInput" />
               <Scene key="becomeATutor" component={BecomeATutorComponent} title="BecomeATutor" />
               <Scene key="tutorForm" component={TutorFormComponent} title="TutorForm" />
             </Scene>
