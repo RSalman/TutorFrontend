@@ -16,19 +16,17 @@ class TutorProfileComponent extends Component {
 
   constructor(props) {
     super(props);
-    
-    if(this.props.id == this.props.user_id) //Extra check in case demoProfile is not passed
-      this.props.demoProfile = true;
 
     this.state = {
       selectedIndex: 0,
       collapsedBio: false,
       collapsedCourseList: true,
+      demoProfile: this.props.id == this.props.user_id //Extra check in case demoProfile is not passed
     };
   }
 
   componentWillMount() {
-    this.props.fetchProfile(this.props.id, this.props.user_id, this.props.demoProfile);
+    this.props.fetchProfile(this.props.id, this.props.user_id, this.state.demoProfile);
   }
 
   updateIndex(selectedIndex) {
@@ -50,15 +48,15 @@ class TutorProfileComponent extends Component {
         <Icon name="exclamation-triangle" size={30} color={errorIconColor} />
         <StyledText style={styles.errorText}>{ this.props.error }</StyledText>
         <View style={styles.refreshView} >
-          <Icon name="refresh" size={40} color={errorIconColor} onPress={() => this.props.fetchProfile(this.props.id, this.props.demoProfile)} />
-          <Text style={styles.errorText} onPress={() => this.props.fetchProfile(this.props.id, this.props.demoProfile)}>Refresh</Text>
+          <Icon name="refresh" size={40} color={errorIconColor} onPress={() => this.props.fetchProfile(this.props.id, this.state.demoProfile)} />
+          <Text style={styles.errorText} onPress={() => this.props.fetchProfile(this.props.id, this.state.demoProfile)}>Refresh</Text>
         </View>
       </View>
     );
   }
 
   renderRequestButtons(courseInfo) {
-    if(this.props.demoProfile)
+    if(this.state.demoProfile)
       return(<View/>);
     
     return (
@@ -74,7 +72,7 @@ class TutorProfileComponent extends Component {
   }
 
   renderRequestStatus() {
-    if(this.props.demoProfile){
+    if(this.state.demoProfile){
       return (
         <Button
           small
@@ -149,13 +147,13 @@ class TutorProfileComponent extends Component {
               </View>
               <View style={styles.statSeperator} />
               <View style={styles.stat}>
-                <StyledText style={styles.statTop}>{isNaN(this.props.profile.rating) ? "N/A" : this.props.profile.rating + '/5'  }</StyledText>
+                <StyledText style={styles.statTop}>{isNaN(this.props.profile.rating) || this.props.profile.rating == null ? "N/A" : this.props.profile.rating + '/5'  }</StyledText>
                 <StyledText style={styles.statBot}>Rating</StyledText>
               </View>
             </View>
           </View>
         </Image>
-        <View style={{ backgroundColor: offGrey }}>
+        <View style={{ backgroundColor: offGrey, flex: 1 }}>
           <ButtonGroup
             onPress={(selectedIndex) => this.updateIndex(selectedIndex)}
             selectedIndex={selectedIndex}
@@ -377,7 +375,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    user_id: state.profile.current_user.id,
+    user_id: state.session.userData.id,
     profile: state.profile.profile,
     isLoading: state.profile.isLoading,
     requestSent: state.profile.requestSent,

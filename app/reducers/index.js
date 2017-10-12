@@ -7,7 +7,7 @@ import login from './login';
 import profileupdate from './profileupdate';
 import session from './session';
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   tutors: tutors,
   profile: profile,
   signup: signup,
@@ -16,5 +16,13 @@ const rootReducer = combineReducers({
   rating: rating,
   session: session
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === 'SIGN_OUT') {
+    state = undefined
+  }
+
+  return appReducer(state, action)
+}
 
 export default rootReducer;
