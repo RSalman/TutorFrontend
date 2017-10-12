@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
 import { SideMenu, List, ListItem } from 'react-native-elements';
 import { DefaultRenderer, Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { toggleSessionMode } from '../actions/session';
+import { signOut } from '../actions/login';
 
-export default class SideMenuComponent extends Component {
+class SideMenuComponent extends Component {
   constructor(props) {
     super(props);
     this.state = { isOpen: false };
@@ -14,6 +18,57 @@ export default class SideMenuComponent extends Component {
     this.setState({ isOpen: true });
   }
 
+  toggleSessionMode() {
+    this.props.toggleSessionMode();
+    Actions.home({ type: 'reset'});
+  }
+
+  signOut() {
+    this.props.signOut();
+    Actions.login({ type: 'reset' });
+  }
+
+  _renderTutorOptions() {
+    var switchText = "Switch to Tutor Mode";
+    if (this.props.tutorMode)
+      switchText = "Switch to Student Mode";
+
+    if (this.props.isTutor) {
+      return (
+        <View>
+        { !this.props.tutorMode ? 
+          <ListItem
+              onPress={() => Actions.student_home_screen()}
+              title="Search for Tutors"
+              leftIcon={{ name: 'account-search', type: 'material-community'}}
+            />
+          : null }
+         <ListItem
+              onPress={() => Actions.tutorinfo({ id: this.props.userData.id, demoProfile: true})}
+              title="View Profile"
+              leftIcon={{ name: 'account', type: 'material-community'}}
+            />
+            <ListItem
+              onPress={() => Actions.profileupdate({id: this.props.userData.id})}
+              title="Edit Profile"
+              leftIcon={{ name: 'edit' }}
+            />
+        <ListItem title= {switchText} 
+          leftIcon={{ name: 'account-switch', type: 'material-community' }} 
+          onPress={() => this.toggleSessionMode()} />
+          </View>
+      );
+    } else {
+      return (
+      <ListItem title="Become a Tutor"  
+        leftIcon={{ name: 'account-multiple-plus', type: 'material-community' }} 
+        onPress={() => Actions.profileupdate({id: this.props.userData.id, becomeTutor: true})}
+
+        />
+      );
+    }
+  }
+
   render() {
   	const children = this.props.navigationState.children;
     const state = children[children.length - 1];
@@ -22,43 +77,27 @@ export default class SideMenuComponent extends Component {
         <View style={style.topView}>
           <Image
             style={style.image}
-            source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }}
+            source={ { uri: this.props.userData.image? this.props.userData.image : 'https://facebook.github.io/react/img/logo_og.png' }}
           />
-          <Text>Jane Doe</Text>
+          <Text>{this.props.userData.first_name} {this.props.userData.last_name}</Text>
         </View>
         <View style={style.middleView}>
           <List>
-          <ListItem
-              onPress={() => Actions.tutorinfo({ id: this.props.user_data.id, demoProfile: true})}
-              title="View Profile"
-              rightIcon={{ name: 'person-pin' }}
-            />
-            <ListItem
-              onPress={() => Actions.profileupdate({id: this.props.user_data.id})}
-              title="Edit Profile"
-              rightIcon={{ name: 'brush' }}
-            />
-            <ListItem
-              title={I18n.t('sideMenu.profile')}
-              rightIcon={{ name: 'person-pin' }}
-            />
-            <ListItem
-              title={I18n.t('sideMenu.help')}
-              rightIcon={{ name: 'live-help' }}
-            />
             <ListItem
               title="Your Requests"
-              rightIcon={{ name: 'live-help' }}
+              leftIcon={{ name: 'ios-notifications', type: 'ionicon'}}
               onPress={() => Actions.tutor_home_screen()}
             />
+            { this._renderTutorOptions() }
             <ListItem
               title={I18n.t('sideMenu.signOut')}
-              onPress={() => Actions.login({ type: 'reset' })}
+              leftIcon={{ name: 'logout', type: 'simple-line-icon' }}
+              onPress={() => this.signOut()}
             />
           </List>
         </View>
         <View style={style.bottomView}>
-          <Text>{I18n.t('sideMenu.termsConditions')}</Text>
+          <Text></Text>
         </View>
       </View>
     );
@@ -90,3 +129,15 @@ const style = StyleSheet.create({
   bottomView: { flex: 1 },
   image: { width: 50, height: 50, borderRadius: 20 }
 });
+
+const mapStateToProps = (state) => {
+  return {
+    tutorMode: state.session.tutorMode,
+    isTutor: state.session.isTutor,
+    userData: state.session.userData
+  };
+};
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({ toggleSessionMode, signOut }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SideMenuComponent);

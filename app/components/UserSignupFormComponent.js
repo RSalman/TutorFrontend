@@ -20,7 +20,7 @@ class UserSignupFormComponent extends Component {
   onPress() {
     var value = this.signup_form.getValue();
     if (value) {/* if validation fails, value will be null */
-      Actions.phoneVerification();
+      Actions.becomeATutor();
     }
   }
 

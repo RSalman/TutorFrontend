@@ -24,9 +24,8 @@ export function updateProfile(profileData, user_id) {
     dispatch({type: "UPDATING_PROFILE"});
     axios.patch('/users/' + user_id , profileData)
       .then(function(response) {
-        if (response.status === 200){
-          dispatch({type: "UPDATING_PROFILE_SUCCESS"});
-        }
+        if (response.status === 200)
+          dispatch({type: "UPDATING_PROFILE_SUCCESS", userData: profileData});
       }).catch(function(error) {
         dispatch({type: "UPDATING_PROFILE_ERROR"});  //TODO(SALMAN PASS THE ERROR MESSAGE)
       });

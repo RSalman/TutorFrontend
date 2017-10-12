@@ -5,6 +5,7 @@ import profile from './profile';
 import rating from './rating';
 import login from './login';
 import profileupdate from './profileupdate';
+import session from './session';
 
 const rootReducer = combineReducers({
   tutors: tutors,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   login: login,
   profileupdate: profileupdate,
   rating: rating,
+  session: session
 });
 
 export default rootReducer;

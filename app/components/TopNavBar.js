@@ -20,6 +20,7 @@ const style = StyleSheet.create({
     backgroundColor: transparent,
     textAlign: 'center',
     fontSize: 20,
+    flex: 1
   }
 });
 export default TopNavBar;

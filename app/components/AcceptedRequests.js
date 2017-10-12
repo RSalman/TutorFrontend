@@ -204,8 +204,8 @@ const mapStateToProps = (state) => {
   return {
     user_id: state.profile.current_user.id,
     acceptedRequests: state.profile.acceptedRequests,
-    tutorMode: state.profile.tutorMode,
-    currentlyRating: state.rating.currentlyRating,
+    tutorMode: state.session.tutorMode,
+    currentlyRating: state.rating.currentlyRating
   };
 };
 

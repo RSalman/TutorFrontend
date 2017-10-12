@@ -132,7 +132,7 @@ export function updatePendingRequests(id) {
   return (dispatch, getState) => {
     var params;
     var url;
-    var tutorMode = getState().profile.tutorMode;
+    var tutorMode = getState().session.tutorMode;
     if (tutorMode) {
       params = { tutor_id: id };
       url = '/pending_tutor_requests';
