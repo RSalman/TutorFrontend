@@ -19,7 +19,11 @@ const appReducer = combineReducers({
 
 const rootReducer = (state, action) => {
   if (action.type === 'SIGN_OUT') {
-    state = undefined
+    state = undefined;
+    /* TEMP DIRTY SOLUTION */
+    for (var i =0;i<1000;i++) {
+      window.clearInterval(i);
+    }
   }
 
   return appReducer(state, action)

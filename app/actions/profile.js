@@ -165,7 +165,7 @@ export function updateAcceptedRequests(id) {
   return (dispatch, getState) => {
     var params;
     var url;
-    var tutorMode = getState().profile.tutorMode;
+    var tutorMode = getState().session.tutorMode;
     if (tutorMode) {
       params = { tutor_id: id };
       url = '/accepted_tutor_requests';
