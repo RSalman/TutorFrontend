@@ -128,6 +128,18 @@ export function cancelRequest(tutorID, studentID, subjectID) {
   };
 }
 
+export function cancelTutorRequest(requestID) {
+  return dispatch => {
+    axios.post('/cancel_tutor_request', { request_id: requestID })
+      .then(function(response) {
+        dispatch(updatePendingRequests(getState().session.userData.id));
+      })
+      .catch(function(error) {
+        //What kind of error?
+      });
+  };
+}
+
 export function updatePendingRequests(id) {
   return (dispatch, getState) => {
     var params;

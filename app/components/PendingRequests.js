@@ -4,7 +4,7 @@ import { ListItem, Icon } from 'react-native-elements';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import StarRating from 'react-native-star-rating';
-import { updatePendingRequests, acceptPendingRequest } from '../actions/profile';
+import { updatePendingRequests, acceptPendingRequest, cancelTutorRequest } from '../actions/profile';
 import StyledText from './StyledText';
 
 import TopNavBar from './TopNavBar';
@@ -58,6 +58,27 @@ class PendingRequests extends Component {
                       'Do you want to tutor ' + u.first_name + ' ' + u.last_name + '?',
                     [
                         { text: 'Yes', onPress: () => { this.props.acceptPendingRequest(u.id, u.user_id); } },
+                        { text: 'No', onPress: () => { this.props.cancelTutorRequest(u.id);  }}
+                    ],
+                      { cancelable: false }
+                    );
+                }}
+              />
+            }
+            {
+              // allow user to cancel request send to tutor
+              !this.props.tutorMode &&
+              <Icon
+                name="cancel"
+                color="#42bcf4"
+                size={30}
+                containerStyle={style.icon}
+                onPress={()=>{
+                  Alert.alert(
+                      'Cancel Request',
+                      'Do you want to cancel request sent to ' + u.first_name + ' ' + u.last_name + '?',
+                    [
+                        { text: 'Yes', onPress: () => { this.props.cancelTutorRequest(u.id); } },
                         { text: 'No' }
                     ],
                       { cancelable: false }
@@ -117,6 +138,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ updatePendingRequests, acceptPendingRequest }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ updatePendingRequests, acceptPendingRequest, cancelTutorRequest }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(PendingRequests);
