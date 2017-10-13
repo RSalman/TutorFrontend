@@ -127,7 +127,7 @@ class TutorProfileComponent extends Component {
       <View style={styles.wrapper}>
         <Image source={require('./img/profileCardBackground.jpg')} style={styles.backgroundImage}>
           <View style={styles.profileCard}>
-            <Image source={ this.props.profile.image ? {uri: this.props.profile.image} :  require('./img/profile-sample.png')} style={styles.photo} />
+            <Image source={ this.props.profile.image ? {uri: this.props.profile.image} :  require('./img/demo_profile_picture.jpg')} style={styles.photo} />
             <View style={styles.nameView}>
               <StyledText style={styles.name}>{this.props.profile.firstname} {this.props.profile.lastname}</StyledText>
             </View>

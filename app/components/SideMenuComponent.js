@@ -72,12 +72,14 @@ class SideMenuComponent extends Component {
   render() {
   	const children = this.props.navigationState.children;
     const state = children[children.length - 1];
+    const image = { uri: this.props.userData.image}
+    const demoImage = require('./img/demo_profile_picture.jpg');
     const side = (
       <View style={style.main}>
         <View style={style.topView}>
           <Image
             style={style.image}
-            source={ { uri: this.props.userData.image? this.props.userData.image : 'https://facebook.github.io/react/img/logo_og.png' }}
+            source={ this.props.userData.image? image : demoImage }
           />
           <Text>{this.props.userData.first_name} {this.props.userData.last_name}</Text>
         </View>
