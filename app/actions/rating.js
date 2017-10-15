@@ -16,7 +16,7 @@ export function rate(accepted_request_id, rating) {
     dispatch(ratingStart());
     var params = { id: accepted_request_id };
     var url;
-    var tutorMode = getState().profile.tutorMode;
+    var tutorMode = getState().session.tutorMode;
     if (tutorMode) {
       params.student_rating = rating;
       url = '/rate_student';

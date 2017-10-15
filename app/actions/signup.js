@@ -72,7 +72,7 @@ export function submitForm(signupData, tutorData = null) {
         }
       }).catch(function(error) {
         if (error.response)
-          dispatch(signupError(error.response.data.errors));
+          dispatch(signupError(error.response.data));
         else
           dispatch(signupError(I18n.t('tutors.serversDownError')));
       });

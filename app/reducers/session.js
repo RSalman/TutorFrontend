@@ -1,4 +1,4 @@
-import { UPDATE_USER, SIGN_OUT } from '../actions/login';
+import { UPDATE_USER } from '../actions/login';
 import { SET_SESSION_MODE, TOGGLE_SESSION_MODE } from '../actions/session';
 import { UPDATING_PROFILE_SUCCESS } from '../actions/profileupdate';
 
@@ -23,8 +23,6 @@ function session(state = initialState, action) {
       if (action.userData.courseList.length > 0)
         return { ...state, userData: updatedUser, isTutor: true, tutorMode: true} 
       return { ...state, userData: updatedUser}
-    case SIGN_OUT: 
-      return initialState;
     default:
       return state;
   }
