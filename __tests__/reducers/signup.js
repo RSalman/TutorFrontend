@@ -15,9 +15,10 @@ var initialState = {
     image: '',
     courseList: '',
     rate: '',
-    educationLevel: '',
+    education: '',
     tutor_description: ''
   },
+  user_data: null,
   progressStatus: 0,
   successfulSubmission: false,
   error: '',

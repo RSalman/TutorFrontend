@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Platform, ActivityIndicator, StyleSheet, Text, View, Image, Dimensions, TextInput, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View, Image, Dimensions, TextInput, TouchableOpacity } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
 import { Button } from 'react-native-elements';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import ImagePicker from 'react-native-image-picker';
-import StyledText from './StyledText';
 import { submitForm, setProgressBar } from '../actions/signup';
 import ErrorView from './ErrorView';
 import { setTutorMode } from '../actions/session';
@@ -31,35 +30,31 @@ class TutorFormComponent extends Component {
     if (nextProps.successfulSubmission) {
       this.props.setTutorMode();
       Actions.side_menu({ type: 'reset', user_data: nextProps.user_data });
-  }
+    }
   }
 
   uploadProfilePicture() {
     ImagePicker.showImagePicker(null, (response) => {
       if (response.didCancel) {
         // Do nothing
-      }
-      else if (response.error) {
+      } else if (response.error) {
         // TODO(Muraad): handle error
-      }
-      else {
+      } else {
         var source = 'data:image/jpeg;base64,' + response.data;
-        this.setState({
-          image: source
-        });
+        this.setState({ image: source });
       }
     });
   }
 
   renderProfilePicture() {
-    if(this.state.image) 
+    if (this.state.image) {
       return (
-          <Image source={{uri: this.state.image}} style={styles.profilePicture} resizeMode="contain" />
-          );
-    else
-      return (
-          <Image source={personIcon} style={styles.icon} resizeMode="contain" />
-          );
+        <Image source={{ uri: this.state.image }} style={styles.profilePicture} resizeMode="contain" />
+      );
+    }
+    return (
+      <Image source={personIcon} style={styles.icon} resizeMode="contain" />
+    );
   }
 
   renderErrorView() {
@@ -86,85 +81,82 @@ class TutorFormComponent extends Component {
     );
   }
 
-    render() {
+  render() {
     return (
-        <View style={styles.container}>
-          <View style={styles.wrapper}>
-            <View style={styles.profilePictureWrap}>
-              <View style={styles.iconWrap}>
+      <View style={styles.container}>
+        <View style={styles.wrapper}>
+          <View style={styles.profilePictureWrap}>
+            <View style={styles.iconWrap}>
               { this.renderProfilePicture() }
-              </View>
-              <View style={styles.profileButton}>
+            </View>
+            <View style={styles.profileButton}>
               <Button
                 raised
-                icon={{name: 'file-upload'}}
-                title='Upload Profile Picture' 
+                icon={{ name: 'file-upload' }}
+                title="Upload Profile Picture"
                 onPress={() => this.uploadProfilePicture()}/>
-                </View>
             </View>
-            <View style={styles.inputWrap}>
-              <View style={styles.iconWrap}>
-                <Image source={bookIcon} style={styles.icon} resizeMode="contain" />
-              </View>
-              <TextInput
-                placeholderTextColor={grey}
-                placeholder="Courses To Tutor"
-                underlineColorAndroid={transparent}
-                style={styles.input}
-                onChangeText={(courses) => this.setState({courseList: courses.split(',')})}
+          </View>
+          <View style={styles.inputWrap}>
+            <View style={styles.iconWrap}>
+              <Image source={bookIcon} style={styles.icon} resizeMode="contain" />
+            </View>
+            <TextInput
+              placeholderTextColor={grey}
+              placeholder="Courses To Tutor"
+              underlineColorAndroid={transparent}
+              style={styles.input}
+              onChangeText={(courses) => this.setState({ courseList: courses.split(',') })}
               />
+          </View>
+          <View style={styles.inputWrap}>
+            <View style={styles.iconWrap}>
+              <Image source={dollarIcon} style={styles.icon} resizeMode="contain" />
             </View>
-            <View style={styles.inputWrap}>
-              <View style={styles.iconWrap}>
-                <Image source={dollarIcon} style={styles.icon} resizeMode="contain" />
-              </View>
-              <TextInput
-                placeholderTextColor={grey}
-                placeholder="Hourly Rate"
-                underlineColorAndroid={transparent}
-                keyboardType = 'numeric'
-                style={styles.input}
-                onChangeText={(rate) => this.setState({rate})}
+            <TextInput
+              placeholderTextColor={grey}
+              placeholder="Hourly Rate"
+              underlineColorAndroid={transparent}
+              keyboardType = "numeric"
+              style={styles.input}
+              onChangeText={(rate) => this.setState({ rate })}
               />
+          </View>
+          <View style={styles.inputWrap}>
+            <View style={styles.iconWrap}>
+              <Image source={capIcon} style={styles.icon} resizeMode="contain" />
             </View>
-            <View style={styles.inputWrap}>
-              <View style={styles.iconWrap}>
-                <Image source={capIcon} style={styles.icon} resizeMode="contain" />
-              </View>
-              <ModalDropdown 
-                options={['High School Diploma', 'Bachelors', 'Masters', 'PHD']} 
-                animated={false}
-                textStyle={styles.pickerTextStyle}
-                dropdownStyle={styles.pickerStyle} 
-                dropdownTextStyle={styles.pickerItemStyle}
-                defaultValue='Education'
-                onSelect={(index, education) => this.setState({education})}
+            <ModalDropdown
+              options={['High School Diploma', 'Bachelors', 'Masters', 'PHD']}
+              animated={false}
+              textStyle={styles.pickerTextStyle}
+              dropdownStyle={styles.pickerStyle}
+              dropdownTextStyle={styles.pickerItemStyle}
+              defaultValue="Education"
+              onSelect={(index, education) => this.setState({ education })}
               />
-            </View>
-            <View style={styles.inputWrap}>
+          </View>
+          <View style={styles.inputWrap}>
             <TextInput
               multiline={true}
               underlineColorAndroid={transparent}
               placeholder="Brief Bio"
-              onChangeText={(tutor_description) => this.setState({tutor_description})}
+              onChangeText={(tutor_description) => this.setState({ tutor_description })}
               style={styles.textarea} />
-              </View>
-            <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.submitForm(this.props.signup_data, this.state)}>
-              <View style={styles.button}>
-                { this.renderButtonContent() }
-              </View>
-            </TouchableOpacity>
           </View>
-          { this.renderErrorView() }
+          <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.submitForm(this.props.signup_data, this.state)}>
+            <View style={styles.button}>
+              { this.renderButtonContent() }
+            </View>
+          </TouchableOpacity>
         </View>
+        { this.renderErrorView() }
+      </View>
     );
   }
 }
 
 const { width, height } = Dimensions.get('window');
-const background = require('./img/login1_bg.png');
-const mark = require('./img/login1_mark.png');
-const lockIcon = require('./img/login1_lock.png');
 const personIcon = require('./img/login1_person.png');
 const dollarIcon = require('./img/dollar-3-16.png');
 const capIcon = require('./img/graduation-cap-16.png');
@@ -177,14 +169,6 @@ const white = '#FFF';
 const darkGrey = '#CCC';
 const buttonColor = '#FF3366';
 const brightRed = '#ff7575';
-
-const options = {
-  title: 'Select Profile Picture',
-  storageOptions: {
-    skipBackup: true,
-    path: 'images'
-  }
-};
 
 const styles = StyleSheet.create({
   container: {
@@ -230,9 +214,7 @@ const styles = StyleSheet.create({
     height: 20,
     width: 20,
   },
-  pickerStyle: {
-    backgroundColor: 'transparent'
-  },
+  pickerStyle: { backgroundColor: 'transparent' },
   pickerTextStyle: {
     backgroundColor: 'transparent',
     fontSize: 18,

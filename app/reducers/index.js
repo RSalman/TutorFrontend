@@ -21,12 +21,12 @@ const rootReducer = (state, action) => {
   if (action.type === 'SIGN_OUT') {
     state = undefined;
     /* TEMP DIRTY SOLUTION */
-    for (var i =0;i<1000;i++) {
+    for (var i = 0; i < 1000; i++)
       window.clearInterval(i);
-    }
+
   }
 
-  return appReducer(state, action)
-}
+  return appReducer(state, action);
+};
 
 export default rootReducer;

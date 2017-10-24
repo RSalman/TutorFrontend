@@ -8,7 +8,7 @@ export default class ErrorView extends Component {
     return (
       <View style={[styles.errorContainer, this.props.style]}>
         <Icon name="exclamation-triangle" size={30} color={this.props.color ? this.props.color : errorIconColor} />
-        <StyledText style={[styles.errorText, { color: this.props.color? this.props.color : errorTextColor }]}>{ this.props.error }</StyledText>
+        <StyledText style={[styles.errorText, { color: this.props.color ? this.props.color : errorTextColor }]}>{ this.props.error }</StyledText>
       </View>
     );
   }

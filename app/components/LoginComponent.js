@@ -84,13 +84,13 @@ class LoginComponent extends Component {
                 secureTextEntry
               />
             </View>
-            { 
+            {
             /*<TouchableOpacity activeOpacity={0.5}>
               <View>
                 <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
               </View>
             </TouchableOpacity>
-            */ 
+            */
             }
             <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.authenticate(this.props.email, this.props.password)}>
               <View style={styles.button}>

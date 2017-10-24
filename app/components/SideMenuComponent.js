@@ -20,7 +20,7 @@ class SideMenuComponent extends Component {
 
   toggleSessionMode() {
     this.props.toggleSessionMode();
-    Actions.home({ type: 'reset'});
+    Actions.home({ type: 'reset' });
   }
 
   signOut() {
@@ -29,57 +29,57 @@ class SideMenuComponent extends Component {
   }
 
   _renderTutorOptions() {
-    var switchText = "Switch to Tutor Mode";
+    var switchText = 'Switch to Tutor Mode';
     if (this.props.tutorMode)
-      switchText = "Switch to Student Mode";
+      switchText = 'Switch to Student Mode';
 
     if (this.props.isTutor) {
       return (
         <View>
-        { !this.props.tutorMode ? 
-          <ListItem
+          { !this.props.tutorMode ?
+            <ListItem
               onPress={() => Actions.student_home_screen()}
               title="Search for Tutors"
-              leftIcon={{ name: 'account-search', type: 'material-community'}}
+              leftIcon={{ name: 'account-search', type: 'material-community' }}
             />
           : null }
-         <ListItem
-              onPress={() => Actions.tutorinfo({ id: this.props.userData.id, demoProfile: true})}
-              title="View Profile"
-              leftIcon={{ name: 'account', type: 'material-community'}}
+          <ListItem
+            onPress={() => Actions.tutorinfo({ id: this.props.userData.id, demoProfile: true })}
+            title="View Profile"
+            leftIcon={{ name: 'account', type: 'material-community' }}
             />
-            <ListItem
-              onPress={() => Actions.profileupdate({id: this.props.userData.id})}
-              title="Edit Profile"
-              leftIcon={{ name: 'edit' }}
+          <ListItem
+            onPress={() => Actions.profileupdate({ id: this.props.userData.id })}
+            title="Edit Profile"
+            leftIcon={{ name: 'edit' }}
             />
-        <ListItem title= {switchText} 
-          leftIcon={{ name: 'account-switch', type: 'material-community' }} 
-          onPress={() => this.toggleSessionMode()} />
-          </View>
-      );
-    } else {
-      return (
-      <ListItem title="Become a Tutor"  
-        leftIcon={{ name: 'account-multiple-plus', type: 'material-community' }} 
-        onPress={() => Actions.profileupdate({id: this.props.userData.id, becomeTutor: true})}
-
-        />
+          <ListItem title= {switchText}
+            leftIcon={{ name: 'account-switch', type: 'material-community' }}
+            onPress={() => this.toggleSessionMode()} />
+        </View>
       );
     }
+    return (
+      <ListItem title="Become a Tutor"
+        leftIcon={{ name: 'account-multiple-plus', type: 'material-community' }}
+        onPress={() => Actions.profileupdate({ id: this.props.userData.id, becomeTutor: true })}
+
+        />
+    );
+
   }
 
   render() {
-  	const children = this.props.navigationState.children;
+    const children = this.props.navigationState.children;
     const state = children[children.length - 1];
-    const image = { uri: this.props.userData.image}
+    const image = { uri: this.props.userData.image };
     const demoImage = require('./img/demo_profile_picture.jpg');
     const side = (
       <View style={style.main}>
         <View style={style.topView}>
           <Image
             style={style.image}
-            source={ this.props.userData.image? image : demoImage }
+            source={ this.props.userData.image ? image : demoImage }
           />
           <Text>{this.props.userData.first_name} {this.props.userData.last_name}</Text>
         </View>
@@ -87,7 +87,7 @@ class SideMenuComponent extends Component {
           <List>
             <ListItem
               title="Your Requests"
-              leftIcon={{ name: 'ios-notifications', type: 'ionicon'}}
+              leftIcon={{ name: 'ios-notifications', type: 'ionicon' }}
               onPress={() => Actions.tutor_home_screen()}
             />
             { this._renderTutorOptions() }

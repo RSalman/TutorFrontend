@@ -48,7 +48,7 @@ export function signupError(error) {
 }
 
 export function signupSuccess(tutor_data, user_data) {
-  return { type: SIGNUP_SUCCESS, tutor_data, user_data};
+  return { type: SIGNUP_SUCCESS, tutor_data, user_data };
 }
 
 export function signupStart() {

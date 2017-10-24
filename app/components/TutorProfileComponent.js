@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { Image, View, StyleSheet, ActivityIndicator, Text, ScrollView } from 'react-native';
 import { Button, ButtonGroup, ListItem, List } from 'react-native-elements';
-import Modal from 'react-native-modalbox';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Collapsible from 'react-native-collapsible';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -21,7 +20,7 @@ class TutorProfileComponent extends Component {
       selectedIndex: 0,
       collapsedBio: false,
       collapsedCourseList: true,
-      demoProfile: this.props.id == this.props.user_id //Extra check in case demoProfile is not passed
+      demoProfile: this.props.id === this.props.user_id //Extra check in case demoProfile is not passed
     };
   }
 
@@ -30,8 +29,8 @@ class TutorProfileComponent extends Component {
   }
 
   updateIndex(selectedIndex) {
-      this.setState({ selectedIndex });
-      this.setState({ collapsedBio: selectedIndex == 0 ? false : true });
+    this.setState({ selectedIndex });
+    this.setState({ collapsedBio: selectedIndex === 0 ? false : true });
   }
 
   renderNoProfileView() {
@@ -56,23 +55,23 @@ class TutorProfileComponent extends Component {
   }
 
   renderRequestButtons(courseInfo) {
-    if(this.state.demoProfile)
-      return(<View/>);
-    
+    if (this.state.demoProfile)
+      return (<View/>);
+
     return (
       <Button
         small
-        title={courseInfo.isRequested ? "Cancel" : "Request"}
+        title={courseInfo.isRequested ? 'Cancel' : 'Request'}
         buttonStyle={courseInfo.isRequested ? styles.requestCourseButtonRequested : styles.requestCourseButton }
         borderRadius={50}
         textStyle={courseInfo.isRequested ? styles.requestCourseButtonTextRequested : styles.requestCourseButtonText}
-        onPress={() => courseInfo.isRequested ?  this.props.cancelRequest(this.props.id, this.props.user_id, courseInfo.subjectID) : this.props.requestTutor(this.props.id, this.props.user_id, courseInfo.subjectID)}
-      />  
+        onPress={() => courseInfo.isRequested ? this.props.cancelRequest(this.props.id, this.props.user_id, courseInfo.subjectID) : this.props.requestTutor(this.props.id, this.props.user_id, courseInfo.subjectID)}
+      />
     );
   }
 
   renderRequestStatus() {
-    if(this.state.demoProfile){
+    if (this.state.demoProfile) {
       return (
         <Button
           small
@@ -80,19 +79,19 @@ class TutorProfileComponent extends Component {
           buttonStyle={styles.requestButton}
           borderRadius={100}
           textStyle={styles.requestButtonText}
-          onPress={() => Actions.profileupdate({id: this.props.id})}
+          onPress={() => Actions.profileupdate({ id: this.props.id })}
         />
-      );   
-    }            
-    if(this.props.requesting){
+      );
+    }
+    if (this.props.requesting) {
       return (
         <ActivityIndicator
-          animating          
+          animating
           size="large"
           color={leafGreenGradient}
         />
       );
-    }            
+    }
     if (this.props.requestSent) {
       return (
         <Button
@@ -105,7 +104,7 @@ class TutorProfileComponent extends Component {
           onPress={() => this.updateIndex(1)}
         />
       );
-    } 
+    }
     return (
       <Button
         small
@@ -122,12 +121,11 @@ class TutorProfileComponent extends Component {
 
     const buttons = ['About Me!', 'Courses Teaching!'];
     const { selectedIndex } = this.state;
-
     return (
       <View style={styles.wrapper}>
         <Image source={require('./img/profileCardBackground.jpg')} style={styles.backgroundImage}>
           <View style={styles.profileCard}>
-            <Image source={ this.props.profile.image ? {uri: this.props.profile.image} :  require('./img/demo_profile_picture.jpg')} style={styles.photo} />
+            <Image source={ this.props.profile.image ? { uri: this.props.profile.image } : require('./img/demo_profile_picture.jpg')} style={styles.photo} />
             <View style={styles.nameView}>
               <StyledText style={styles.name}>{this.props.profile.firstname} {this.props.profile.lastname}</StyledText>
             </View>
@@ -147,7 +145,7 @@ class TutorProfileComponent extends Component {
               </View>
               <View style={styles.statSeperator} />
               <View style={styles.stat}>
-                <StyledText style={styles.statTop}>{isNaN(this.props.profile.rating) || this.props.profile.rating == null ? "N/A" : this.props.profile.rating + '/5'  }</StyledText>
+                <StyledText style={styles.statTop}>{isNaN(this.props.profile.rating) || this.props.profile.rating == null ? 'N/A' : this.props.profile.rating + '/5' }</StyledText>
                 <StyledText style={styles.statBot}>Rating</StyledText>
               </View>
             </View>
@@ -171,7 +169,7 @@ class TutorProfileComponent extends Component {
           <ScrollView>
             <Collapsible collapsed={!this.state.collapsedBio} align="center">
               <List containerStyle={styles.collapsibleList}>
-                { this.props.courses_request_status.map((courseInfo, index) => ( <ListItem key={courseInfo.course} title={courseInfo.course} badge={{element: this.renderRequestButtons(courseInfo)}} hideChevron/>))}
+                { this.props.courses_request_status.map((courseInfo, index) => ( <ListItem key={courseInfo.course} title={courseInfo.course} badge={{ element: this.renderRequestButtons(courseInfo) }} hideChevron/>))}
               </List>
             </Collapsible>
           </ScrollView>
@@ -188,18 +186,15 @@ class TutorProfileComponent extends Component {
 }
 
 const complement = '#5ddeb4';
-const checkMarkColor = '#3CB371';
 const leafGreenGradient = '#45e99e';
 const white = '#fff';
 const offWhite = '#E0E0E0';
 const offGrey = '#FAFAFA';
 const grey = '#808080';
 const darkBlue = '#3B5998';
-const modalButtonColor = '#469fe9';
 
 const black = 'black';
 const transparent = 'transparent';
-const errorRed = '#ff0000';
 const errorIconColor = '#E6E6E6';
 const errorTextColor = '#ADADAD';
 

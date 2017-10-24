@@ -155,7 +155,11 @@
     "max-nested-callbacks": 0,
     "one-var": 0,
     "wrap-regex": 0,
-    "react-native/no-color-literals": 0
+    "react-native/no-color-literals": 0,
+    "react-native/no-unused-styles": 0,
+    "react-native/no-inline-styles": 0,
+    "no-shadow": 0,
+    "no-unused-vars": 0
   },
   "parserOptions": {
     "sourceType": "module",

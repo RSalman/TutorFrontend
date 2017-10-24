@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { Alert, NetInfo } from 'react-native';
+import { Alert, NetInfo, Promise } from 'react-native';
 
-axios.defaults.baseURL = 'http://10.0.3.2:3000/api/v1';
+
+axios.defaults.baseURL = 'http://cpserver.eastus.cloudapp.azure.com:2000/api/v1';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.get['Content-Type'] = 'application/json';
 axios.defaults.headers.post.Accept = 'application/json';

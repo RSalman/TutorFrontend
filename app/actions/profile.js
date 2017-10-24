@@ -60,31 +60,30 @@ export function getAcceptedRequestsComplete(acceptedRequests) {
 export function fetchProfile(tutorID, studentID, demoProfile = false) {
   return dispatch => {
     dispatch(getProfileStart(tutorID));
-    if(demoProfile){ //When Tutor is view own Profile
-        axios.get('/tutor_infos?tutor_id=' + tutorID).then(function(response) {
+    if (demoProfile) { //When Tutor is view own Profile
+      axios.get('/tutor_infos?tutor_id=' + tutorID).then(function(response) {
         if (response.status === 200)
-          dispatch({ type: GET_DEMO_PROFILE_COMPLETE, profile: response.data});
+          dispatch({ type: GET_DEMO_PROFILE_COMPLETE, profile: response.data });
       }).catch(function(error) {
         if (error.response)
           dispatch(getProfileError(error.response.data));
         else
           dispatch(getProfileError('Our servers seem to be down, please try again!'));
       });
-    }
-    else{
-     axios.all([axios.get('/tutor_infos?tutor_id=' + tutorID), axios.get('/all_subjects_request_status?tutor_id=' + tutorID + '&student_id=' + studentID)])
+    } else {
+      axios.all([axios.get('/tutor_infos?tutor_id=' + tutorID), axios.get('/all_subjects_request_status?tutor_id=' + tutorID + '&student_id=' + studentID)])
        .then(axios.spread((firstResponse, secondResponse) => {
-          if (firstResponse.status === 200)
-            dispatch(getProfileComplete(firstResponse.data, tutorID));
-          if (secondResponse.status === 200)
-            dispatch({ type: GET_COURSES_REQUEST_STATUS, course_status: secondResponse.data });
+         if (firstResponse.status === 200)
+           dispatch(getProfileComplete(firstResponse.data, tutorID));
+         if (secondResponse.status === 200)
+           dispatch({ type: GET_COURSES_REQUEST_STATUS, course_status: secondResponse.data });
        })).catch(error => {
          if (error.response)
-          dispatch(getProfileError(error.response.data));
-        else
+           dispatch(getProfileError(error.response.data));
+         else
           dispatch(getProfileError('Our servers seem to be down, please try again!'));
        });
-    }           
+    }
   };
 }
 
@@ -92,12 +91,12 @@ export function requestTutor(tutorID, studentID, subjectID) {
   return dispatch => {
     dispatch(tutorRequestStart(tutorID));
     axios.post('/tutor_requests', { tutor_id: tutorID, student_id: studentID, tutor_subject_id: subjectID })
-      .then(function(response) {
+      .then(function(tutor_response) {
         dispatch(tutorRequestComplete(tutorID));
-         axios.get('/all_subjects_request_status?tutor_id=' + tutorID + '&student_id=' + studentID)
-          .then(function(response) {
-            if (response.status === 200)
-              dispatch({ type: GET_COURSES_REQUEST_STATUS, course_status: response.data });
+        axios.get('/all_subjects_request_status?tutor_id=' + tutorID + '&student_id=' + studentID)
+          .then(function(subject_response) {
+            if (subject_response.status === 200)
+              dispatch({ type: GET_COURSES_REQUEST_STATUS, course_status: subject_response.data });
           })
           .catch(function(error) {});
       })
@@ -113,14 +112,14 @@ export function requestTutor(tutorID, studentID, subjectID) {
 export function cancelRequest(tutorID, studentID, subjectID) {
   return dispatch => {
     axios.post('/cancel_tutor_request', { tutor_id: tutorID, student_id: studentID, tutor_subject_id: subjectID })
-      .then(function(response) {
+      .then(function(tutor_response) {
         dispatch(tutorRequestCanceled());
-         axios.get('/all_subjects_request_status?tutor_id=' + tutorID + '&student_id=' + studentID)
-          .then(function(response) {
-            if (response.status === 200)
-              dispatch({ type: GET_COURSES_REQUEST_STATUS, course_status: response.data });
+        axios.get('/all_subjects_request_status?tutor_id=' + tutorID + '&student_id=' + studentID)
+          .then(function(subject_response) {
+            if (subject_response.status === 200)
+              dispatch({ type: GET_COURSES_REQUEST_STATUS, course_status: subject_response.data });
           })
-          .catch(function(error){});
+          .catch(function(error) {});
       })
       .catch(function(error) {
         //What kind of error?
@@ -129,7 +128,7 @@ export function cancelRequest(tutorID, studentID, subjectID) {
 }
 
 export function cancelTutorRequest(requestID) {
-  return dispatch => {
+  return (dispatch, getState) => {
     axios.post('/cancel_tutor_request', { request_id: requestID })
       .then(function(response) {
         dispatch(updatePendingRequests(getState().session.userData.id));

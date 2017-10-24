@@ -59,631 +59,248 @@ exports[`test renders correctly 1`] = `
           ]
         }>
         <Image
+          resizeMode="cover"
           source={1}
           style={
             Object {
-              "flex": 1,
-              "height": null,
-              "width": null,
+              "height": 1334,
+              "width": 750,
             }
           }>
           <View
             style={
               Object {
                 "flex": 1,
-                "justifyContent": "flex-end",
+                "justifyContent": "center",
+                "marginLeft": 15,
+                "marginRight": 15,
+                "marginTop": 0,
+                "padding": 10,
               }
             }>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
+            <View
               style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "fontFamily": "HelveticaNeue-Thin",
-                  },
-                  Object {
-                    "alignSelf": "center",
-                    "backgroundColor": "transparent",
-                    "color": "#008B8B",
-                    "flex": 1,
-                    "fontSize": 60,
-                    "justifyContent": "flex-start",
-                    "marginTop": 10,
-                  },
-                ]
+                Object {
+                  "flex": 1,
+                  "paddingVertical": 30,
+                }
               }>
-              PROSPR
-            </Text>
-            <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits="button"
-              accessible={true}
-              hitSlop={undefined}
-              isTVSelectable={true}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "flexDirection": "row",
-                  "height": 50,
-                  "marginTop": 10,
-                  "opacity": 1,
-                  "overflow": "hidden",
-                  "width": null,
-                }
-              }
-              testID={undefined}
-              tvParallaxProperties={undefined}>
-              <BVLinearGradient
-                colors={
-                  Array [
-                    4283287460,
-                    4284928890,
-                  ]
-                }
-                end={
-                  Object {
-                    "x": 1,
-                    "y": 1,
-                  }
-                }
-                locations={null}
-                start={
-                  Object {
-                    "x": 0.5,
-                    "y": 1,
-                  }
-                }
+              <Image
+                resizeMode="contain"
+                source={1}
                 style={
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                      "flex": 1,
-                    },
-                    Object {
-                      "borderRadius": 25,
-                    },
-                    undefined,
-                  ]
-                }>
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                    }
-                  }>
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "bottom": 0,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "left": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                        },
-                        null,
-                      ]
-                    }>
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Object {
-                          "color": "white",
-                          "flexDirection": "row",
-                          "fontSize": 12,
-                          "letterSpacing": 1,
-                        }
-                      }>
-                      Tutors Component (Sarmad)
-                    </Text>
-                  </View>
-                </View>
-              </BVLinearGradient>
+                  Object {
+                    "flex": 1,
+                    "height": null,
+                    "width": null,
+                  }
+                } />
             </View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits="button"
-              accessible={true}
-              hitSlop={undefined}
-              isTVSelectable={true}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
               style={
                 Object {
-                  "flexDirection": "row",
-                  "height": 50,
-                  "marginTop": 10,
-                  "opacity": 1,
-                  "overflow": "hidden",
-                  "width": null,
+                  "paddingVertical": 30,
                 }
-              }
-              testID={undefined}
-              tvParallaxProperties={undefined}>
-              <BVLinearGradient
-                colors={
-                  Array [
-                    4283287460,
-                    4284928890,
-                  ]
-                }
-                end={
-                  Object {
-                    "x": 1,
-                    "y": 1,
-                  }
-                }
-                locations={null}
-                start={
-                  Object {
-                    "x": 0.5,
-                    "y": 1,
-                  }
-                }
+              }>
+              <View
                 style={
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                      "flex": 1,
-                    },
-                    Object {
-                      "borderRadius": 25,
-                    },
-                    undefined,
-                  ]
+                  Object {
+                    "borderBottomColor": "#CCC",
+                    "borderBottomWidth": 1,
+                    "flexDirection": "row",
+                    "height": 40,
+                    "marginVertical": 10,
+                  }
                 }>
                 <View
                   style={
                     Object {
-                      "flex": 1,
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "paddingHorizontal": 7,
                     }
                   }>
-                  <View
+                  <Image
+                    resizeMode="contain"
+                    source={1}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "bottom": 0,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "left": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                        },
-                        null,
-                      ]
-                    }>
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Object {
-                          "color": "white",
-                          "flexDirection": "row",
-                          "fontSize": 12,
-                          "letterSpacing": 1,
-                        }
-                      }>
-                      Tutor Profile Component (Salman)
-                    </Text>
-                  </View>
+                      Object {
+                        "height": 20,
+                        "width": 20,
+                      }
+                    } />
                 </View>
-              </BVLinearGradient>
+                <TextInput
+                  onChangeText={[Function]}
+                  placeholder="Email"
+                  placeholderTextColor="#D3D3D3"
+                  style={
+                    Object {
+                      "color": "#FFF",
+                      "flex": 1,
+                      "paddingHorizontal": 10,
+                    }
+                  }
+                  underlineColorAndroid="transparent"
+                  value="" />
+              </View>
+              <View
+                style={
+                  Object {
+                    "borderBottomColor": "#CCC",
+                    "borderBottomWidth": 1,
+                    "flexDirection": "row",
+                    "height": 40,
+                    "marginVertical": 10,
+                  }
+                }>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "paddingHorizontal": 7,
+                    }
+                  }>
+                  <Image
+                    resizeMode="contain"
+                    source={1}
+                    style={
+                      Object {
+                        "height": 20,
+                        "width": 20,
+                      }
+                    } />
+                </View>
+                <TextInput
+                  onChangeText={[Function]}
+                  placeholder="Password"
+                  placeholderTextColor="#D3D3D3"
+                  secureTextEntry={true}
+                  style={
+                    Object {
+                      "color": "#FFF",
+                      "flex": 1,
+                      "paddingHorizontal": 10,
+                    }
+                  }
+                  underlineColorAndroid="transparent"
+                  value="" />
+              </View>
+              <View
+                accessibilityComponentType={undefined}
+                accessibilityLabel={undefined}
+                accessibilityTraits={undefined}
+                accessible={true}
+                hitSlop={undefined}
+                isTVSelectable={true}
+                onLayout={undefined}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+                testID={undefined}
+                tvParallaxProperties={undefined}>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#FF3366",
+                      "justifyContent": "center",
+                      "marginTop": 30,
+                      "paddingVertical": 20,
+                    }
+                  }>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Object {
+                        "color": "#FFF",
+                        "fontSize": 18,
+                      }
+                    }>
+                    Sign In
+                  </Text>
+                </View>
+              </View>
             </View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits="button"
-              accessible={true}
-              hitSlop={undefined}
-              isTVSelectable={true}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
               style={
                 Object {
-                  "flexDirection": "row",
-                  "height": 50,
-                  "marginTop": 10,
-                  "opacity": 1,
-                  "overflow": "hidden",
-                  "width": null,
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "marginLeft": 15,
+                  "marginRight": 15,
+                  "marginTop": 0,
+                  "padding": 10,
                 }
-              }
-              testID={undefined}
-              tvParallaxProperties={undefined}>
-              <BVLinearGradient
-                colors={
-                  Array [
-                    4283287460,
-                    4284928890,
-                  ]
-                }
-                end={
-                  Object {
-                    "x": 1,
-                    "y": 1,
-                  }
-                }
-                locations={null}
-                start={
-                  Object {
-                    "x": 0.5,
-                    "y": 1,
-                  }
-                }
+              }>
+              <View
                 style={
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                      "flex": 1,
-                    },
-                    Object {
-                      "borderRadius": 25,
-                    },
-                    undefined,
-                  ]
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "transparent",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                  }
                 }>
-                <View
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
                   style={
                     Object {
-                      "flex": 1,
+                      "color": "#D8D8D8",
                     }
                   }>
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "bottom": 0,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "left": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                        },
-                        null,
-                      ]
-                    }>
+                  Don\'t have an account?
+                </Text>
+                <View
+                  accessibilityComponentType={undefined}
+                  accessibilityLabel={undefined}
+                  accessibilityTraits={undefined}
+                  accessible={true}
+                  hitSlop={undefined}
+                  isTVSelectable={true}
+                  onLayout={undefined}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "opacity": 1,
+                    }
+                  }
+                  testID={undefined}
+                  tvParallaxProperties={undefined}>
+                  <View>
                     <Text
                       accessible={true}
                       allowFontScaling={true}
                       ellipsizeMode="tail"
                       style={
                         Object {
-                          "color": "white",
-                          "flexDirection": "row",
-                          "fontSize": 12,
-                          "letterSpacing": 1,
+                          "color": "#FFF",
+                          "marginLeft": 5,
                         }
                       }>
-                      Signup Form
+                      Sign Up
                     </Text>
                   </View>
                 </View>
-              </BVLinearGradient>
-            </View>
-            <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits="button"
-              accessible={true}
-              hitSlop={undefined}
-              isTVSelectable={true}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "flexDirection": "row",
-                  "height": 50,
-                  "marginTop": 10,
-                  "opacity": 1,
-                  "overflow": "hidden",
-                  "width": null,
-                }
-              }
-              testID={undefined}
-              tvParallaxProperties={undefined}>
-              <BVLinearGradient
-                colors={
-                  Array [
-                    4283287460,
-                    4284928890,
-                  ]
-                }
-                end={
-                  Object {
-                    "x": 1,
-                    "y": 1,
-                  }
-                }
-                locations={null}
-                start={
-                  Object {
-                    "x": 0.5,
-                    "y": 1,
-                  }
-                }
-                style={
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                      "flex": 1,
-                    },
-                    Object {
-                      "borderRadius": 25,
-                    },
-                    undefined,
-                  ]
-                }>
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                    }
-                  }>
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "bottom": 0,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "left": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                        },
-                        null,
-                      ]
-                    }>
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Object {
-                          "color": "white",
-                          "flexDirection": "row",
-                          "fontSize": 12,
-                          "letterSpacing": 1,
-                        }
-                      }>
-                      Leila\'s Feature
-                    </Text>
-                  </View>
-                </View>
-              </BVLinearGradient>
-            </View>
-            <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits="button"
-              accessible={true}
-              hitSlop={undefined}
-              isTVSelectable={true}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "flexDirection": "row",
-                  "height": 50,
-                  "marginTop": 10,
-                  "opacity": 1,
-                  "overflow": "hidden",
-                  "width": null,
-                }
-              }
-              testID={undefined}
-              tvParallaxProperties={undefined}>
-              <BVLinearGradient
-                colors={
-                  Array [
-                    4283287460,
-                    4284928890,
-                  ]
-                }
-                end={
-                  Object {
-                    "x": 1,
-                    "y": 1,
-                  }
-                }
-                locations={null}
-                start={
-                  Object {
-                    "x": 0.5,
-                    "y": 1,
-                  }
-                }
-                style={
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                      "flex": 1,
-                    },
-                    Object {
-                      "borderRadius": 25,
-                    },
-                    undefined,
-                  ]
-                }>
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                    }
-                  }>
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "bottom": 0,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "left": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                        },
-                        null,
-                      ]
-                    }>
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Object {
-                          "color": "white",
-                          "flexDirection": "row",
-                          "fontSize": 12,
-                          "letterSpacing": 1,
-                        }
-                      }>
-                      Login
-                    </Text>
-                  </View>
-                </View>
-              </BVLinearGradient>
-            </View>
-            <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits="button"
-              accessible={true}
-              hitSlop={undefined}
-              isTVSelectable={true}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "flexDirection": "row",
-                  "height": 50,
-                  "marginTop": 10,
-                  "opacity": 1,
-                  "overflow": "hidden",
-                  "width": null,
-                }
-              }
-              testID={undefined}
-              tvParallaxProperties={undefined}>
-              <BVLinearGradient
-                colors={
-                  Array [
-                    4283287460,
-                    4284928890,
-                  ]
-                }
-                end={
-                  Object {
-                    "x": 1,
-                    "y": 1,
-                  }
-                }
-                locations={null}
-                start={
-                  Object {
-                    "x": 0.5,
-                    "y": 1,
-                  }
-                }
-                style={
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                      "flex": 1,
-                    },
-                    Object {
-                      "borderRadius": 25,
-                    },
-                    undefined,
-                  ]
-                }>
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                    }
-                  }>
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "bottom": 0,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "left": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                        },
-                        null,
-                      ]
-                    }>
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Object {
-                          "color": "white",
-                          "flexDirection": "row",
-                          "fontSize": 12,
-                          "letterSpacing": 1,
-                        }
-                      }>
-                      Temp Push Notification (Salman)
-                    </Text>
-                  </View>
-                </View>
-              </BVLinearGradient>
+              </View>
             </View>
           </View>
         </Image>
