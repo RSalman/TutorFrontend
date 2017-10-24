@@ -11,8 +11,10 @@ export default class StyledText extends Component {
   }
 }
 
+const transparentColor = 'transparent';
 const styles = StyleSheet.create({
   text: {
+    backgroundColor: transparentColor,
     ...Platform.select({
       ios: { fontFamily: 'HelveticaNeue-Thin' },
       android: { fontFamily: 'sans-serif-light' },

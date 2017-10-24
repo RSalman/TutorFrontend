@@ -1,0 +1,98 @@
+{
+  "get_tutors": [
+    {
+      "id": 1,
+      "rate": 15,
+      "picture": "",
+      "rating": 5,
+      "degree": "Masters"
+    },
+    {
+      "id": 2,
+      "rate": 20,
+      "picture": "",
+      "rating": 5,
+      "degree": "Bachelors"
+    },
+    {
+      "id": 3,
+      "rate": 11.75,
+      "picture": "",
+      "rating": 4.5,
+      "degree": "PhD"
+    },
+    {
+      "id": 4,
+      "rate": 32.50,
+      "picture": "",
+      "rating": 3.9,
+      "degree": "PhD"
+    },
+    {
+      "id": 5,
+      "rate": 12.70,
+      "picture": "",
+      "rating": 1.9,
+      "degree": "Bachelors"
+    },
+    {
+      "id": 6,
+      "rate": 22.25,
+      "picture": "",
+      "rating": 2.9,
+      "degree": "Diploma"
+    },
+    {
+      "id": 7,
+      "rate": 32.50,
+      "picture": "",
+      "rating": 3.9,
+      "degree": "PhD"
+    },
+    {
+      "id": 8,
+      "rate": 9.50,
+      "picture": "",
+      "rating": 1.2,
+      "degree": "PhD"
+    },
+    {
+      "id": 9,
+      "rate": 25.99,
+      "picture": "",
+      "rating": 4.9,
+      "degree": "PhD"
+    }
+  ],
+  "get_tutor_profile": {
+    "biography": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. sheets containing Lorem Ipsum passages, and more recently with.",
+    "rate": 18,
+    "firstname": "Salman",
+    "lastname": "Rana",
+    "rating": 3.5,
+    "caption": "Passionate about sharing knowledge!",
+    "degree": "PhD, SEG",
+    "coursesTeaching": [
+      "SEG4145",
+      "SEG2105",
+      "SEG2106",
+      "ITI1101",
+      "ITI1100"
+    ],
+    "requestPending": false
+  },
+  "request_tutor": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    }
+  ]
+}

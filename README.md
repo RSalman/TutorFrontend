@@ -1,6 +1,15 @@
 # README (Fix/add anything you felt was unclear)
 
-[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58864a527911080100390c59&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58864a527911080100390c59/build/latest?branch=master)
+| Branch | Android  | iOS |
+| ------ | ------- | --- |
+| `master` | [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58864a527911080100390c59&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58864a527911080100390c59/build/latest?branch=master) | [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58864ea597765f01008efa00&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58864ea597765f01008efa00/build/latest?branch=master) |
+| `staging` | [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58864a527911080100390c59&branch=staging&build=latest)](https://dashboard.buddybuild.com/apps/58864a527911080100390c59/build/latest?branch=staging) | [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58864ea597765f01008efa00&branch=staging&build=latest)](https://dashboard.buddybuild.com/apps/58864ea597765f01008efa00/build/latest?branch=staging) |
+
+## Commands Summarized
+* `npm run lint` fixes some styling issues automatically and reports those it cannot fix.
+* `npm run test` runs all tests. `npm run test -- -u` updates test snapshots.
+* `npm run api` runs a mock api server. All mock data is defined in the `.db.json`.
+
 ## Steps
 Follow the instructions for your OS [here](https://facebook.github.io/react-native/docs/getting-started.html) and then execute the following commands:
 ```
@@ -12,6 +21,11 @@ Start up your android emulator and run `react-native run-android`, or simply run
 Before every commit, `npm run lint` and `npm run test` will run automatically.
 
 IMPORTANT: Run `npm run lint` to fix some style and formatting issues automatically. Do this before committing!
+
+## iOS-Specific Steps
+Go to your `ios` folder and run:
+* `sudo gem install cocoapods`
+* `pod install`
 
 ## Steps for Testing
 Simply run `npm run test` to run all tests.
