@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View, Image, Dimensions, TextInput, TouchableOpacity, Picker } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import { Madoka } from 'react-native-textinput-effects';
 import { fetchProfile, updateProfile } from '../actions/profileupdate';
 import { Button } from 'react-native-elements';
@@ -40,36 +39,32 @@ class ProfileUpdateComponent extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.tutor_data != nextProps.tutor_data)
-      this.state.formData = nextProps.tutor_data;
+    if (this.props.tutor_data !== nextProps.tutor_data)
+      this.setState({ formData: nextProps.tutor_data });
   }
 
   uploadProfilePicture() {
     ImagePicker.showImagePicker(null, (response) => {
       if (response.didCancel) {
         // Do nothing
-      }
-      else if (response.error) {
+      } else if (response.error) {
         // TODO(Muraad): handle error
-      }
-      else {
+      } else {
         var source = 'data:image/jpeg;base64,' + response.data;
-        this.setState({
-          formData: {...this.state.formData, image: source}
-        });
+        this.setState({ formData: { ...this.state.formData, image: source } });
       }
     });
   }
 
   renderProfilePicture() {
-    if(this.state.formData.image) 
+    if (this.state.formData.image) {
       return (
-        <Image source={{uri: this.state.formData.image }} style={styles.profilePicture} resizeMode="contain" />
-        );
-    else 
-      return ( 
-        <Image source={personIcon} style={styles.icon} resizeMode="contain" /> 
-        );
+        <Image source={{ uri: this.state.formData.image }} style={styles.profilePicture} resizeMode="contain" />
+      );
+    }
+    return (
+      <Image source={personIcon} style={styles.icon} resizeMode="contain" />
+    );
   }
 
   renderMessageView() {
@@ -77,7 +72,7 @@ class ProfileUpdateComponent extends Component {
       return (
         <Text style={styles.titleCardError}>{this.props.message}</Text>
       );
-    } else if(this.props.success) {
+    } else if (this.props.success) {
       return (
         <Text style={styles.titleCardSuccess}>{this.props.message}</Text>
       );
@@ -92,8 +87,8 @@ class ProfileUpdateComponent extends Component {
           <Madoka
             style={styles.inputCard}
             label={'Courses'}
-            value = {this.state.formData.courseList ? this.state.formData.courseList.join(): ''  }
-            onChangeText={(courses) => this.setState({formData: {...this.state.formData, courseList: courses.split(',')}})}
+            value = {this.state.formData.courseList ? this.state.formData.courseList.join() : '' }
+            onChangeText={(courses) => this.setState({ formData: { ...this.state.formData, courseList: courses.split(',') } })}
             borderColor={madokaBorderColor}
             labelStyle={styles.MadokaLabelStyle}
             inputStyle={styles.MadokaInputStyle}
@@ -106,45 +101,45 @@ class ProfileUpdateComponent extends Component {
               labelStyle={styles.MadokaLabelStyle}
               inputStyle={styles.MadokaInputStyle}
               value = {this.state.formData.rate}
-              onChangeText={(rate) => this.setState({formData: {...this.state.formData, rate}})}
-            />          
+              onChangeText={(rate) => this.setState({ formData: { ...this.state.formData, rate } })}
+            />
             <View style={styles.inputWrap}>
-              <ModalDropdown 
-                  options={['High School Diploma', 'Bachelors', 'Masters', 'PHD']} 
-                  animated={false}
-                  defaultIndex={this.state.formData.education ? educationMap[this.state.formData.education] : -1}
-                  textStyle={styles.pickerTextStyle}
-                  dropdownStyle={styles.pickerStyle} 
-                  dropdownTextStyle={styles.pickerItemStyle}
-                  defaultValue={this.state.formData.education ? this.state.formData.education : 'Education'}
-                  onSelect={(index, education) => this.setState({formData:{...this.state.formData, education}})}
+              <ModalDropdown
+                options={['High School Diploma', 'Bachelors', 'Masters', 'PHD']}
+                animated={false}
+                defaultIndex={this.state.formData.education ? educationMap[this.state.formData.education] : -1}
+                textStyle={styles.pickerTextStyle}
+                dropdownStyle={styles.pickerStyle}
+                dropdownTextStyle={styles.pickerItemStyle}
+                defaultValue={this.state.formData.education ? this.state.formData.education : 'Education'}
+                onSelect={(index, education) => this.setState({ formData:{ ...this.state.formData, education } })}
                 />
             </View>
           </View>
           <View style={styles.inputWrapTutorBio}>
-             <TextInput
-               multiline={true}
-               underlineColorAndroid={transparent}
-               placeholder="Brief Bio"
-               defaultValue = {this.state.formData.tutor_description}
-               onChangeText={(tutor_description) => this.setState({formData:{...this.state.formData, tutor_description}})}
-               style={styles.textarea} />
-           </View>
+            <TextInput
+              multiline={true}
+              underlineColorAndroid={transparent}
+              placeholder="Brief Bio"
+              defaultValue = {this.state.formData.tutor_description}
+              onChangeText={(tutor_description) => this.setState({ formData:{ ...this.state.formData, tutor_description } })}
+              style={styles.textarea} />
           </View>
-        );
-    } else{
-      return (
+        </View>
+      );
+    }
+    return (
       <View>
-       <View style={styles.profilePictureWrap}>
+        <View style={styles.profilePictureWrap}>
           <View style={styles.iconWrap}>
-          { this.renderProfilePicture() }
+            { this.renderProfilePicture() }
           </View>
           <View style={styles.profileButton}>
-          <Button
-            raised
-            icon={{name: 'file-upload'}}
-            title='Upload Profile Picture' 
-            onPress={() => this.uploadProfilePicture()}/>
+            <Button
+              raised
+              icon={{ name: 'file-upload' }}
+              title="Upload Profile Picture"
+              onPress={() => this.uploadProfilePicture()}/>
           </View>
         </View>
         <View style={styles.content}>
@@ -155,7 +150,7 @@ class ProfileUpdateComponent extends Component {
             borderColor={madokaBorderColor}
             labelStyle={styles.MadokaLabelStyle}
             inputStyle={styles.MadokaInputStyle}
-            onChangeText={(first_name) => this.setState({formData: {...this.state.formData, first_name} })}
+            onChangeText={(first_name) => this.setState({ formData: { ...this.state.formData, first_name } })}
           />
           <Madoka
             style={styles.inputCardNames}
@@ -164,7 +159,7 @@ class ProfileUpdateComponent extends Component {
             borderColor={madokaBorderColor}
             labelStyle={styles.MadokaLabelStyle}
             inputStyle={styles.MadokaInputStyle}
-            onChangeText={(last_name) => this.setState({formData: {...this.state.formData, last_name}})}
+            onChangeText={(last_name) => this.setState({ formData: { ...this.state.formData, last_name } })}
           />
         </View>
         <Madoka
@@ -174,11 +169,11 @@ class ProfileUpdateComponent extends Component {
           borderColor={madokaBorderColor}
           labelStyle={styles.MadokaLabelStyle}
           inputStyle={styles.MadokaInputStyle}
-          onChangeText={(phone_number) => this.setState({formData: {...this.state.formData, phone_number}})}
+          onChangeText={(phone_number) => this.setState({ formData: { ...this.state.formData, phone_number } })}
         />
-        </View>
-      );
-    }
+      </View>
+    );
+
   }
 
   renderButtonContent() {
@@ -203,16 +198,16 @@ class ProfileUpdateComponent extends Component {
         <View style={styles.container}>
           <View style={styles.wrapper}>
             <View style={styles.card} >
-              <Text style={styles.titleCard}>{this.props.becomeTutor? "Become a Tutor!": "Edit Your Profile!"}</Text>
+              <Text style={styles.titleCard}>{this.props.becomeTutor ? 'Become a Tutor!' : 'Edit Your Profile!'}</Text>
               { this.renderMessageView() }
               <View style={styles.navButtons}>
-                <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ viewTutorForm: !this.state.viewTutorForm})} >
-                  <View style={!this.state.viewTutorForm ? styles.buttonNavSelected: styles.buttonNav }>
+                <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ viewTutorForm: !this.state.viewTutorForm })} >
+                  <View style={!this.state.viewTutorForm ? styles.buttonNavSelected : styles.buttonNav }>
                     <Text style={styles.buttonTextx}>Personal</Text>
                   </View>
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ viewTutorForm: !this.state.viewTutorForm})} >
-                  <View style={this.state.viewTutorForm ? styles.buttonNavSelected: styles.buttonNav }>
+                <TouchableOpacity activeOpacity={0.5} onPress={() => this.setState({ viewTutorForm: !this.state.viewTutorForm })} >
+                  <View style={this.state.viewTutorForm ? styles.buttonNavSelected : styles.buttonNav }>
                     <Text style={styles.buttonTextx}>Tutor</Text>
                   </View>
                 </TouchableOpacity>
@@ -231,8 +226,6 @@ class ProfileUpdateComponent extends Component {
   }
 }
 
-const { width, height } = Dimensions.get('window');
-
 const personIcon = require('./img/login1_person.png');
 
 const lightGrey = '#ebebeb';
@@ -240,7 +233,6 @@ const transparent = 'transparent';
 const white = '#FFF';
 const darkGrey = '#404d5b';
 const inputBox = '#437D64';
-const buttonColor = '#FF3366';
 const brightRed = '#cd3232';
 const brightGreen = '#5bd75b';
 const formBackground = '#F9F7F6';
@@ -253,9 +245,7 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'center'
   },
-    navButtons:{
-    flexDirection:'row'
-  },
+  navButtons:{ flexDirection:'row' },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -270,7 +260,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     height: 25,
     borderBottomWidth: 1,
-    borderBottomColor: inputBox, 
+    borderBottomColor: inputBox,
     marginLeft: 7,
     width: 165
   },
@@ -296,13 +286,13 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 200
   },
-   buttonNavSelected: {
-    backgroundColor: transparent,    
+  buttonNavSelected: {
+    backgroundColor: transparent,
     borderBottomWidth: 2,
     borderColor: madokaBorderColor
   },
-   buttonNav: {
-    backgroundColor: transparent,    
+  buttonNav: {
+    backgroundColor: transparent,
     borderColor: madokaBorderColor
   },
   buttonText: {
@@ -329,7 +319,7 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: formBackground
   },
-   titleCard: {
+  titleCard: {
     paddingBottom: 16,
     textAlign: 'center',
     color: titleCardColor,
@@ -337,7 +327,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     opacity: 0.8,
   },
-   titleCardError: {
+  titleCardError: {
     paddingBottom: 16,
     textAlign: 'center',
     color: brightRed,
@@ -345,7 +335,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     opacity: 0.8,
   },
-   titleCardSuccess: {
+  titleCardSuccess: {
     paddingBottom: 12,
     textAlign: 'center',
     color: brightGreen,
@@ -353,17 +343,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     opacity: 0.8,
   },
-   inputCardNames: {
+  inputCardNames: {
     marginTop: 6,
     marginLeft: 7,
     width: 165
   },
-   inputCard: {
-    marginTop: 6
-  },
-  MadokaLabelStyle: {
-     color: inputBox
-  },
+  inputCard: { marginTop: 6 },
+  MadokaLabelStyle: { color: inputBox },
   MadokaInputStyle: {
     color: darkGrey,
     fontSize: 15
@@ -392,9 +378,7 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60
   },
-  pickerStyle: {
-    backgroundColor: 'transparent'
-  },
+  pickerStyle: { backgroundColor: 'transparent' },
   pickerTextStyle: {
     backgroundColor: 'transparent',
     fontSize: 18,
@@ -409,7 +393,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  return { 
+  return {
     tutor_data: state.profileupdate.tutor_data,
     isLoading:  state.profileupdate.isLoading,
     success: state.profileupdate.success,

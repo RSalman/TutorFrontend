@@ -25,6 +25,7 @@ exports[`<PhoneVerificationInput /> should disable input when verifying 1`] = `
             "fontFamily": "HelveticaNeue-Thin",
           },
           Object {
+            "color": "#FFF",
             "fontSize": 20,
             "textAlign": "center",
           },
@@ -43,8 +44,9 @@ exports[`<PhoneVerificationInput /> should disable input when verifying 1`] = `
     style={
       Object {
         "alignSelf": "center",
-        "borderColor": "gray",
+        "borderColor": "#FFF",
         "borderWidth": 1,
+        "color": "#FFF",
         "fontSize": 85,
         "height": 100,
         "padding": 5,
@@ -110,6 +112,7 @@ exports[`<PhoneVerificationInput /> should show no message when invalid code ent
             "fontFamily": "HelveticaNeue-Thin",
           },
           Object {
+            "color": "#FFF",
             "fontSize": 20,
             "textAlign": "center",
           },
@@ -128,8 +131,9 @@ exports[`<PhoneVerificationInput /> should show no message when invalid code ent
     style={
       Object {
         "alignSelf": "center",
-        "borderColor": "gray",
+        "borderColor": "#FFF",
         "borderWidth": 1,
+        "color": "#FFF",
         "fontSize": 85,
         "height": 100,
         "padding": 5,

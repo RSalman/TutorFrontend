@@ -18,11 +18,11 @@ function session(state = initialState, action) {
       return { ...state, tutorMode: action.tutorMode };
     case UPDATING_PROFILE_SUCCESS:
       var updatedUser = {};
-      for(var key in state.userData) updatedUser[key] = state.userData[key];
-      for(var key in action.userData) updatedUser[key] = action.userData[key];
+      for (var key in state.userData) updatedUser[key] = state.userData[key];
+      for (var key in action.userData) updatedUser[key] = action.userData[key];
       if (action.userData.courseList.length > 0)
-        return { ...state, userData: updatedUser, isTutor: true, tutorMode: true} 
-      return { ...state, userData: updatedUser}
+        return { ...state, userData: updatedUser, isTutor: true, tutorMode: true };
+      return { ...state, userData: updatedUser };
     default:
       return state;
   }

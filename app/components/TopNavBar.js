@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { Button } from 'react-native-elements';
+import { View, StyleSheet } from 'react-native';
 import StyledText from './StyledText';
 
 const TopNavBar = ({ toggled, tabName }) => (
@@ -9,7 +8,6 @@ const TopNavBar = ({ toggled, tabName }) => (
   </View>
 );
 const transparent = 'transparent';
-const grey = '#f2f2f2';
 const style = StyleSheet.create({
   container:{
     marginTop: 20,

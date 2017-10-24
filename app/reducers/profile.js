@@ -35,13 +35,13 @@ function profile(state = initialState, action) {
         error: ''
       };
     case GET_DEMO_PROFILE_COMPLETE:
-      var temp = []
+      var temp = [];
 
-      for (var i = 0; i < action.profile.coursesTeaching.length; i++) 
-        temp.push({course: action.profile.coursesTeaching[i] })
-        
+      for (var i = 0; i < action.profile.coursesTeaching.length; i++)
+        temp.push({ course: action.profile.coursesTeaching[i] });
+
       return {
-         ...state,
+        ...state,
         profile: action.profile,
         isLoading: false,
         courses_request_status: temp,

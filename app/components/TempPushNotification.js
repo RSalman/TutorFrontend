@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, View, Alert } from 'react-native';
+import { View } from 'react-native';
 import FCM from 'react-native-fcm';
 import StyledText from './StyledText';
 
@@ -79,8 +79,8 @@ export default class TempPushNotification extends Component {
 
 export function handleNotification(notif) {
   console.log('FCM Notification Event!');
-  if (notif.type === 'request') {
-    var data = JSON.parse(notif.associated_data);
+  // if (notif.type === 'request')
+    // var data = JSON.parse(notif.associated_data);
     /*Alert.alert(
       'New Pending Request',
       data.tutee + ' has requested Tutoring for ' + data.course + '!',
@@ -92,7 +92,7 @@ export function handleNotification(notif) {
       { cancelable: false }
     );*/
     /* TODO : Use this notification to fetch pending requests from backend */
-  }
+
 }
 
 

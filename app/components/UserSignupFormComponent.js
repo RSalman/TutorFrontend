@@ -28,7 +28,9 @@ class UserSignupFormComponent extends Component {
     return (
       <View style={styles.container}>
         <Form
-          ref={(form) => { this.signup_form = form; }}
+          ref={(form) => {
+            this.signup_form = form;
+          }}
           type={User}
           options={options}
           onChange={(formData) => this.props.updateForm(formData)}

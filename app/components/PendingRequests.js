@@ -57,8 +57,16 @@ class PendingRequests extends Component {
                       'Pending Request',
                       'Do you want to tutor ' + u.first_name + ' ' + u.last_name + '?',
                     [
-                        { text: 'Yes', onPress: () => { this.props.acceptPendingRequest(u.id, u.user_id); } },
-                        { text: 'No', onPress: () => { this.props.cancelTutorRequest(u.id);  }}
+                      {
+                        text: 'Yes', onPress: () => {
+                          this.props.acceptPendingRequest(u.id, u.user_id);
+                        }
+                      },
+                      {
+                        text: 'No', onPress: () => {
+                          this.props.cancelTutorRequest(u.id);
+                        }
+                      }
                     ],
                       { cancelable: false }
                     );
@@ -78,7 +86,11 @@ class PendingRequests extends Component {
                       'Cancel Request',
                       'Do you want to cancel request sent to ' + u.first_name + ' ' + u.last_name + '?',
                     [
-                        { text: 'Yes', onPress: () => { this.props.cancelTutorRequest(u.id); } },
+                      {
+                        text: 'Yes', onPress: () => {
+                          this.props.cancelTutorRequest(u.id);
+                        }
+                      },
                         { text: 'No' }
                     ],
                       { cancelable: false }
@@ -108,7 +120,6 @@ class PendingRequests extends Component {
 }
 
 const white = 'white';
-const blue = '#8080ff';
 const black = 'black';
 const green = 'green';
 const style = StyleSheet.create({
