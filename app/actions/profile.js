@@ -1,3 +1,5 @@
+import _ from 'underscore';
+
 // action types
 export const GET_PROFILE_START = 'GET_PROFILE_START';
 export const GET_PROFILE_COMPLETE = 'GET_PROFILE_COMPLETE';
