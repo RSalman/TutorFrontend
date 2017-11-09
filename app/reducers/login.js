@@ -18,7 +18,7 @@ function login(state = initialState, action) {
     case LOGIN_START:
       return { ...state, error: '', isLoading: true };
     case LOGIN_SUCCESS:
-      return { successful_authentication: true, isLoading: false, user_data: action.user_data };
+      return { ...state, successful_authentication: true, isLoading: false, user_data: action.user_data };
     case LOGIN_ERROR:
       return { ...state, error: action.error, isLoading: false };
     default:
