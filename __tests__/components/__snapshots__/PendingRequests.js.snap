@@ -1,0 +1,64 @@
+exports[`<PendingRequests /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "flex": 1,
+    }
+  }>
+  <View
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "flexDirection": "row",
+        "marginTop": 20,
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "fontFamily": "HelveticaNeue-Thin",
+          },
+          Object {
+            "backgroundColor": "transparent",
+            "flex": 1,
+            "fontSize": 20,
+            "textAlign": "center",
+          },
+        ]
+      } />
+  </View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "fontFamily": "HelveticaNeue-Thin",
+        },
+        Object {
+          "color": "green",
+          "fontSize": 16,
+          "marginTop": 10,
+          "textAlign": "center",
+        },
+      ]
+    }>
+    You have 
+    0
+     request(s) waiting.
+  </Text>
+  <View>
+    <RCTScrollView>
+      <View />
+    </RCTScrollView>
+  </View>
+</View>
+`;
